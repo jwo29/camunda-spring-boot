@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0">
+  <bpmn:process id="mobile-process" isExecutable="true">
+    <bpmn:dataStoreReference id="DataStoreReference_1nf8ey2" name="DB" />
+    <bpmn:serviceTask id="Activity_03rmu0m" name="DB Connection" camunda:delegateExpression="#{dbConn}">
+      <bpmn:incoming>Flow_0yc3zpb</bpmn:incoming>
+      <bpmn:outgoing>Flow_022bnkr</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1cn3d78">
+        <bpmn:targetRef>DataStoreReference_1nf8ey2</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:startEvent id="Event_18q9604" name="DB Connection start event">
+      <bpmn:outgoing>Flow_0yc3zpb</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0yc3zpb" sourceRef="Event_18q9604" targetRef="Activity_03rmu0m" />
+    <bpmn:endEvent id="Event_010eor9" name="DB Connection end event">
+      <bpmn:incoming>Flow_0l4jlfi</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_022bnkr" sourceRef="Activity_03rmu0m" targetRef="Activity_0kmll6b" />
+    <bpmn:sequenceFlow id="Flow_0l4jlfi" sourceRef="Activity_0kmll6b" targetRef="Event_010eor9" />
+    <bpmn:userTask id="Activity_0kmll6b" name="DB Connection end">
+      <bpmn:incoming>Flow_022bnkr</bpmn:incoming>
+      <bpmn:outgoing>Flow_0l4jlfi</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="mobile-process">
+      <bpmndi:BPMNEdge id="Flow_0yc3zpb_di" bpmnElement="Flow_0yc3zpb">
+        <di:waypoint x="208" y="120" />
+        <di:waypoint x="320" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_022bnkr_di" bpmnElement="Flow_022bnkr">
+        <di:waypoint x="370" y="160" />
+        <di:waypoint x="370" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0l4jlfi_di" bpmnElement="Flow_0l4jlfi">
+        <di:waypoint x="370" y="280" />
+        <di:waypoint x="370" y="332" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="DataStoreReference_1nf8ey2_di" bpmnElement="DataStoreReference_1nf8ey2">
+        <dc:Bounds x="525" y="95" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="542" y="152" width="16" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_14yd6gn_di" bpmnElement="Activity_03rmu0m">
+        <dc:Bounds x="320" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_18q9604_di" bpmnElement="Event_18q9604">
+        <dc:Bounds x="172" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="153" y="145" width="74" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_010eor9_di" bpmnElement="Event_010eor9">
+        <dc:Bounds x="352" y="332" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="333" y="375" width="74" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0uw6c29_di" bpmnElement="Activity_0kmll6b">
+        <dc:Bounds x="320" y="200" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1cn3d78_di" bpmnElement="DataOutputAssociation_1cn3d78">
+        <di:waypoint x="420" y="120" />
+        <di:waypoint x="525" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

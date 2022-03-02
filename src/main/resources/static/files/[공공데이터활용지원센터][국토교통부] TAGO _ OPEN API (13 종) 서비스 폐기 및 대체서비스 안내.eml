@@ -1,0 +1,105 @@
+Delivered-To: jwo2955@gmail.com
+Received: by 2002:ac8:5889:0:0:0:0:0 with SMTP id t9csp3184242qta;
+        Thu, 10 Feb 2022 22:11:49 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwLXfruehxVzhSE2vNhlOB20nz2wQpMOQ6qJA9JhP5/Lnog+UYiy6Oclk52iUMQi7bxJSnG
+X-Received: by 2002:a17:90b:388:: with SMTP id ga8mr225025pjb.137.1644559909302;
+        Thu, 10 Feb 2022 22:11:49 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1644559909; cv=none;
+        d=google.com; s=arc-20160816;
+        b=W0jpBXNOcrhzbBxPuGgIq7o3lJUvb1oWabWqT6BImeSUGhspTLz1wUkZomoolGoEhr
+         rCD8Yj40QcEdLe17qNZ+UJik1g9ujAjxdUute4v2XFMBVYAg+J/eviptHsNGe636OAdw
+         GzLAbXtF7OAQTGojKQ+LWPtXE6n54clMO9B2H5yv7/4FVp0JH+S6U/y6b3ovkGhhSt5d
+         w3D/wQn69AutpZ8GNuJukkqMTLn9a+CyXaMd5E8fznZ7SNbSGUbzST/JgJEVXLieQVBf
+         DbktYmx1+UlaRt+zYVVFuKTgU6/omYj0ujFrq0pQbsczXCxvR0f0r5qjF48Jq6TJndVS
+         rLyQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:to:subject:from:date:message-id;
+        bh=ypmQfWiLKC82YOxS3cZOn9CvCacr5SmnHSrinm1GN70=;
+        b=K/JoS+pGnlXNDuPKfr6HHXdFVQi+v2wKrpOfLzwbzI9u2MTedR6oEl7YqXTTmpol4a
+         Sr0KO8Jv4gmLO4p+adrFQf91LQENyAJNJYMLBPYxLK9LzEUlBn/LRG2b7xJhRZFC+lMl
+         hvMau7R4u86xyQvrpEvXCxurtVVDWXuAq4t08cvt6pRVtzx9i+zn8sKwX6pjqZxxsbLq
+         Kf5gC9yDhZhGnimldeIN0sdq4OQ2i9Dndr2caVRnV1iVXnlc/sh+9uuuDXdE8ECQQBbw
+         GNn0389PoyfocrjGn7fjEV/kWX/hg0fm7qlAFV1HMxFEXkQJGSIe8D4zP2raW4zuQqMW
+         55wA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of return@data.go.kr designates 27.101.215.214 as permitted sender) smtp.mailfrom=return@data.go.kr
+Return-Path: <return@data.go.kr>
+Received: from mass.data.go.kr (mass.data.go.kr. [27.101.215.214])
+        by mx.google.com with ESMTP id n68si18061254pfd.135.2022.02.10.22.11.48
+        for <jwo2955@gmail.com>;
+        Thu, 10 Feb 2022 22:11:49 -0800 (PST)
+Received-SPF: pass (google.com: domain of return@data.go.kr designates 27.101.215.214 as permitted sender) client-ip=27.101.215.214;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of return@data.go.kr designates 27.101.215.214 as permitted sender) smtp.mailfrom=return@data.go.kr
+Message-ID: <6205fe25.1c69fb81.387c.6e00SMTPIN_ADDED_MISSING@mx.google.com>
+Date: Fri, 11 Feb 2022 15:11:48 +0900
+From: "=?UTF-8?B?6rO16rO1642w7J207YSw7Y+s7YS4?="<noreply@data.go.kr>
+Subject: =?UTF-8?B?W+qzteqzteuNsOydtO2EsO2ZnOyaqeyngOybkOyEvO2EsF1b6rWt7Yag6rWQ7Ya167aAXQ==?=
+ =?UTF-8?B?IFRBR08gXyBPUEVOIEFQSSAoMTM=?=
+ =?UTF-8?B?IOyihSkg7ISc67mE7IqkIO2PkOq4sCDrsI8g64yA7LK07ISc67mE7IqkIOyViA==?=
+ =?UTF-8?B?64K0?=
+To: "=?UTF-8?B?7J207KeA7Jqw64uY?="<jwo2955@gmail.com>
+MIME-Version: 1.0
+X-Mailer: ThunderMail6.0
+Content-Type: multipart/alternative;	boundary="------=_ThunderMail_BOUNDARY_C123O456N789F"
+
+--------=_ThunderMail_BOUNDARY_C123O456N789F
+Content-Type: text/html;	charset="UTF-8"
+Content-Transfer-Encoding: base64
+
+PHA+6rWt7Yag6rWQ7Ya167aAIFRBR0/si5zsiqTthZzsl5DshJwg7KCc6rO17KSR7J24IOyY
+pO2UiEFQSSDshJzruYTsiqQoMTPsooUpIO2PkOq4sCDrsI8g64yA7LK07ISc67mE7IqkIOq0
+gOugqO2VmOyXrCDslYjrgrTtlbQg65Oc66a964uI64ukLjwvcD48cD48YnI+PC9wPjxwPu2Y
+hOq4sOq0gOyXkOyEnCDshJzruYTsiqTtlZjqs6Ag7J6I64qUIOyYpO2UiEFQSSDsoJzqs7Xr
+sKnsi53snbQg67OA6rK965CY7Ja0LDwvcD48cD48YnI+PC9wPjxwPuq4sOyhtOyXkCDsmrTs
+mIHspJHsnbggQVBJIDEz7KKF7J20Jm5ic3A7IOKAmTIy64WEIDTsm5QgMzDsnbzrtoDroZwg
+7KKF66OM65Cp64uI64ukLjwvcD48cD48YnI+PC9wPjxwPuyCrOyghOyXkCDtmZXsnbjtlZjs
+i6Ag7ZuEIOuMgOyytOyEnOu5hOyKpOuhnCDrs4Dqsr0g67aA7YOB65Oc66a964uI64ukLjwv
+cD48cD48YnI+PC9wPjxwPuKWoCDsoJzqs7XquLDqtIAgOiDqta3thqDqtZDthrXrtoA8L3A+
+PHA+PGJyPjwvcD48cD7ilqAg64yA7IOB7ISc67mE7IqkICgxM+yihSkgOjwvcD48cD7qta3t
+hqDqtZDthrXrtoBf7Lm07IWw7Ja066eBIOygleuztDwvcD48cD7qta3thqDqtZDthrXrtoBf
+7Iuc7Jm467KE7Iqk7KCV67O0PC9wPjxwPuq1re2GoOq1kO2Gteu2gF/qs6Dsho3rsoTsiqTs
+oJXrs7Qg7ISc67mE7IqkPC9wPjxwPuq1re2GoOq1kO2Gteu2gF/qs6Dsho3rsoTsiqTrj4Ts
+sKnsoJXrs7Qg7ISc67mE7IqkPC9wPjxwPuq1re2GoOq1kO2Gteu2gF/qta3rgrTtla3qs7Xs
+mrTtla3soJXrs7Q8L3A+PHA+6rWt7Yag6rWQ7Ya167aAX+q1reuCtOyEoOuwleyatO2Vreyg
+leuztDwvcD48cD7qta3thqDqtZDthrXrtoBf7Je07LCo7KCV67O0PC9wPjxwPuq1re2GoOq1
+kO2Gteu2gF/rsoTsiqTsoJXrpZjshozsoJXrs7Q8L3A+PHA+6rWt7Yag6rWQ7Ya167aAX+uy
+hOyKpOuPhOywqeygleuztDwvcD48cD7qta3thqDqtZDthrXrtoBf67KE7Iqk7JyE7LmY7KCV
+67O0PC9wPjxwPuq1re2GoOq1kO2Gteu2gF/rsoTsiqTrhbjshKDsoJXrs7Q8L3A+PHA+6rWt
+7Yag6rWQ7Ya167aAX+yngO2VmOyyoOygleuztOyEnOu5hOyKpDwvcD48cD7qta3thqDqtZDt
+hrXrtoBf7KeA7ZWY7LKg7Iuk7Iuc6rCE7KCV67O0IOyEnOu5hOyKpCAtJmd0OyDrjIDssrTs
+hJzruYTsiqQg7JeG7J20IOyiheujjDwvcD48cD48YnI+PC9wPjxwPiZuYnNwOzwvcD48cD48
+YnI+PC9wPjxwPuKWoCDrjIDssrQg7ISc67mE7IqkICgxMuyihSkgOjwvcD48cD7qta3thqDq
+tZDthrXrtoBfKFRBR08pX+y5tOyFsOyWtOungSDsoJXrs7QgLSBodHRwczovL3d3dy5kYXRh
+LmdvLmtyL2RhdGEvMTUwOTg1NTcvb3BlbmFwaS5kbzwvcD48cD7qta3thqDqtZDthrXrtoBf
+KFRBR08pX+yLnOyZuOuyhOyKpOygleuztCAtIGh0dHBzOi8vd3d3LmRhdGEuZ28ua3IvZGF0
+YS8xNTA5ODU0MS9vcGVuYXBpLmRvPC9wPjxwPuq1re2GoOq1kO2Gteu2gF8oVEFHTylf6rOg
+7IaN67KE7Iqk7KCV67O0IC0gaHR0cHM6Ly93d3cuZGF0YS5nby5rci9kYXRhLzE1MDk4NTIy
+L29wZW5hcGkuZG88L3A+PHA+6rWt7Yag6rWQ7Ya167aAXyhUQUdPKV/qs6Dsho3rsoTsiqTr
+j4TssKnsoJXrs7QgLSBodHRwczovL3d3dy5kYXRhLmdvLmtyL2RhdGEvMTUwOTg1MTYvb3Bl
+bmFwaS5kbzwvcD48cD7qta3thqDqtZDthrXrtoBfKFRBR08pX+q1reuCtO2VreqzteyatO2V
+reygleuztCAtIGh0dHBzOi8vd3d3LmRhdGEuZ28ua3IvZGF0YS8xNTA5ODUyNi9vcGVuYXBp
+LmRvPC9wPjxwPuq1re2GoOq1kO2Gteu2gF8oVEFHTylf6rWt64K07ISg67CV7Jq07ZWt7KCV
+67O0IC0gaHR0cHM6Ly93d3cuZGF0YS5nby5rci9kYXRhLzE1MDk4NTIzL29wZW5hcGkuZG88
+L3A+PHA+6rWt7Yag6rWQ7Ya167aAXyhUQUdPKV/sl7TssKjsoJXrs7QgLSBodHRwczovL3d3
+dy5kYXRhLmdvLmtyL2RhdGEvMTUwOTg1NTIvb3BlbmFwaS5kbzwvcD48cD7qta3thqDqtZDt
+hrXrtoBfKFRBR08pX+uyhOyKpOygleulmOyGjOygleuztCAtIGh0dHBzOi8vd3d3LmRhdGEu
+Z28ua3IvZGF0YS8xNTA5ODUzNC9vcGVuYXBpLmRvPC9wPjxwPuq1re2GoOq1kO2Gteu2gF8o
+VEFHTylf67KE7Iqk64+E7LCp7KCV67O0IC0gaHR0cHM6Ly93d3cuZGF0YS5nby5rci9kYXRh
+LzE1MDk4NTMwL29wZW5hcGkuZG88L3A+PHA+6rWt7Yag6rWQ7Ya167aAXyhUQUdPKV/rsoTs
+iqTsnITsuZjsoJXrs7QgLSBodHRwczovL3d3dy5kYXRhLmdvLmtyL2RhdGEvMTUwOTg1MzMv
+b3BlbmFwaS5kbzwvcD48cD7qta3thqDqtZDthrXrtoBfKFRBR08pX+uyhOyKpOuFuOyEoOyg
+leuztCAtIGh0dHBzOi8vd3d3LmRhdGEuZ28ua3IvZGF0YS8xNTA5ODUyOS9vcGVuYXBpLmRv
+PC9wPjxwPuq1re2GoOq1kO2Gteu2gF8oVEFHTylf7KeA7ZWY7LKg7KCV67O0IC0gaHR0cHM6
+Ly93d3cuZGF0YS5nby5rci9kYXRhLzE1MDk4NTU0L29wZW5hcGkuZG88L3A+PHA+PGJyPjwv
+cD48cD7ilqAg7Y+Q6riw7IKs7JygIDog7Jik7ZSIQVBJ7KCc6rO167Cp7IudIOuzgOqyveyX
+kCDrlLDrpbgg7ISc67mE7IqkIOyghO2ZmDwvcD48cD48YnI+PC9wPjxwPuKWoCDri7Tri7ns
+npAgOiDtlZzqta3qtZDthrXslYjsoITqs7Xri6ggVEFHT+yatOyYge2MgDwvcD48cD48YnI+
+PC9wPjxwPuqwkOyCrO2VqeuLiOuLpC48L3A+DQo8cD48aW1nIHNyYz0naHR0cDovL21hc3Mu
+ZGF0YS5nby5rci90bTYvYXBwL3Jlc3BvbnNlL29wZW4vbWFzc21haWwvMGVlOGQyMzY1Mzhk
+OTNmYTU5YWQzNGU3N2NiMmFhZjgvMjJlMjg3MzYxMjJiYzNhZjhlNDFiYTYxYmEzMTljMTI0
+OGIxOTg4YmMxNzczZjg0NzdiNzM0NmE4NmMyMjc5ZCcgDQogd2lkdGg9MCBoZWlnaHQ9MCBz
+dHlsZT0nZGlzcGxheTpub25lJz4=
+
+
+--------=_ThunderMail_BOUNDARY_C123O456N789F--

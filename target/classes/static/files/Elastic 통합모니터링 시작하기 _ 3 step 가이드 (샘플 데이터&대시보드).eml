@@ -1,0 +1,424 @@
+Delivered-To: jwo2955@gmail.com
+Received: by 2002:ac8:5889:0:0:0:0:0 with SMTP id t9csp2023715qta;
+        Thu, 24 Feb 2022 18:41:45 -0800 (PST)
+X-Received: by 2002:a25:7903:0:b0:622:3940:7c7c with SMTP id u3-20020a257903000000b0062239407c7cmr5672112ybc.334.1645756905309;
+        Thu, 24 Feb 2022 18:41:45 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1645756905; cv=none;
+        d=google.com; s=arc-20160816;
+        b=rf4OzSNYh9Au8zX8U++Hs/76UzOoirStCH9VErX82ZQ+DtP+XBu0frLmdp9vdipmFM
+         /am8ydLgcdlmI1Z2AWAIvKe6LRv2jxJLj5eH1xhoE7FYM73mRkIbUVGeRn2wMVQ5Npab
+         Xt2RRsMpo9Y9ApQI9GEau9L+ElD87VjAZKouvsWjMmPL61xy5fyM2UowiwvTL0ZlO0p7
+         ylBT8fasmKffHMUaE8ZySGAa/fW6YVi1ZAjb01q4lX7X9DObafwfXlJrwQwrqEYp6b8Q
+         5t45VvIMOuQoD7yBW5iJRGSP78OVw/vO8zayKsFCcSvu/uBdOHNYXDslM0UHZU1crAS2
+         hpvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:list-unsubscribe:mime-version:from
+         :dkim-signature;
+        bh=MQzyEBVbUsAsaoWYUNh6yRO3eb0MWKoyPLkkouLWP4c=;
+        b=IEcj7JTVZs+tyPnv51qLso2pfswiN2cDVJb442XetSa5sdnkTkxdENX1DqOOkcWC2V
+         oQvPAS6zrzUY+76CsbQ2I6njZBdq/XEORBbON7aSNNO2gbf7qI36WfHVaY5dvh6hovon
+         /VZy5E1+E8+H4SZCfOU1RRGhvLDWKGFlUOQHOHV/yqkEo4EWUbgaoHEGCUTbdtYz8n9l
+         oj2XXdJDXHDgFp+bWTwisx878Uo79Ce+xiu2n5yADnUGHWgsy4A26bw0PJK6FyF1HIYP
+         BkwlNWXVFYgwckzmosyxmLm4zTUmtqcmYg+Inf/YtbT1rWdS754vWID3KBEnhrZL8MUc
+         ntUA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@elastic.co header.s=google header.b="IMLaHk/L";
+       spf=pass (google.com: domain of saebyeol.park@elastic.co designates 209.85.220.41 as permitted sender) smtp.mailfrom=saebyeol.park@elastic.co;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=elastic.co
+Return-Path: <saebyeol.park@elastic.co>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id r5-20020a258445000000b0062441fda56esor1408341ybm.28.2022.02.24.18.41.45
+        for <jwo2955@gmail.com>
+        (Google Transport Security);
+        Thu, 24 Feb 2022 18:41:45 -0800 (PST)
+Received-SPF: pass (google.com: domain of saebyeol.park@elastic.co designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@elastic.co header.s=google header.b="IMLaHk/L";
+       spf=pass (google.com: domain of saebyeol.park@elastic.co designates 209.85.220.41 as permitted sender) smtp.mailfrom=saebyeol.park@elastic.co;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=elastic.co
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=elastic.co; s=google;
+        h=from:mime-version:list-unsubscribe:date:message-id:subject:to;
+        bh=MQzyEBVbUsAsaoWYUNh6yRO3eb0MWKoyPLkkouLWP4c=;
+        b=IMLaHk/LioxjHeOEowjrYCoXJ1aAq2FLGwFdDy0hdE16ZxxzhZuKOf3MG/emkM3aKD
+         wk7MXoAMtVA8IEW2tM1uFKVrObeHIScQ+/YrQUK3G5z7NevPRkQtxeDTazmR9/RAb9wB
+         N0x6xPihCKVPq8AMxKNqZqthtAmMSSU5uYp/8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:mime-version:list-unsubscribe:date
+         :message-id:subject:to;
+        bh=MQzyEBVbUsAsaoWYUNh6yRO3eb0MWKoyPLkkouLWP4c=;
+        b=EeAMESWS3xDIAGJilmQo5uGS61uU1iJgHENW1mVxdFK8gmcfE369pduHqs3+alq6gZ
+         mVrUPGjhD+JEIUMFemdyjoedUPWPgaqpcZND3ItmVzUOCK3oJJ4gTWVf71KascKpF9lC
+         LgE1542KhsAo+Tk/MNBPz5D+r/Zr4CJrOdU+870YZD+978jRr4G6Bz+cr4wgwW4ldBUA
+         vqtu49MN0iPO/Rvy8iRxRHiomLNdvdofXiC4OacQmSfH5ezwhx1i2cY430KVcZxK0UzK
+         qUJMXhhahlXAWa405EEqeNoBssAREEd9qzVisYMamo6Rbi+8EZ9FIbgKN/EmMKG9xOwB
+         TKtA==
+X-Gm-Message-State: AOAM532gGzuKYuyQFk1Zyc2iPEaE/HGfiDaJ+S9kXfAGyaVt6q/CDow7
+	KnkM+1yAKngrLOsjJMrE0MvkMA+D8P5k5AcNPI6wHmd0dRE=
+X-Google-Smtp-Source: ABdhPJyfyNcRkeoYbMQaO/leR9XEHhmYeTGCRHoZoFtTjkiLcw0BKtrxE1FM06JRDr7kdwQtjeNT7p4Lxw9tyh7m6LI=
+X-Received: by 2002:a25:c2c4:0:b0:615:ea99:43bc with SMTP id
+ s187-20020a25c2c4000000b00615ea9943bcmr5302220ybf.283.1645756904648; Thu, 24
+ Feb 2022 18:41:44 -0800 (PST)
+Received: from 1098270747392 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 24 Feb 2022 18:41:43 -0800
+From: Saebyeol Park <saebyeol.park@elastic.co>
+Mime-Version: 1.0
+X-Groove-Flow: true
+List-Unsubscribe: <https://app.grooveapp.com/unsubscribe/Mu56z4XjUzUYbHXlPLiL1UG5JyE>
+Date: Thu, 24 Feb 2022 18:41:43 -0800
+Message-ID: <CAB7o6xics4zrTSEYN2LWx+seGOoEfFUT2qJX1x2E2JHXoJz=Dg@mail.gmail.com>
+Subject: =?UTF-8?B?RWxhc3RpYyDthrXtlanrqqjri4jthLDrp4Eg7Iuc7J6R7ZWY6riwIHwgMyBzdGVwIOqwgA==?=
+	=?UTF-8?B?7J2065OcICjsg5jtlIwg642w7J207YSwJuuMgOyLnOuztOuTnCk=?=
+To: jwo2955@gmail.com
+Content-Type: multipart/alternative; boundary="000000000000b0636605d8cea332"
+
+--000000000000b0636605d8cea332
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+
+KlsgRWxhc3RpYyDruaDrpbTqsowg7Iuc7J6R7ZWY6riwIHwgMyBzdGVwIOqwgOydtOuTnCBdKg0K
+DQrslYjrhZXtlZjshLjsmpQsDQpFbGFzdGljIEtvcmVhIFRlYW0g7J6F64uI64ukLg0KDQpFbGFz
+dGljIOydgCBsb2dnaW5nLCBhcG0sIG1ldGljcyDrk7HsnYQg7Y+s7ZWo7ZWcIO2Gte2VqeuqqOuL
+iO2EsOungSDsmIHsl63sl5DshJwg7ZWE7IiYIO2ZnOyaqeuQmOqzoCDsnojripQg7IaU66Oo7IWY
+7J6F64uI64ukLg0K7Ya17ZWpIOuqqOuLiO2EsOungSDtmZjqsr0g6rWs7LaV7J2EIOychO2VnCAz
+IHN0ZXAg6rCA7J2065Oc66GcIOyXrOufrOu2hOydmCDtmZjqsr3sl5AgRWxhc3RpYyDsnYQg67mg
+66W06rKMIOyggeyaqe2VtOuztOyEuOyalCENCg0KKj4+IFF1aWNrIFN0YXJ0IOqwgOydtOuTnCDs
+mIHsg4Eg66qo7J2M7KeRIOuwlOuhnOqwgOq4sCA8PA0KPGh0dHA6Ly9ncm9vdmUuZWxhc3RpYy5j
+by91cmwvTXU1Nno0WGpVelVZYkhYbFBMaUwxVUc1SnlFL2FIUjBjSE02THk5M2QzY3VaV3hoYzNS
+cFl5NWpieTlyY2k5MGNtRnBibWx1Wnk5bWNtVmxJM0YxYVdOckxYTjBZWEowY3lObmNtOXZkbVZ6
+ZFcwNkxURXdORFkzT1RRM05UUT0+Kg0KDQogICAtICpFbGFzdGljIENsb3VkIDE07J28IOustOuj
+jCDtirjrnbzsnbTslrwqDQogICA8aHR0cDovL2dyb292ZS5lbGFzdGljLmNvL3VybC9NdTU2ejRY
+alV6VVliSFhsUExpTDFVRzVKeUUvYUhSMGNITTZMeTkzZDNjdVpXeGhjM1JwWXk1amJ5OXJjaTlq
+Ykc5MVpDOWxiR0Z6ZEdsamMyVmhjbU5vTFhObGNuWnBZMlV2YzJsbmJuVndJMmR5YjI5MlpYTjFi
+VG90TVRrNE1qRTFPRFl4Tnc9PT7roZwNCiAgIOyngeygkSDthYzsiqTtirgg7Iuc7J6R7ZWY6riw
+DQoNCg0KDQoNCnwg7Iuc6rCB7ZmUIC8g64yA7Iuc67O065OcIOyDmO2UjCDsnpDro4wNCg0K64uk
+66W4IHVzZXLrk6TsnYAgRWxhc3RpYyDsi5zqsIHtmZQv64yA7Iuc67O065Oc66W8IOyWtOuWu+qy
+jCDsgqzsmqntlZjqs6Ag7J6I7J2E7KeAIO2ZleyduO2VtOuztOyEuOyalCENCg0KICAgLSBFbGFz
+dGljIOuNsOuqqOyCrOydtO2KuCDrsJTroZzqsIDquLANCiAgIDxodHRwOi8vZ3Jvb3ZlLmVsYXN0
+aWMuY28vdXJsL011NTZ6NFhqVXpVWWJIWGxQTGlMMVVHNUp5RS9hSFIwY0hNNkx5OWtaVzF2TG1W
+c1lYTjBhV011WTI4dllYQndMMnRwWW1GdVlTTXZaR0Z6YUdKdllYSmtMM2RsYkdOdmJXVmZaR0Z6
+YUdKdllYSmtJMmR5YjI5MlpYTjFiVG90TVRZeE16UTFOemMwT1E9PT4NCiAgIC0gRWxhc3RpYyBL
+aWJhbmEg6riw67CYIO2GteqzhOuhnCDrs7TripQgRWxhc3RpYyDsi5zssq3tlZjquLANCiAgIDxo
+dHRwOi8vZ3Jvb3ZlLmVsYXN0aWMuY28vdXJsL011NTZ6NFhqVXpVWWJIWGxQTGlMMVVHNUp5RS9h
+SFIwY0hNNkx5OTNkM2N1Wld4aGMzUnBZeTVqYnk5cmNpOTJhWEowZFdGc0xXVjJaVzUwY3k5bGJH
+RnpkR2xqTFdOc2IzVmtMWFZ6WlMxallYTmxQMkpzWVdSbFBYTmhiR1Z6Sm1oMWJHczlhVzUyYVhS
+bEkyZHliMjkyWlhOMWJUb3hOell3TmpFMk9UVXo+DQogICAoNDM6NDAg7LSIIOu2gO2EsCDrjIDs
+i5zrs7Trk5wg7IaM6rCcKSA6IOyKpO2DgO2KuOyXheu2gO2EsCDrjIDtlZnqtZAv7Jew6rWs7IaM
+LCDqs7Xqs7XquLDqtIDsnZgg7IOd7IOd7ZWcIEVsYXN0aWMg7Zmc7Jqp7IKs66GA7JmALCBFbGFz
+dGljDQogICDsmIHsl4Xri7Tri7nsnpDqsIAg7KeB7KCRIEtpYmFuYSDrjIDsi5zrs7Trk5zroZwg
+RWxhc3RpYyBDbG91ZCDthrXqs4QgLyDsm6jruYTrgpgg7Ya16rOEIOuTseydhCDrs7Tsl6zrk5zr
+pr3ri4jri6QuDQoNCg0KfCDrj4Tsm4DsnbQg7ZWE7JqU7ZWY7Iug6rCA7JqUPw0KRWxhc3RpYyDt
+mZzsmqnrsKnslYgsIO2KuOudvOydtOyWvCDrrLTro4wg7Jew7J6lLCDqtazstpUg6rCA7J2065Oc
+LCDtipzthqDrpqzslrwg65OxIOqwgeyihSDsnpDro4zripQg7Ja47KCc65OgICgNCnVzZXJzdWNj
+ZXNzLWtyQGVsYXN0aWMuY28pIOuhnCDsl7Drnb0g67aA7YOB65Oc66a964uI64ukIDopDQoNCg0K
+DQoqDQo8aHR0cDovL2dyb292ZS5lbGFzdGljLmNvL3VybC9NdTU2ejRYalV6VVliSFhsUExpTDFV
+RzVKeUUvYUhSMGNEb3ZMM0JtTG10aGEyRnZMbU52YlM5ZmRXRkNZa3NqWjNKdmIzWmxjM1Z0T2pF
+ME9EUXpNakF5TXpBPT4qDQrqsJDsgqztlanri4jri6QuDQoqS2FrYW90YWxrDQo8aHR0cDovL2dy
+b292ZS5lbGFzdGljLmNvL3VybC9NdTU2ejRYalV6VVliSFhsUExpTDFVRzVKeUUvYUhSMGNEb3ZM
+M0JtTG10aGEyRnZMbU52YlM5ZmRXRkNZa3NqWjNKdmIzWmxjM1Z0T2pFME9EUXpNakF5TXpBPT4N
+Ckkg7KSM66+47YyFDQrsnqHquLANCjxodHRwOi8vZ3Jvb3ZlLmVsYXN0aWMuY28vdXJsL011NTZ6
+NFhqVXpVWWJIWGxQTGlMMVVHNUp5RS9hSFIwY0hNNkx5OWpZV3hsYm1Sc2VTNWpiMjB2WW1Wc2JH
+RXRjR0Z5YXk4eE5XMXBiaU5uY205dmRtVnpkVzA2TFRFM01qQTBNVEkwTXpBPT4NCkkNCjAxMC04
+NjA5LTU0NzMqDQoNCi0tLS0tDQoNCirrsJXsg4jrs4QgKipTYWVieWVvbCBQYXJrICoNCkNsb3Vk
+IEFjY291bnQgRXhlY3V0aXZlDQoNClRlbDogKzgyLTEwLTg2MDktNTQ3Mw0KaHR0cHM6Ly93d3cu
+ZWxhc3RpYy5jby9rcg0KPGh0dHA6Ly9ncm9vdmUuZWxhc3RpYy5jby91cmwvTXU1Nno0WGpVelVZ
+YkhYbFBMaUwxVUc1SnlFL2FIUjBjSE02THk5M2QzY3VaV3hoYzNScFl5NWpieTlyY2k4alozSnZi
+M1psYzNWdE9pMDBNVEF5TWpNeU1qRT0+DQovDQo8aHR0cDovL2dyb292ZS5lbGFzdGljLmNvL3Vy
+bC9NdTU2ejRYalV6VVliSFhsUExpTDFVRzVKeUUvYUhSMGNITTZMeTkzZDNjdVpXeGhjM1JwWXk1
+amJ5OXJjaThqWjNKdmIzWmxjM1Z0T2kwME1UQXlNak15TWpFPT4NCg0KU2VhcmNoLiBPYnNlcnZl
+LiBQcm90ZWN0Lg0KDQrqs6DqsJ3rk6TsnbQg66eQ7ZWY64qUICJXaHkgRWxhc3RpYz8iIChZb3VU
+dWJlKQ0KKuyKpO2UvOuTnCAo7Iuk7Iuc6rCEKQ0KPGh0dHA6Ly9ncm9vdmUuZWxhc3RpYy5jby91
+cmwvTXU1Nno0WGpVelVZYkhYbFBMaUwxVUc1SnlFL2FIUjBjSE02THk5M2QzY3VlVzkxZEhWaVpT
+NWpiMjB2ZDJGMFkyZ19kajFOTWtKUlZuTk1aMTlaWXlObmNtOXZkbVZ6ZFcwNk16RTNNVFkwTmpJ
+PT4NCnwgKirsiqTsvIDsnbwNCihzY2FsZSkNCjxodHRwOi8vZ3Jvb3ZlLmVsYXN0aWMuY28vdXJs
+L011NTZ6NFhqVXpVWWJIWGxQTGlMMVVHNUp5RS9hSFIwY0hNNkx5OTNkM2N1ZVc5MWRIVmlaUzVq
+YjIwdmQyRjBZMmdfZGoxbFpqbEtTbFo2Y20xamR5WjBQVEp6STJkeWIyOTJaWE4xYlRveE5UQTRP
+VGc0TnpBMj4NCnwqKuq0gOugqOyEsQ0KKHJlbGV2YW5jZSkNCjxodHRwOi8vZ3Jvb3ZlLmVsYXN0
+aWMuY28vdXJsL011NTZ6NFhqVXpVWWJIWGxQTGlMMVVHNUp5RS9hSFIwY0hNNkx5OTNkM2N1ZVc5
+MWRIVmlaUzVqYjIwdmQyRjBZMmdfZGowMGFIQk5SRGxaYzFaMVdTTm5jbTl2ZG1WemRXMDZMVEl3
+TlRVNE5qa3hNRGs9PioNCg0KKicgQWxsIGNvbnRlbnRzL2VtYWlsIHRocmVhZCBzaGFyZWQgYXJl
+IHByaXZhdGUgYW5kIGNvbmZpZGVudGlhbCoNCionIFBsZWFzZSBub3RlOiAqRW1haWxzIG1heSBi
+ZSBzdG9yZWQgYW5kIHNoYXJlZCB0byBwcm92aWRlIGEgYmV0dGVyDQpjdXN0b21lciBleHBlcmll
+bmNlLiBUbyBsZWFybiBtb3JlIGFib3V0IGhvdyB3ZSB1c2UgeW91ciBpbmZvcm1hdGlvbiwNCnBs
+ZWFzZSByZXZpZXcgRWxhc3RpY+KAmXMgUHJpdmFjeSBTdGF0ZW1lbnQuDQo8aHR0cDovL2dyb292
+ZS5lbGFzdGljLmNvL3VybC9NdTU2ejRYalV6VVliSFhsUExpTDFVRzVKeUUvYUhSMGNITTZMeTkz
+ZDNjdVpXeGhjM1JwWXk1amJ5OXNaV2RoYkM5d2NtbDJZV041TFhOMFlYUmxiV1Z1ZENObmNtOXZk
+bVZ6ZFcwNkxUSXdOamM0TkRRM05EVT0+DQoNCg0KVW5zdWJzY3JpYmUNCjxodHRwczovL2FwcC5n
+cm9vdmVhcHAuY29tL3Vuc3Vic2NyaWJlL011NTZ6NFhqVXpVWWJIWGxQTGlMMVVHNUp5RT4NCg==
+--000000000000b0636605d8cea332
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><span style=3D"font-size:14pt;color:#e67e23"><strong>=
+<img src=3D"https://groove-assets.s3.us-west-2.amazonaws.com/uploads/164483=
+3329-logo-elastic-horizontal-color%20%281%29.jpg" alt=3D"" width=3D"135" he=
+ight=3D"46"></strong></span></div>
+<div><span style=3D"font-size:12pt;color:#e67e23"><strong>[ Elastic =EB=B9=
+=A0=EB=A5=B4=EA=B2=8C =EC=8B=9C=EC=9E=91=ED=95=98=EA=B8=B0 | 3 step =EA=B0=
+=80=EC=9D=B4=EB=93=9C ]</strong></span></div>
+<div>=C2=A0</div>
+<div>=EC=95=88=EB=85=95=ED=95=98=EC=84=B8=EC=9A=94,</div>
+<div>Elastic Korea Team =EC=9E=85=EB=8B=88=EB=8B=A4.</div>
+<div>=C2=A0</div>
+<div>Elastic =EC=9D=80 logging, apm, metics =EB=93=B1=EC=9D=84 =ED=8F=AC=ED=
+=95=A8=ED=95=9C =ED=86=B5=ED=95=A9=EB=AA=A8=EB=8B=88=ED=84=B0=EB=A7=81 =EC=
+=98=81=EC=97=AD=EC=97=90=EC=84=9C =ED=95=84=EC=88=98 =ED=99=9C=EC=9A=A9=EB=
+=90=98=EA=B3=A0 =EC=9E=88=EB=8A=94 =EC=86=94=EB=A3=A8=EC=85=98=EC=9E=85=EB=
+=8B=88=EB=8B=A4.</div>
+<div>=ED=86=B5=ED=95=A9 =EB=AA=A8=EB=8B=88=ED=84=B0=EB=A7=81 =ED=99=98=EA=
+=B2=BD =EA=B5=AC=EC=B6=95=EC=9D=84 =EC=9C=84=ED=95=9C 3 step =EA=B0=80=EC=
+=9D=B4=EB=93=9C=EB=A1=9C =EC=97=AC=EB=9F=AC=EB=B6=84=EC=9D=98 =ED=99=98=EA=
+=B2=BD=EC=97=90 Elastic =EC=9D=84 =EB=B9=A0=EB=A5=B4=EA=B2=8C =EC=A0=81=EC=
+=9A=A9=ED=95=B4=EB=B3=B4=EC=84=B8=EC=9A=94!</div>
+<div>
+<div>=C2=A0</div>
+<div><span style=3D"font-size:12pt"><strong><span style=3D"background-color=
+:#fbeeb8"><span style=3D"font-family:arial,helvetica,sans-serif"><a style=
+=3D"color:#0960b2;text-decoration:none;background-color:#fbeeb8" href=3D"ht=
+tp://groove.elastic.co/url/Mu56z4XjUzUYbHXlPLiL1UG5JyE/aHR0cHM6Ly93d3cuZWxh=
+c3RpYy5jby9rci90cmFpbmluZy9mcmVlI3F1aWNrLXN0YXJ0cyNncm9vdmVzdW06LTEwNDY3OTQ=
+3NTQ=3D"><span style=3D"text-decoration:underline">&gt;&gt; Quick Start =EA=
+=B0=80=EC=9D=B4=EB=93=9C =EC=98=81=EC=83=81 =EB=AA=A8=EC=9D=8C=EC=A7=91 =EB=
+=B0=94=EB=A1=9C=EA=B0=80=EA=B8=B0 &lt;&lt;</span></a></span></span></strong=
+></span></div>
+<ul>
+<li><span style=3D"font-size:10pt"><span style=3D"font-family:arial,helveti=
+ca,sans-serif"><span style=3D"color:#236fa1;font-style:normal;font-variant:=
+normal;text-decoration:underline;vertical-align:baseline;white-space:pre-wr=
+ap"><a style=3D"color:#236fa1;text-decoration:underline" href=3D"http://gro=
+ove.elastic.co/url/Mu56z4XjUzUYbHXlPLiL1UG5JyE/aHR0cHM6Ly93d3cuZWxhc3RpYy5j=
+by9rci9jbG91ZC9lbGFzdGljc2VhcmNoLXNlcnZpY2Uvc2lnbnVwI2dyb292ZXN1bTotMTk4MjE=
+1ODYxNw=3D=3D"><strong>Elastic Cloud 14=EC=9D=BC =EB=AC=B4=EB=A3=8C =ED=8A=
+=B8=EB=9D=BC=EC=9D=B4=EC=96=BC</strong></a></span><span style=3D"color:#000=
+000;font-style:normal;font-variant:normal;vertical-align:baseline;white-spa=
+ce:pre-wrap">=EB=A1=9C =EC=A7=81=EC=A0=91 =ED=85=8C=EC=8A=A4=ED=8A=B8 =EC=
+=8B=9C=EC=9E=91=ED=95=98=EA=B8=B0</span></span></span></li>
+</ul>
+<p dir=3D"ltr" style=3D"color:#757575;font-family:&#39;Open Sans&#39;,Arial=
+,sans-serif;font-size:13px;font-style:normal;font-variant-ligatures:normal;=
+font-variant-caps:normal;font-weight:400;letter-spacing:0.1px;text-align:st=
+art;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px=
+;text-decoration-style:initial;text-decoration-color:initial;line-height:1.=
+9872;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt"><span style=
+=3D"font-size:10pt;font-family:arial,helvetica,sans-serif;color:#222222;bac=
+kground-color:transparent;font-weight:400;font-style:normal;font-variant:no=
+rmal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap"><im=
+g src=3D"https://groove-assets.s3.us-west-2.amazonaws.com/uploads/164483308=
+0-image.png" width=3D"837" height=3D"646"></span></p>
+<p dir=3D"ltr" style=3D"color:#757575;font-family:&#39;Open Sans&#39;,Arial=
+,sans-serif;font-size:13px;font-style:normal;font-variant-ligatures:normal;=
+font-variant-caps:normal;font-weight:400;letter-spacing:0.1px;text-align:st=
+art;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px=
+;text-decoration-style:initial;text-decoration-color:initial;line-height:1.=
+9872;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt">=C2=A0</p>
+</div>
+<div>=C2=A0</div>
+<p dir=3D"ltr" style=3D"color:#757575;font-family:&#39;Open Sans&#39;,Arial=
+,sans-serif;font-size:13px;font-style:normal;font-variant-ligatures:normal;=
+font-variant-caps:normal;font-weight:400;letter-spacing:0.1px;text-align:st=
+art;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px=
+;text-decoration-style:initial;text-decoration-color:initial;line-height:1.=
+992;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt"><span style=
+=3D"font-size:small;font-family:arial,helvetica,sans-serif;color:#e67e23;fo=
+nt-weight:bold;font-style:normal;font-variant:normal;text-decoration:none;v=
+ertical-align:baseline;white-space:pre-wrap">| =EC=8B=9C=EA=B0=81=ED=99=94 =
+/ =EB=8C=80=EC=8B=9C=EB=B3=B4=EB=93=9C =EC=83=98=ED=94=8C =EC=9E=90=EB=A3=
+=8C</span></p>
+<p dir=3D"ltr" style=3D"color:#757575;font-family:&#39;Open Sans&#39;,Arial=
+,sans-serif;font-size:13px;font-style:normal;font-variant-ligatures:normal;=
+font-variant-caps:normal;font-weight:400;letter-spacing:0.1px;text-align:st=
+art;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px=
+;text-decoration-style:initial;text-decoration-color:initial;line-height:1.=
+992;background-color:#ffffff;margin-top:0pt;margin-bottom:0pt"><span style=
+=3D"font-size:small;font-family:arial,helvetica,sans-serif;color:#000000;ba=
+ckground-color:#ffffff;font-weight:400;font-style:normal;font-variant:norma=
+l;text-decoration:none;vertical-align:baseline;white-space:pre-wrap">=EB=8B=
+=A4=EB=A5=B8 user=EB=93=A4=EC=9D=80 Elastic =EC=8B=9C=EA=B0=81=ED=99=94/=EB=
+=8C=80=EC=8B=9C=EB=B3=B4=EB=93=9C=EB=A5=BC =EC=96=B4=EB=96=BB=EA=B2=8C =EC=
+=82=AC=EC=9A=A9=ED=95=98=EA=B3=A0 =EC=9E=88=EC=9D=84=EC=A7=80 =ED=99=95=EC=
+=9D=B8=ED=95=B4=EB=B3=B4=EC=84=B8=EC=9A=94!</span></p>
+<ul>
+<li><span style=3D"font-size:small;font-family:arial,helvetica,sans-serif">=
+<span style=3D"color:#000000;background-color:#ffffff;font-weight:400;font-=
+style:normal;font-variant:normal;text-decoration:none;vertical-align:baseli=
+ne;white-space:pre-wrap">Elastic =EB=8D=B0=EB=AA=A8=EC=82=AC=EC=9D=B4=ED=8A=
+=B8 </span><a style=3D"color:#0960b2;text-decoration:none" href=3D"http://g=
+roove.elastic.co/url/Mu56z4XjUzUYbHXlPLiL1UG5JyE/aHR0cHM6Ly9kZW1vLmVsYXN0aW=
+MuY28vYXBwL2tpYmFuYSMvZGFzaGJvYXJkL3dlbGNvbWVfZGFzaGJvYXJkI2dyb292ZXN1bTotM=
+TYxMzQ1Nzc0OQ=3D=3D"><span style=3D"color:#1155cc;background-color:#ffffff;=
+font-weight:400;font-style:normal;font-variant:normal;text-decoration:under=
+line;vertical-align:baseline;white-space:pre-wrap">=EB=B0=94=EB=A1=9C=EA=B0=
+=80=EA=B8=B0</span></a></span></li>
+<li>
+<span style=3D"font-size:small;font-family:arial,helvetica,sans-serif"><spa=
+n style=3D"color:#000000;background-color:#ffffff;font-weight:400;font-styl=
+e:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;w=
+hite-space:pre-wrap">Elastic Kibana =EA=B8=B0=EB=B0=98 =ED=86=B5=EA=B3=84=
+=EB=A1=9C =EB=B3=B4=EB=8A=94 Elastic </span><a style=3D"color:#0960b2;text-=
+decoration:none" href=3D"http://groove.elastic.co/url/Mu56z4XjUzUYbHXlPLiL1=
+UG5JyE/aHR0cHM6Ly93d3cuZWxhc3RpYy5jby9rci92aXJ0dWFsLWV2ZW50cy9lbGFzdGljLWNs=
+b3VkLXVzZS1jYXNlP2JsYWRlPXNhbGVzJmh1bGs9aW52aXRlI2dyb292ZXN1bToxNzYwNjE2OTU=
+z"><span style=3D"color:#1155cc;background-color:#ffffff;font-weight:400;fo=
+nt-style:normal;font-variant:normal;text-decoration:underline;vertical-alig=
+n:baseline;white-space:pre-wrap">=EC=8B=9C=EC=B2=AD=ED=95=98=EA=B8=B0</span=
+></a><span style=3D"color:#000000;background-color:#ffffff;font-weight:400;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap"> (43:40 =EC=B4=88 =EB=B6=80=ED=84=B0 =EB=8C=
+=80=EC=8B=9C=EB=B3=B4=EB=93=9C =EC=86=8C=EA=B0=9C) </span></span><span styl=
+e=3D"font-size:small;font-family:arial,helvetica,sans-serif;color:#000000;b=
+ackground-color:#ffffff;font-weight:400;font-style:normal;font-variant:norm=
+al;text-decoration:none;vertical-align:baseline;white-space:pre-wrap">:<spa=
+n style=3D"font-size:8pt"> =EC=8A=A4=ED=83=80=ED=8A=B8=EC=97=85=EB=B6=80=ED=
+=84=B0 =EB=8C=80=ED=95=99=EA=B5=90/=EC=97=B0=EA=B5=AC=EC=86=8C, =EA=B3=B5=
+=EA=B3=B5=EA=B8=B0=EA=B4=80=EC=9D=98 =EC=83=9D=EC=83=9D=ED=95=9C Elastic =
+=ED=99=9C=EC=9A=A9=EC=82=AC=EB=A1=80=EC=99=80, Elastic =EC=98=81=EC=97=85=
+=EB=8B=B4=EB=8B=B9=EC=9E=90=EA=B0=80 =EC=A7=81=EC=A0=91 Kibana =EB=8C=80=EC=
+=8B=9C=EB=B3=B4=EB=93=9C=EB=A1=9C Elastic Cloud =ED=86=B5=EA=B3=84 / =EC=9B=
+=A8=EB=B9=84=EB=82=98 =ED=86=B5=EA=B3=84 =EB=93=B1=EC=9D=84 =EB=B3=B4=EC=97=
+=AC=EB=93=9C=EB=A6=BD=EB=8B=88=EB=8B=A4. </span></span>
+</li>
+</ul>
+<div>=C2=A0</div>
+<div><span style=3D"font-size:small;font-family:arial,helvetica,sans-serif;=
+color:#000000;background-color:#ffffff;font-weight:400;font-style:normal;fo=
+nt-variant:normal;text-decoration:none;vertical-align:baseline;white-space:=
+pre-wrap"><span style=3D"font-size:8pt"><span style=3D"font-size:small;font=
+-family:arial,helvetica,sans-serif;color:#e67e23;font-weight:bold;font-styl=
+e:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;w=
+hite-space:pre-wrap">| =EB=8F=84=EC=9B=80=EC=9D=B4 =ED=95=84=EC=9A=94=ED=95=
+=98=EC=8B=A0=EA=B0=80=EC=9A=94?</span></span></span></div>
+<div><span style=3D"font-size:small;font-family:arial,helvetica,sans-serif;=
+color:#000000;background-color:#ffffff;font-weight:400;font-style:normal;fo=
+nt-variant:normal;text-decoration:none;vertical-align:baseline;white-space:=
+pre-wrap"><span style=3D"font-size:8pt"><span style=3D"font-size:small;font=
+-family:arial,helvetica,sans-serif;font-style:normal;font-variant:normal;te=
+xt-decoration:none;vertical-align:baseline;white-space:pre-wrap">Elastic =
+=ED=99=9C=EC=9A=A9=EB=B0=A9=EC=95=88, =ED=8A=B8=EB=9D=BC=EC=9D=B4=EC=96=BC =
+=EB=AC=B4=EB=A3=8C =EC=97=B0=EC=9E=A5, =EA=B5=AC=EC=B6=95 =EA=B0=80=EC=9D=
+=B4=EB=93=9C, =ED=8A=9C=ED=86=A0=EB=A6=AC=EC=96=BC =EB=93=B1 =EA=B0=81=EC=
+=A2=85 =EC=9E=90=EB=A3=8C=EB=8A=94 =EC=96=B8=EC=A0=9C=EB=93=A0 (<a href=3D"=
+mailto:usersuccess-kr@elastic.co">usersuccess-kr@elastic.co</a>) =EB=A1=9C =
+=EC=97=B0=EB=9D=BD =EB=B6=80=ED=83=81=EB=93=9C=EB=A6=BD=EB=8B=88=EB=8B=A4 :=
+)</span></span></span></div><br><span class=3D"gr-sig"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">
+<div>
+<div><br></div>
+<div>
+<div>
+<i><font color=3D"#000000"><span style=3D"font-family:arial,sans-serif"><a =
+href=3D"http://groove.elastic.co/url/Mu56z4XjUzUYbHXlPLiL1UG5JyE/aHR0cDovL3=
+BmLmtha2FvLmNvbS9fdWFCYksjZ3Jvb3Zlc3VtOjE0ODQzMjAyMzA=3D" style=3D"color:rg=
+b(17,85,204)" target=3D"_blank"><br></a></span></font></i><div>=EA=B0=90=EC=
+=82=AC=ED=95=A9=EB=8B=88=EB=8B=A4.=C2=A0=C2=A0</div>
+<i><font color=3D"#000000"><span style=3D"font-family:arial,sans-serif"><a =
+href=3D"http://groove.elastic.co/url/Mu56z4XjUzUYbHXlPLiL1UG5JyE/aHR0cDovL3=
+BmLmtha2FvLmNvbS9fdWFCYksjZ3Jvb3Zlc3VtOjE0ODQzMjAyMzA=3D" style=3D"color:rg=
+b(17,85,204)" target=3D"_blank">Kakaotalk=C2=A0</a>=C2=A0I=C2=A0</span><a h=
+ref=3D"http://groove.elastic.co/url/Mu56z4XjUzUYbHXlPLiL1UG5JyE/aHR0cHM6Ly9=
+jYWxlbmRseS5jb20vYmVsbGEtcGFyay8xNW1pbiNncm9vdmVzdW06LTE3MjA0MTI0MzA=3D" st=
+yle=3D"color:rgb(17,85,204)" target=3D"_blank">=EC=A4=8C=EB=AF=B8=ED=8C=85 =
+=EC=9E=A1=EA=B8=B0</a><span style=3D"font-family:arial,sans-serif">=C2=A0I =
+010-8609-5473</span></font></i>
+</div>
+<div><br></div>
+</div>
+<div><div style=3D"color:rgb(136,136,136)"></div></div>
+<div style=3D"font-size:12.8px;color:rgb(136,136,136)">-----</div>
+<div style=3D"font-size:12.8px;color:rgb(136,136,136)">
+<div></div>
+<div><br></div>
+</div>
+
+<div style=3D"font-size:12.8px;color:rgb(136,136,136)">
+<font color=3D"#000000"><b>=EB=B0=95=EC=83=88=EB=B3=84=C2=A0</b></font><b><=
+span style=3D"color:rgb(0,0,0);font-size:12.8px">Saebyeol Park</span><span =
+style=3D"color:rgb(0,0,0);font-size:12.8px">=C2=A0</span></b>
+</div>
+<div style=3D"font-size:12.8px;color:rgb(136,136,136)"><span style=3D"color=
+:rgb(0,0,0);font-size:12.8px">Cloud Account Executive</span></div>
+<div style=3D"font-size:12.8px;color:rgb(136,136,136)"><span style=3D"color=
+:rgb(0,0,0);font-size:12.8px"><br></span></div>
+<div style=3D"font-size:12.8px;color:rgb(136,136,136)">
+<span style=3D"color:rgb(0,0,0);font-size:12.8px">Tel:=C2=A0+82-10-8609-547=
+3</span><font color=3D"#000000" style=3D"font-size:12.8px">=C2=A0</font>
+</div>
+<div style=3D"font-size:12.8px;color:rgb(136,136,136)">
+<font color=3D"#000000" style=3D"font-size:small"><a href=3D"http://groove.=
+elastic.co/url/Mu56z4XjUzUYbHXlPLiL1UG5JyE/aHR0cHM6Ly93d3cuZWxhc3RpYy5jby9r=
+ci8jZ3Jvb3Zlc3VtOi00MTAyMjMyMjE=3D" style=3D"color:rgb(17,85,204)" target=
+=3D"_blank">https://www.elastic.co/kr</a></font><a href=3D"http://groove.el=
+astic.co/url/Mu56z4XjUzUYbHXlPLiL1UG5JyE/aHR0cHM6Ly93d3cuZWxhc3RpYy5jby9rci=
+8jZ3Jvb3Zlc3VtOi00MTAyMjMyMjE=3D" style=3D"font-size:small;color:rgb(17,85,=
+204)" target=3D"_blank">/</a>
+</div>
+</div>
+<div style=3D"font-size:12.8px;color:rgb(136,136,136)"><br></div>
+<div>
+<p dir=3D"ltr" style=3D"color:rgb(136,136,136);line-height:1.8;margin-top:0=
+pt;margin-bottom:0pt"><span style=3D"font-family:&quot;Open Sans&quot;,sans=
+-serif;color:rgb(102,102,102);background-color:transparent;vertical-align:b=
+aseline;white-space:pre-wrap"><img src=3D"https://docs.google.com/uc?export=
+=3Ddownload&amp;id=3D1U8H9ch9FmqhsClr7g-55CfsfQKS0G6s5&amp;revid=3D0B92gWR9=
+NeVOnRmtFd2dpZGRxVFlFT29sWC93UmhqK2JTWFhZPQ" width=3D"200" height=3D"68" st=
+yle=3D"font-family:Arial,Helvetica,sans-serif;font-size:12.8px;color:rgb(0,=
+0,0)"></span></p>
+<p dir=3D"ltr" style=3D"color:rgb(136,136,136);line-height:1.8;margin-top:0=
+pt;margin-bottom:0pt"><span style=3D"font-family:&quot;Open Sans&quot;,sans=
+-serif;color:rgb(102,102,102);background-color:transparent;vertical-align:b=
+aseline;white-space:pre-wrap"><font size=3D"4">Search. Observe. Protect.</f=
+ont></span></p>
+<div style=3D"color:rgb(32,33,36)">
+<div style=3D"color:rgb(136,136,136);font-size:12.8px"><span style=3D"font-=
+size:10pt"><font color=3D"#000000"><br></font></span></div>
+<div style=3D"color:rgb(136,136,136);font-size:12.8px"><span style=3D"font-=
+size:10pt"><font color=3D"#000000">=EA=B3=A0=EA=B0=9D=EB=93=A4=EC=9D=B4 =EB=
+=A7=90=ED=95=98=EB=8A=94 &quot;Why Elastic?&quot; (YouTube)</font></span></=
+div>
+<div style=3D"color:rgb(136,136,136);font-size:12.8px">
+<strong style=3D"font-size:10pt;color:rgb(17,85,204)"><a href=3D"http://gro=
+ove.elastic.co/url/Mu56z4XjUzUYbHXlPLiL1UG5JyE/aHR0cHM6Ly93d3cueW91dHViZS5j=
+b20vd2F0Y2g_dj1NMkJRVnNMZ19ZYyNncm9vdmVzdW06MzE3MTY0NjI=3D" rel=3D"noopener=
+" style=3D"color:rgb(17,85,204);font-size:10pt" target=3D"_blank">=EC=8A=A4=
+=ED=94=BC=EB=93=9C (=EC=8B=A4=EC=8B=9C=EA=B0=84)</a>=C2=A0|=C2=A0</strong><=
+strong style=3D"font-size:10pt;color:rgb(17,85,204)"><a href=3D"http://groo=
+ve.elastic.co/url/Mu56z4XjUzUYbHXlPLiL1UG5JyE/aHR0cHM6Ly93d3cueW91dHViZS5jb=
+20vd2F0Y2g_dj1lZjlKSlZ6cm1jdyZ0PTJzI2dyb292ZXN1bToxNTA4OTg4NzA2" rel=3D"noo=
+pener" style=3D"color:rgb(17,85,204);font-size:10pt" target=3D"_blank">=EC=
+=8A=A4=EC=BC=80=EC=9D=BC (scale)</a>=C2=A0|</strong><strong style=3D"color:=
+rgb(17,85,204);font-size:10pt"><a href=3D"http://groove.elastic.co/url/Mu56=
+z4XjUzUYbHXlPLiL1UG5JyE/aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g_dj00aHBNRDl=
+Zc1Z1WSNncm9vdmVzdW06LTIwNTU4NjkxMDk=3D" rel=3D"noopener" style=3D"color:rg=
+b(17,85,204);font-size:10pt" target=3D"_blank">=EA=B4=80=EB=A0=A8=EC=84=B1 =
+(relevance)</a></strong>
+</div>
+<div style=3D"color:rgb(136,136,136);font-size:12.8px"><br></div>
+</div>
+<div><font color=3D"#000000"><b style=3D"font-size:12.8px">&#39; All conten=
+ts/email thread shared are private and confidential</b><br></font></div>
+</div>
+<div><div style=3D"font-size:12.8px">
+<font color=3D"#000000"><span style=3D"background-color:transparent;font-si=
+ze:10.5pt;font-family:Roboto,sans-serif;vertical-align:baseline;white-space=
+:pre-wrap"><i><b>&#39; Please note: </b></i>Emails may be stored and shared=
+ to provide a better customer experience. To learn more about how we use yo=
+ur information, please review Elastic=E2=80=99s </span><a href=3D"http://gr=
+oove.elastic.co/url/Mu56z4XjUzUYbHXlPLiL1UG5JyE/aHR0cHM6Ly93d3cuZWxhc3RpYy5=
+jby9sZWdhbC9wcml2YWN5LXN0YXRlbWVudCNncm9vdmVzdW06LTIwNjc4NDQ3NDU=3D" style=
+=3D"font-size:small" target=3D"_blank"><span style=3D"font-size:10.5pt;font=
+-family:Roboto,sans-serif;background-color:transparent;vertical-align:basel=
+ine;white-space:pre-wrap">Privacy Statement.=C2=A0</span></a><b><br></b><br=
+></font><br>
+</div></div>
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></span><p style=3D"margin-bottom:0px;margi=
+n-top:5px"><font face=3D"Arial" size=3D"1"><a href=3D"https://app.grooveapp=
+.com/unsubscribe/Mu56z4XjUzUYbHXlPLiL1UG5JyE" target=3D"_blank">Unsubscribe=
+</a></font></p><img class=3D"cgtrkpxl" src=3D"http://groove.elastic.co/p/MD=
+A1NE0wMDAwMDQ1MHNvUUFB/Mu56z4XjUzUYbHXlPLiL1UG5JyE.gif" width=3D"1" height=
+=3D"1"></div>
+
+--000000000000b0636605d8cea332--

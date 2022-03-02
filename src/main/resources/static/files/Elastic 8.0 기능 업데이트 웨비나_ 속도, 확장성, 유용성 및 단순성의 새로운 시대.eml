@@ -1,0 +1,816 @@
+Delivered-To: jwo2955@gmail.com
+Received: by 2002:ac8:5889:0:0:0:0:0 with SMTP id t9csp1656065qta;
+        Thu, 24 Feb 2022 10:01:14 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwAw44OI2l30MIY/NHjtgK1RfDceSn0NKwrJ08Vj7/bEhc2RFtatx7g0NHtFAciRRaOfEJZ
+X-Received: by 2002:a1c:4603:0:b0:381:19fe:280b with SMTP id t3-20020a1c4603000000b0038119fe280bmr2548110wma.67.1645725673991;
+        Thu, 24 Feb 2022 10:01:13 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1645725673; cv=none;
+        d=google.com; s=arc-20160816;
+        b=zUTp2DPVmbmJOzxnhadb/OK9uVZh+qtSvObAz1mFLKJiWzhKEulnMBDV3LB2s/DHsD
+         F9LruIndOz8H/0DPF9ZyFDFqky2f9uHwRFsFn4Y2OeGHRWBcuq+EWTOY1ySVzbJf7HoX
+         Sofx5MFJjoIVqnp+4PWZi+1Kcwhgi24Utd9RiumJTzSYYLTpbqh73qdqtQ3BT/hClggP
+         BxaKgMiQuRO2AB/e+bLYGFwgPas9CJuDmmtfauppVZqIpxMjEjxAxwwedF1yPQSEUkHE
+         X0h9iwr4yRSX7ETSrhGC4NwYi8UVkTtEBAclnB8YkIfQoKNZOqrG+rESBg2CPjKiuBOt
+         zVOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:mime-version:subject:message-id:to:reply-to:from
+         :date:dkim-signature:dkim-signature;
+        bh=L9KPad2WJo2lkcbBWteu0MfEvF+z7FqUQh+TxHBrv8M=;
+        b=0w657wmYdI8i7xv+IsZA6ExxbJcECFqsws2DLqJYWh46TZKErQQmphin2JKG7QonuZ
+         ZxecuqURhTa557ElSdxQm75fmn7AiM5NcUNGyT6WgGXGHABs8AwmoM6zx7iKhcydi48B
+         7yGeXJR3oteSOQ5HXenvkN6kIWV2WVCpRuqnR3Hi7rrzh6l8W8W6+hZoxAozuxkNAhrT
+         lHJWz71b2RT+kRRI0E/IXVdxLgVLojaMc9ypdl/mETR+SEzki9K/rT3F+AU4TtmY83vl
+         5DVZJiV02cHPspV5YCyvPgmVIeKOgth4YYFVfNERVC31trzJXDJUZhS8LTiv907HHClq
+         LVsA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@elastic.co header.s=m1 header.b=KLF6aseb;
+       dkim=pass header.i=@mktdns.com header.s=m1 header.b=nsUiReDC;
+       spf=pass (google.com: domain of 813-mam-392.0.305248.0.0.130342.9.83240937-1268@mktg.elastic.co designates 185.28.196.143 as permitted sender) smtp.mailfrom=813-MAM-392.0.305248.0.0.130342.9.83240937-1268@mktg.elastic.co;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=elastic.co
+Return-Path: <813-MAM-392.0.305248.0.0.130342.9.83240937-1268@mktg.elastic.co>
+Received: from mktg.elastic.co (mktg.elastic.co. [185.28.196.143])
+        by mx.google.com with ESMTPS id s16-20020adfdb10000000b001edbf27ff79si48473wri.648.2022.02.24.10.01.13
+        for <jwo2955@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 24 Feb 2022 10:01:13 -0800 (PST)
+Received-SPF: pass (google.com: domain of 813-mam-392.0.305248.0.0.130342.9.83240937-1268@mktg.elastic.co designates 185.28.196.143 as permitted sender) client-ip=185.28.196.143;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@elastic.co header.s=m1 header.b=KLF6aseb;
+       dkim=pass header.i=@mktdns.com header.s=m1 header.b=nsUiReDC;
+       spf=pass (google.com: domain of 813-mam-392.0.305248.0.0.130342.9.83240937-1268@mktg.elastic.co designates 185.28.196.143 as permitted sender) smtp.mailfrom=813-MAM-392.0.305248.0.0.130342.9.83240937-1268@mktg.elastic.co;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=elastic.co
+X-MSFBL: CHbZE9wc5LFXsZwkWbmEaOvzBjaiWSL/Me/TVKT5N+s=|eyJyIjoiandvMjk1NUB
+	nbWFpbC5jb20iLCJiIjoiZHZwLTE4NS0yOC0xOTYtMTQzIiwidSI6IjgxMy1NQU0
+	tMzkyOjA6ODkwODM6NTMxODUxOjE3NDEwMjE6MTMwMzQyOjk6MzA1MjQ4OjgzMjQ
+	wOTM3LTEyNjgiLCJnIjoiYmctbG9uZC0xMTgifQ==
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1645725632;
+	s=m1; d=elastic.co; i=@elastic.co;
+	h=Content-Type:MIME-Version:Subject:To:From:Date;
+	bh=L9KPad2WJo2lkcbBWteu0MfEvF+z7FqUQh+TxHBrv8M=;
+	b=KLF6asebINws3Hrw+5autDuO6S6nMy0CE9nhbrkdG787LdnP0gApnmZtoUd2mIbw
+	q2JMAf/BLkPcQzEW9XXk4hwulLIg2kf3MXjXGPChdd0UeDQ2FeXGQMvael/hVNaiR/+
+	kWv8EmH2kX5NIoLqNL29HEts4NAZQ3Svgqe3jU6A=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1645725632;
+	s=m1; d=mktdns.com; i=@mktdns.com;
+	h=Content-Type:MIME-Version:Subject:To:From:Date;
+	bh=L9KPad2WJo2lkcbBWteu0MfEvF+z7FqUQh+TxHBrv8M=;
+	b=nsUiReDCOgP0OIeKcSl/qyaXSf9DpDTtlKxO9+gQAYWUVGbPBRw/qaFqQ1s5Xsyd
+	c4k2q+ykbZ8c3GtUkJP3j5NTa397g2FqPH0X5Jl7SEGTEv5mntPzyElt0mL3Q5Vdur8
+	zISdre8sUDotOnkho+B9aP8nhljykYy6SsSN9Bfw=
+Date: Thu, 24 Feb 2022 12:00:32 -0600 (CST)
+From: Elastic Korea Team <webevent@elastic.co>
+Reply-To: webevent@elastic.co
+To: jwo2955@gmail.com
+Message-ID: <194070242.7505598.1645725632206@lonmktmail-batch1a.marketo.org>
+Subject: =?UTF-8?B?RWxhc3RpYyA4LjAg6riw64qlIOyXheuNsOydtO2KuCDsm6jruYTrgpg6IA==?=
+ =?UTF-8?B?7IaN64+ELCDtmZXsnqXshLEsIOycoOyaqeyEsSA=?=
+ =?UTF-8?B?67CPIOuLqOyInOyEseydmCDsg4jroZzsmrQg7Iuc64yA?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_7505597_1660747099.1645725632205"
+X-Binding: bg-lond-118
+X-MarketoID: 813-MAM-392:0:89083:531851:1741021:130342:9:305248:83240937-1268
+X-Mailfrom: 813-MAM-392.0.305248.0.0.130342.9.83240937-1268@mktg.elastic.co
+List-Unsubscribe: <mailto:GQ3TS5CGJBGG6MDDI5GEQRKPINLFSNSPGM3EK2SZORBEQ6TOKNHS2NBVMZRUC4CKINTUKPI=.305248.130342.9@unsub-lon.mktomail.com>
+X-MktArchive: false
+X-MSYS-API: {"options":{"open_tracking":false,"click_tracking":false}}
+X-MktMailDKIM: true
+
+------=_Part_7505597_1660747099.1645725632205
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Elastic 8.0 =EA=B8=B0=EB=8A=A5 =EC=97=85=EB=8D=B0=EC=9D=B4=ED=8A=B8 =EC=9B=
+=A8=EB=B9=84=EB=82=98: =EC=86=8D=EB=8F=84, =ED=99=95=EC=9E=A5=EC=84=B1, =EC=
+=9C=A0=EC=9A=A9=EC=84=B1 =EB=B0=8F =EB=8B=A8=EC=88=9C=EC=84=B1=EC=9D=98 =EC=
+=83=88=EB=A1=9C=EC=9A=B4 =EC=8B=9C=EB=8C=80
+=EB=82=A0=EC=A7=9C =EB=B0=8F =EC=8B=9C=EA=B0=84
+2022=EB=85=84 3=EC=9B=94 8=EC=9D=BC
+=EC=98=A4=ED=9B=84 3=EC=8B=9C
+
+
+[https://www.elastic.co/kr/virtual-events/whats-new-in-elastic-8-0?ultron=
+=3Dwhats-new-in-elastic-8-0-kr&blade=3Dinvite&hulk=3Demail&mkt_tok=3DODEzLU=
+1BTS0zOTIAAAGCxzhEporTRe1szzkFZ3hYQeL_nvoHNnF4wO2ov8MCq8G-c8rXtOAZ1zEpFbKF5=
+V8Um19fsL1PsQh9Ge5YJsiF]
+
+Elastic 8.0 =EC=9D=98 =EC=A3=BC=EC=9A=94 =EC=97=85=EB=8D=B0=EC=9D=B4=ED=8A=
+=B8=EB=A5=BC =EC=86=8C=EA=B0=9C=EB=93=9C=EB=A6=BD=EB=8B=88=EB=8B=A4! =EB=B3=
+=B8 =EC=9B=A8=EB=B9=84=EB=82=98=EC=97=90=EC=84=9C=EB=8A=94 ElasticSearch=EC=
+=9D=98 =EB=B2=A1=ED=84=B0 =EA=B2=80=EC=83=89 =EA=B8=B0=EB=8A=A5 =ED=96=A5=
+=EC=83=81, =ED=98=84=EB=8C=80 =EC=9E=90=EC=97=B0=EC=96=B4 =EC=B2=98=EB=A6=
+=AC =EB=AA=A8=EB=8D=B8=EC=97=90 =EB=8C=80=ED=95=9C =EC=A7=80=EC=9B=90, =EB=
+=8D=94=EC=9A=B1 =EA=B0=84=EC=86=8C=ED=99=94=EB=90=9C =EB=8D=B0=EC=9D=B4=ED=
+=84=B0 =EC=97=B0=EB=8F=99, =ED=96=A5=EC=83=81=EB=90=9C =EB=B3=B4=EC=95=88 =
+=EA=B2=BD=ED=97=98 =EB=93=B1=EC=9D=84 =EC=86=8C=EA=B0=9C=EB=93=9C=EB=A6=BD=
+=EB=8B=88=EB=8B=A4.
+
+Elastic 8.0=EC=9D=80 Apache Lucene 9.0=EC=9D=98 =EC=83=88=EB=A1=9C=EC=9A=B4=
+ AN =EA=B2=80=EC=83=89 =EA=B8=B0=EB=8A=A5=EA=B3=BC =ED=98=84=EB=8C=80=EC=A0=
+=81=EC=9D=B8 =EC=9E=90=EC=97=B0=EC=96=B4 =EC=B2=98=EB=A6=AC(NLP) =EB=AA=A8=
+=EB=8D=B8=EC=97=90 =EB=8C=80=ED=95=9C =EC=83=88=EB=A1=9C=EC=9A=B4 =EB=84=A4=
+=EC=9D=B4=ED=8B=B0=EB=B8=8C =EC=A7=80=EC=9B=90=EC=9D=84 =EA=B8=B0=EB=B0=98=
+=EC=9C=BC=EB=A1=9C =ED=95=98=EC=97=AC =EA=B7=B8 =EC=96=B4=EB=8A=90 =EB=95=
+=8C=EB=B3=B4=EB=8B=A4 =EC=89=BD=EA=B3=A0 =EB=B9=A0=EB=A5=B4=EA=B2=8C =EA=B2=
+=80=EC=83=89 =EA=B2=B0=EA=B3=BC=EC=9D=98 =EA=B4=80=EB=A0=A8=EC=84=B1=EA=B3=
+=BC =EC=A0=95=ED=99=95=EC=84=B1=EC=9D=84 =EA=B0=95=ED=99=94=ED=95=A9=EB=8B=
+=88=EB=8B=A4.
+
+Highlights:
+
+
+ - Speed & Scale: Apache Luence=EC=9D=98 =EC=97=85=EB=8D=B0=EC=9D=B4=ED=8A=
+=B8 =EB=B0=8F =EC=B5=9C=EC=A0=81=ED=99=94=EB=90=9C =EB=B2=84=EC=A0=84=EC=9D=
+=84 =EA=B8=B0=EB=B0=98=EC=9C=BC=EB=A1=9C =ED=95=98=EB=8A=94 Elastic 8.0=EC=
+=9D=80 =EC=8A=A4=ED=86=A0=EB=A6=AC=EC=A7=80 =EC=9A=94=EA=B5=AC =EC=82=AC=ED=
+=95=AD=EC=9D=84 =EC=A4=84=EC=97=AC =EC=B4=9D =EC=86=8C=EC=9C=A0 =EB=B9=84=
+=EC=9A=A9=EC=9D=84 =EC=A0=88=EA=B0=90=ED=95=98=EA=B3=A0 =EC=83=88=EB=A1=9C=
+=EC=9A=B4 ANN =EA=B8=B0=EB=8A=A5=EC=9D=84 =ED=86=B5=ED=95=B4 =ED=86=B5=EC=
+=B0=B0=EB=A0=A5 =EC=8B=A4=ED=98=84 =EC=8B=9C=EA=B0=84=EC=9D=84 =EB=8B=A8=EC=
+=B6=95=ED=95=A9=EB=8B=88=EB=8B=A4.
+ - =EA=B4=80=EB=A0=A8=EC=84=B1: =EC=83=88=EB=A1=9C=EC=9A=B4 ANN =EA=B2=80=
+=EC=83=89 =EA=B8=B0=EB=8A=A5=EA=B3=BC =EC=82=AC=EC=9A=A9=EC=9E=90=EA=B0=80 =
+=EC=9E=90=EC=8B=A0=EC=9D=98 =EC=B5=9C=EC=8B=A0 NLP =EB=AA=A8=EB=8D=B8=EC=9D=
+=84 =EA=B0=80=EC=A0=B8=EC=98=AC =EC=88=98 =EC=9E=88=EB=8A=94 =EC=83=88=EB=
+=A1=9C=EC=9A=B4 =EB=84=A4=EC=9D=B4=ED=8B=B0=EB=B8=8C =EC=A7=80=EC=9B=90=EC=
+=9D=84 =EA=B8=B0=EB=B0=98=EC=9C=BC=EB=A1=9C =ED=95=98=EB=8A=94 Elastic 8.0=
+=EC=9D=84 =ED=86=B5=ED=95=B4 =EC=82=AC=EC=9A=A9=EC=9E=90=EB=8A=94 =EA=B2=80=
+=EC=83=89 =EC=A7=88=EC=9D=98=EC=97=90 =EB=8C=80=ED=95=9C =EC=BB=A8=ED=85=8D=
+=EC=8A=A4=ED=8A=B8=EC=99=80 =EC=9D=98=EB=8F=84=EB=A5=BC =EC=82=AC=EC=9A=A9=
+=ED=95=98=EC=97=AC =EC=A0=90=EC=A0=90 =EB=8D=94 =EA=B4=80=EB=A0=A8=EC=84=B1=
+=EC=9D=B4 =EB=86=92=EC=9D=80 =EA=B2=B0=EA=B3=BC=EB=A5=BC =EC=A0=9C=EA=B3=B5=
+=ED=95=A0 =EC=88=98 =EC=9E=88=EC=8A=B5=EB=8B=88=EB=8B=A4.
+ - =EB=8B=A8=EC=88=9C=EC=84=B1: =ED=81=B4=EB=9D=BC=EC=9A=B0=EB=93=9C =EB=84=
+=A4=EC=9D=B4=ED=8B=B0=EB=B8=8C =EB=8D=B0=EC=9D=B4=ED=84=B0 =EC=88=98=EC=A7=
+=91=EC=9D=84 =EB=8B=A8=EC=88=9C=ED=99=94=ED=95=98=EB=8A=94 Amazon Web Servi=
+ces=EC=99=80=EC=9D=98 =EB=91=90 =EA=B0=80=EC=A7=80 =EC=83=88=EB=A1=9C=EC=9A=
+=B4 =EB=84=A4=EC=9D=B4=ED=8B=B0=EB=B8=8C =EB=8D=B0=EC=9D=B4=ED=84=B0 =EC=86=
+=8C=EC=8A=A4 =ED=86=B5=ED=95=A9 =EC=99=B8=EC=97=90=EB=8F=84, Elastic 8.0=EC=
+=9D=80 =EB=B3=B4=EC=95=88=EC=9D=84 =EA=B0=84=EC=86=8C=ED=99=94 =EB=B0=8F =
+=EA=B0=84=EC=86=8C=ED=99=94=ED=95=98=EC=97=AC =EC=9A=B4=EC=98=81=EC=9E=90=
+=EC=9D=98 =EC=8B=9C=EA=B0=84=EC=9D=84 =EC=A0=88=EC=95=BD=ED=95=98=EA=B3=A0 =
+=EB=8D=B0=EC=9D=B4=ED=84=B0=EC=97=90 =EB=8C=80=ED=95=9C =EB=AC=B4=EB=8B=A8 =
+=EC=95=A1=EC=84=B8=EC=8A=A4=EB=A5=BC =EB=B0=A9=EC=A7=80=ED=95=A9=EB=8B=88=
+=EB=8B=A4.
+
+=C2=A9 2021 Elasticsearch B.V. All=C2=A0rights=C2=A0reserved.
+Elasticsearch is a trademark of Elasticsearch BV, registered in the U.S. an=
+d in other countries /=20
+Trademarks <https://link.elastic.co/ODEzLU1BTS0zOTIAAAGCy9z2ujLawi6SYwCYuXM=
+JTspfq1Wrxs7dMFsXkQorJjwWvjP8KrF3zQfW9bIiwHdkeZzEFvA=3D> /=20
+Terms <https://link.elastic.co/ODEzLU1BTS0zOTIAAAGCy9z2ubTapJnJ9GXNjFbFEy4z=
+70Duj1uBrl6Z9jKHDtQSmNkZV5bZ6N8c29yDrpw4tKmdh0c=3D> /=20
+Privacy <https://link.elastic.co/ODEzLU1BTS0zOTIAAAGCy9z2ufV7i2M0VgvSv17DAS=
+OmXRoQ7jx0R9GpsHU9k6hVGEcAR4e9t4aw3zjq2KSJFsQMNYo=3D>
+Apache, Apache Lucene, Apache Hadoop, Hadoop, HDFS and the yellow elephant =
+logo are trademarks of the Apache Software Foundation in the United States =
+and/or other=C2=A0countries.
+
+We're sorry if you didn't like our vibe. Here's where you can go to unsubsc=
+ribe.
+https://info.elastic.co/unsubscribe-email.html?mkt_unsubscribe=3D1&mkt_tok=
+=3DODEzLU1BTS0zOTIAAAGCy9z2usQofHhMGnchNSzoIjG0qnlK1-6gVVY2V0F4dqsA0c7wN2k8=
+v0dybF4JSaTgEDuBgkML6VyovYP6mHFJL76oQ9wC_N18FLi_e1jXZRoBdlmH
+ (Your email is: jwo2955@gmail.com)
+
+------=_Part_7505597_1660747099.1645725632205
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microso=
+ft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office">
+<head>=20
+<!--[if gte mso 9]><xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml><![endif]-->=20
+<title>Elastic</title>=20
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8" />=
+=20
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge" />=20
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0 " />=20
+<meta name=3D"format-detection" content=3D"telephone=3Dno" />=20
+<meta name=3D"color-scheme" content=3D"light dark" />=20
+<meta name=3D"supported-color-schemes" content=3D"light dark" />=20
+<!-- =3D=3D Body Background Color =3D=3D --> =20
+<!-- =3D=3D //Body Background Color =3D=3D -->=20
+<!-- =3D=3D Module Background Color =3D=3D -->   =20
+<!-- =3D=3D //Module Background Color =3D=3D -->=20
+<!-- =3D=3D Blog feed Variables =3D=3D -->   =20
+<!-- =3D=3D //Blog feed Variables =3D=3D -->=20
+<!-- =3D=3D Module Top Spaces =3D=3D -->                 =20
+<!-- =3D=3D //Module Top Spaces =3D=3D -->=20
+<!-- =3D=3D Module Bottom Spaces =3D=3D -->       =20
+<!-- =3D=3D //Module Bottom Spaces =3D=3D -->=20
+<!-- =3D=3D Button01 Variables =3D=3D -->      =20
+<!-- =3D=3D //Button01 Variables =3D=3D -->=20
+<!-- =3D=3D Button02 Variables =3D=3D -->      =20
+<!-- =3D=3D //Button02 Variables =3D=3D -->=20
+<!-- =3D=3D Button03 Variables =3D=3D -->      =20
+<!-- =3D=3D //Button03 Variables =3D=3D -->=20
+<!-- =3D=3D Button04 Variables =3D=3D -->      =20
+<!-- =3D=3D //Button04 Variables =3D=3D -->=20
+<!-- =3D=3D Button05 Variables =3D=3D -->      =20
+<!-- =3D=3D //Button05 Variables =3D=3D -->=20
+<!--[if !mso]><!-->=20
+<style type=3D"text/css">
+@import url('https://fonts.googleapis.com/css2?family=3DInter:wght@100;200;=
+300;400;500;600;700;800;900&display=3Dswap');
+</style>=20
+<!--<![endif]-->=20
+<style type=3D"text/css">
+:root { color-scheme: light dark; supported-color-schemes: light dark; }
+body { margin: 0 auto; padding: 0; -webkit-text-size-adjust: 100% !importan=
+t; -ms-text-size-adjust: 100% !important; -webkit-font-smoothing: antialias=
+ed !important; }
+img { border: 0 !important; outline: none !important; }
+p { Margin: 0px !important; Padding: 0px !important; }
+.ExternalClass * { line-height: 100%; }
+.em_defaultlink a { color: inherit; text-decoration: none; }
+.em_defaultlink1 a { color: inherit; text-decoration: underline; }
+a[x-apple-data-detectors], u + .em_body a, #MessageViewBody a { color: inhe=
+rit; text-decoration: none; font-size: inherit; font-family: inherit; font-=
+weight: inherit; line-height: inherit; }
+ @media only screen and (max-width:599px) {
+.em_main_table { width: 100% !important; }
+.em_wrapper { width: 100% !important; }
+.em_hide { display: none !important; }
+.em_full_img img { width: 100% !important; height: auto !important; }
+.em_side15 { width: 15px !important; }
+.em_ptop { padding-top: 20px !important; }
+.em_ptop0 { padding-top: 0px !important; }
+.em_pbottom { padding-bottom: 20px !important; }
+u + .em_body .em_full_wrap { width: 100% !important; width: 100vw !importan=
+t; }
+}
+ @media screen and (max-width: 480px) {
+.em_icon img { width: 70px !important; height: auto !important; }
+.em_f18 { font-size: 19px !important; line-height: 23px !important; }
+.em_f16 { font-size: 17px !important; line-height: 21px !important; }
+}
+ @media screen and (max-width: 374px) {
+.em_icon img { width: 50px !important; height: auto !important; }
+.em_f18 { font-size: 18px !important; line-height: 22px !important; }
+.em_f16 { font-size: 16px !important; line-height: 20px !important; }
+}
+ @media screen and (prefers-color-scheme:dark) {
+.em_dark { background-color: #000000 !important; }
+.body { background-color: #101010 !important; color: #ffffff !important; }
+.em_defaultlink { color: #ffffff !important; text-decoration: none; }
+.em_defaultlink a { color: #ffffff !important; text-decoration: none; }
+}
+</style>=20
+</head>=20
+<body class=3D"em_body" style=3D"margin:0px auto; padding:0px;" bgcolor=3D"=
+#f4f4f4"><style type=3D"text/css">div#emailPreHeader{ display: none !import=
+ant; }</style><div id=3D"emailPreHeader" style=3D"mso-hide:all; visibility:=
+hidden; opacity:0; color:transparent; mso-line-height-rule:exactly; line-he=
+ight:0; font-size:0px; overflow:hidden; border-width:0; display:none !impor=
+tant;">Elastic 8.0 =EA=B8=B0=EB=8A=A5 =EC=97=85=EB=8D=B0=EC=9D=B4=ED=8A=B8 =
+=EC=9B=A8=EB=B9=84=EB=82=98: =EC=86=8D=EB=8F=84, =ED=99=95=EC=9E=A5=EC=84=
+=B1, =EC=9C=A0=EC=9A=A9=EC=84=B1 =EB=B0=8F =EB=8B=A8=EC=88=9C=EC=84=B1=EC=
+=9D=98 =EC=83=88=EB=A1=9C=EC=9A=B4 =EC=8B=9C=EB=8C=80=E3=85=A4=E3=85=A4=E3=
+=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=
+=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=
+=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=
+=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=
+=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=
+=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=
+=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=
+=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=
+=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=85=A4=E3=
+=85=A4</div>=20
+<!-- =3D=3D Body Section =3D=3D -->=20
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" clas=
+s=3D"em_full_wrap mktoContainer em_dark" bgcolor=3D"#f4f4f4" style=3D"table=
+-layout:fixed;" id=3D"Template">
+<tr id=3D"Logo_Section" class=3D"mktoModule">=20
+<td align=3D"center" valign=3D"top">=20
+<table align=3D"center" width=3D"600" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" class=3D"em_main_table" style=3D"width:600px; table-layout:fixe=
+d;">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top">=20
+<table width=3D"600" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"center" style=3D"width: 600px; background-color: #FFFFFF;" class=3D"em_=
+wrapper body" bgcolor=3D"#FFFFFF">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top" width=3D"40" style=3D"width:40px;" clas=
+s=3D"em_side15">&nbsp;</td>=20
+<td align=3D"center" valign=3D"top" style=3D"padding-top: 20px; padding-bot=
+tom: 20px;">=20
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"left" clas=
+s=3D"em_wrapper">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top">=20
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"center">=
+=20
+<tbody>=20
+<tr>=20
+<td valign=3D"top" align=3D"center">=20
+<div id=3D"Logo_Image" class=3D"mktoImg">=20
+<a href=3D
+"https://link.elastic.co/ODEzLU1BTS0zOTIAAAGCy9z2uS-IUhbWLH5ygkQ8-kRyr-inJM=
+5RFNqlhDe4Bchkuggg9EgxhIL45TQxQVbRkKLnalw=3D" target=3D"_blank" style=3D"te=
+xt-decoration:none; color:#000000;"
+><img src=3D"https://info.elastic.co/rs/813-MAM-392/images/logo-elastic-loc=
+kup-large-white-bg%402x.png" width=3D"103" alt=3D"elastic | Search. Observe=
+. Protect" style=3D"display:block; max-width:103px; color:#000000; font-fam=
+ily:Arial, sans-serif; font-size:20px; line-height:24px;" border=3D"0" /></=
+a>=20
+</div> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+<td align=3D"center" valign=3D"top" width=3D"40" style=3D"width:40px;" clas=
+s=3D"em_side15">&nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>
+<tr id=3D"Event_Webinars_Section0d46a71c-518f-46df-83cd-175fd08e930c" class=
+=3D"mktoModule">=20
+<td align=3D"center" valign=3D"top">=20
+<table align=3D"center" width=3D"600" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" class=3D"em_main_table" style=3D"width:600px; table-layout:fixe=
+d;">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top">=20
+<table width=3D"600" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"center" style=3D"width: 600px; background-color: #FFFFFF;" class=3D"em_=
+wrapper body" bgcolor=3D"#FFFFFF">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top">=20
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"center">=20
+<tbody>=20
+<tr>=20
+<td valign=3D"top" align=3D"right" class=3D"em_icon">=20
+<div id=3D"Image_050d46a71c-518f-46df-83cd-175fd08e930c" class=3D"mktoImg">=
+=20
+<img src=3D"https://info.elastic.co/rs/813-MAM-392/images/top_right_icon.pn=
+g" width=3D"96" height=3D"93" style=3D"display:block; max-width:96px; color=
+:#000000; font-family:Arial, sans-serif; font-size:20px; line-height:24px;"=
+ border=3D"0" />=20
+</div> </td>=20
+</tr>=20
+<tr>=20
+<td align=3D"center" valign=3D"top">=20
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"center">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top" width=3D"42" style=3D"width:42px;" clas=
+s=3D"em_side15">&nbsp;</td>=20
+<td align=3D"center" valign=3D"top" style=3D"padding-top: 0px; padding-bott=
+om: 0px;">=20
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"center">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top" class=3D"em_defaultlink em_f18" style=
+=3D"font-family:'Inter', Arial, sans-serif; font-size:24px; line-height: 28=
+px; color:#000000; font-weight:bold;">=20
+<div id=3D"text360d46a71c-518f-46df-83cd-175fd08e930c" class=3D"mktoText">=
+=20
+<p>Elastic 8.0 =EA=B8=B0=EB=8A=A5 =EC=97=85=EB=8D=B0=EC=9D=B4=ED=8A=B8 =EC=
+=9B=A8=EB=B9=84=EB=82=98: =EC=86=8D=EB=8F=84, =ED=99=95=EC=9E=A5=EC=84=B1, =
+=EC=9C=A0=EC=9A=A9=EC=84=B1 =EB=B0=8F =EB=8B=A8=EC=88=9C=EC=84=B1=EC=9D=98 =
+=EC=83=88=EB=A1=9C=EC=9A=B4 =EC=8B=9C=EB=8C=80</p>=20
+</div> </td>=20
+</tr>=20
+<tr>=20
+<td align=3D"center" valign=3D"top" class=3D"em_defaultlink em_ptop" style=
+=3D"font-family:'Inter', Arial, sans-serif; font-size:12px; line-height: 21=
+px; color:#262626; font-weight:400; padding-top: 23px;">=20
+<div id=3D"text370d46a71c-518f-46df-83cd-175fd08e930c" class=3D"mktoText"><=
+/div> </td>=20
+</tr>=20
+<tr>=20
+<td class=3D"em_ptop" align=3D"center" valign=3D"top" style=3D"padding-top:=
+ 18px;">=20
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"center">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top">=20
+<table align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">=
+=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"middle" class=3D"em_defaultlink" height=3D"3=
+8" style=3D"height: 38px; font-family:'Inter', Arial, sans-serif; font-size=
+:13px; color:#ffffff; font-weight:700; border-radius: 3px; padding: 0px 20p=
+x;" bgcolor=3D"#0077cc"><a href=3D
+"https://link.elastic.co/dc/8uxos_Cs7mvW5Q2AFZkPmsxbZg4jHYtLJqvu_-v7A5kbcsR=
+Ksn6CoiyI7zy3BvgvyQ4nh8dt1_BsGHZkZt-XNxgmhubKQOj6VNg09gTLGI0rOItRON0iHlqh2-=
+LLubrk_E5ACDJ_x8MXBJMGNM1jsmJZ5ntRWLYlzjz-_h8n2Fmj6Yt6xLT5_TqpI4poI1Ml/ODEz=
+LU1BTS0zOTIAAAGCy9z2uoG42JmOCV4V2Rmpre013Ra2dOlbJCHUD9Wjz0hwG0uLKneTdKIKtPX=
+5UucCOTM7kkI=3D" target=3D"_blank" style=3D"text-decoration:none; line-heig=
+ht:38px; color:#ffffff; display:block;"
+>=EB=93=B1=EB=A1=9D=ED=95=98=EA=B8=B0</a></td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+<td align=3D"center" valign=3D"top" width=3D"42" style=3D"width:42px;" clas=
+s=3D"em_side15">&nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+<tr>=20
+<td valign=3D"top" align=3D"left" class=3D"em_icon">=20
+<div id=3D"Image_060d46a71c-518f-46df-83cd-175fd08e930c" class=3D"mktoImg">=
+=20
+<img src=3D"https://info.elastic.co/rs/813-MAM-392/images/left_bottom_icon.=
+png" width=3D"64" height=3D"88" style=3D"display:block; max-width:64px; col=
+or:#000000; font-family:Arial, sans-serif; font-size:20px; line-height:24px=
+;" border=3D"0" />=20
+</div> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>
+<tr id=3D"Announcement-text-with-button8d6a6c64-2961-4f6f-a7d8-10a50ebd0967=
+" class=3D"mktoModule">=20
+<td align=3D"center" valign=3D"top">=20
+<table align=3D"center" width=3D"600" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" class=3D"em_main_table" style=3D"width:600px; table-layout:fixe=
+d;">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top">=20
+<table width=3D"600" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"center" style=3D"width: 600px; background-color: #FFFFFF;" class=3D"em_=
+wrapper body" bgcolor=3D"#FFFFFF">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top" style=3D"padding-top: 20px; padding-bot=
+tom: 20px;">=20
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"center">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top" width=3D"42" style=3D"width:42px;" clas=
+s=3D"em_side15">&nbsp;</td>=20
+<td align=3D"center" valign=3D"top" style=3D"padding-top: 0px; padding-bott=
+om: 0px;">=20
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"center">=20
+<tbody>=20
+<tr>=20
+<td align=3D"left" valign=3D"top" class=3D"em_defaultlink em_f18" style=3D"=
+font-family:'Inter', Arial, sans-serif; font-size:24px; line-height: 28px; =
+color:#000000; font-weight:bold;">=20
+<div id=3D"text000448d6a6c64-2961-4f6f-a7d8-10a50ebd0967" class=3D"mktoText=
+">=20
+<p>=EB=82=A0=EC=A7=9C =EB=B0=8F =EC=8B=9C=EA=B0=84</p>=20
+</div> </td>=20
+</tr>=20
+<tr>=20
+<td align=3D"left" valign=3D"top" class=3D"em_defaultlink em_ptop" style=3D=
+"font-family:'Inter', Arial, sans-serif; font-size:12px; line-height: 21px;=
+ color:#262626; font-weight:400; padding-top: 23px;">=20
+<div id=3D"text000458d6a6c64-2961-4f6f-a7d8-10a50ebd0967" class=3D"mktoText=
+">=20
+<p>2022=EB=85=84 3=EC=9B=94 8=EC=9D=BC<br />=EC=98=A4=ED=9B=84 3=EC=8B=9C<b=
+r /></p>=20
+<p><br /></p>=20
+<div class=3D"section">=20
+<p>Elastic 8.0 =EC=9D=98 =EC=A3=BC=EC=9A=94 =EC=97=85=EB=8D=B0=EC=9D=B4=ED=
+=8A=B8=EB=A5=BC =EC=86=8C=EA=B0=9C=EB=93=9C=EB=A6=BD=EB=8B=88=EB=8B=A4! =EB=
+=B3=B8 =EC=9B=A8=EB=B9=84=EB=82=98=EC=97=90=EC=84=9C=EB=8A=94 ElasticSearch=
+=EC=9D=98 =EB=B2=A1=ED=84=B0 =EA=B2=80=EC=83=89 =EA=B8=B0=EB=8A=A5 =ED=96=
+=A5=EC=83=81, =ED=98=84=EB=8C=80 =EC=9E=90=EC=97=B0=EC=96=B4 =EC=B2=98=EB=
+=A6=AC =EB=AA=A8=EB=8D=B8=EC=97=90 =EB=8C=80=ED=95=9C =EC=A7=80=EC=9B=90, =
+=EB=8D=94=EC=9A=B1 =EA=B0=84=EC=86=8C=ED=99=94=EB=90=9C =EB=8D=B0=EC=9D=B4=
+=ED=84=B0 =EC=97=B0=EB=8F=99, =ED=96=A5=EC=83=81=EB=90=9C =EB=B3=B4=EC=95=
+=88 =EA=B2=BD=ED=97=98 =EB=93=B1=EC=9D=84 =EC=86=8C=EA=B0=9C=EB=93=9C=EB=A6=
+=BD=EB=8B=88=EB=8B=A4.</p>=20
+<p>Elastic 8.0=EC=9D=80 Apache Lucene 9.0=EC=9D=98 =EC=83=88=EB=A1=9C=EC=9A=
+=B4 AN =EA=B2=80=EC=83=89 =EA=B8=B0=EB=8A=A5=EA=B3=BC =ED=98=84=EB=8C=80=EC=
+=A0=81=EC=9D=B8 =EC=9E=90=EC=97=B0=EC=96=B4 =EC=B2=98=EB=A6=AC(NLP) =EB=AA=
+=A8=EB=8D=B8=EC=97=90 =EB=8C=80=ED=95=9C =EC=83=88=EB=A1=9C=EC=9A=B4 =EB=84=
+=A4=EC=9D=B4=ED=8B=B0=EB=B8=8C =EC=A7=80=EC=9B=90=EC=9D=84 =EA=B8=B0=EB=B0=
+=98=EC=9C=BC=EB=A1=9C =ED=95=98=EC=97=AC =EA=B7=B8 =EC=96=B4=EB=8A=90 =EB=
+=95=8C=EB=B3=B4=EB=8B=A4 =EC=89=BD=EA=B3=A0 =EB=B9=A0=EB=A5=B4=EA=B2=8C =EA=
+=B2=80=EC=83=89 =EA=B2=B0=EA=B3=BC=EC=9D=98 =EA=B4=80=EB=A0=A8=EC=84=B1=EA=
+=B3=BC =EC=A0=95=ED=99=95=EC=84=B1=EC=9D=84 =EA=B0=95=ED=99=94=ED=95=A9=EB=
+=8B=88=EB=8B=A4.</p>=20
+<p>Highlights:</p>=20
+<ul>=20
+<li>Speed &amp; Scale: Apache Luence=EC=9D=98 =EC=97=85=EB=8D=B0=EC=9D=B4=
+=ED=8A=B8 =EB=B0=8F =EC=B5=9C=EC=A0=81=ED=99=94=EB=90=9C =EB=B2=84=EC=A0=84=
+=EC=9D=84 =EA=B8=B0=EB=B0=98=EC=9C=BC=EB=A1=9C =ED=95=98=EB=8A=94 Elastic 8=
+.0=EC=9D=80 =EC=8A=A4=ED=86=A0=EB=A6=AC=EC=A7=80 =EC=9A=94=EA=B5=AC =EC=82=
+=AC=ED=95=AD=EC=9D=84 =EC=A4=84=EC=97=AC =EC=B4=9D =EC=86=8C=EC=9C=A0 =EB=
+=B9=84=EC=9A=A9=EC=9D=84 =EC=A0=88=EA=B0=90=ED=95=98=EA=B3=A0 =EC=83=88=EB=
+=A1=9C=EC=9A=B4 ANN =EA=B8=B0=EB=8A=A5=EC=9D=84 =ED=86=B5=ED=95=B4 =ED=86=
+=B5=EC=B0=B0=EB=A0=A5 =EC=8B=A4=ED=98=84 =EC=8B=9C=EA=B0=84=EC=9D=84 =EB=8B=
+=A8=EC=B6=95=ED=95=A9=EB=8B=88=EB=8B=A4.</li>=20
+<li>=EA=B4=80=EB=A0=A8=EC=84=B1: =EC=83=88=EB=A1=9C=EC=9A=B4 ANN =EA=B2=80=
+=EC=83=89 =EA=B8=B0=EB=8A=A5=EA=B3=BC =EC=82=AC=EC=9A=A9=EC=9E=90=EA=B0=80 =
+=EC=9E=90=EC=8B=A0=EC=9D=98 =EC=B5=9C=EC=8B=A0 NLP =EB=AA=A8=EB=8D=B8=EC=9D=
+=84 =EA=B0=80=EC=A0=B8=EC=98=AC =EC=88=98 =EC=9E=88=EB=8A=94 =EC=83=88=EB=
+=A1=9C=EC=9A=B4 =EB=84=A4=EC=9D=B4=ED=8B=B0=EB=B8=8C =EC=A7=80=EC=9B=90=EC=
+=9D=84 =EA=B8=B0=EB=B0=98=EC=9C=BC=EB=A1=9C =ED=95=98=EB=8A=94 Elastic 8.0=
+=EC=9D=84 =ED=86=B5=ED=95=B4 =EC=82=AC=EC=9A=A9=EC=9E=90=EB=8A=94 =EA=B2=80=
+=EC=83=89 =EC=A7=88=EC=9D=98=EC=97=90 =EB=8C=80=ED=95=9C =EC=BB=A8=ED=85=8D=
+=EC=8A=A4=ED=8A=B8=EC=99=80 =EC=9D=98=EB=8F=84=EB=A5=BC =EC=82=AC=EC=9A=A9=
+=ED=95=98=EC=97=AC =EC=A0=90=EC=A0=90 =EB=8D=94 =EA=B4=80=EB=A0=A8=EC=84=B1=
+=EC=9D=B4 =EB=86=92=EC=9D=80 =EA=B2=B0=EA=B3=BC=EB=A5=BC =EC=A0=9C=EA=B3=B5=
+=ED=95=A0 =EC=88=98 =EC=9E=88=EC=8A=B5=EB=8B=88=EB=8B=A4.</li>=20
+<li>=EB=8B=A8=EC=88=9C=EC=84=B1: =ED=81=B4=EB=9D=BC=EC=9A=B0=EB=93=9C =EB=
+=84=A4=EC=9D=B4=ED=8B=B0=EB=B8=8C =EB=8D=B0=EC=9D=B4=ED=84=B0 =EC=88=98=EC=
+=A7=91=EC=9D=84 =EB=8B=A8=EC=88=9C=ED=99=94=ED=95=98=EB=8A=94 Amazon Web Se=
+rvices=EC=99=80=EC=9D=98 =EB=91=90 =EA=B0=80=EC=A7=80 =EC=83=88=EB=A1=9C=EC=
+=9A=B4 =EB=84=A4=EC=9D=B4=ED=8B=B0=EB=B8=8C =EB=8D=B0=EC=9D=B4=ED=84=B0 =EC=
+=86=8C=EC=8A=A4 =ED=86=B5=ED=95=A9 =EC=99=B8=EC=97=90=EB=8F=84, Elastic 8.0=
+=EC=9D=80 =EB=B3=B4=EC=95=88=EC=9D=84 =EA=B0=84=EC=86=8C=ED=99=94 =EB=B0=8F=
+ =EA=B0=84=EC=86=8C=ED=99=94=ED=95=98=EC=97=AC =EC=9A=B4=EC=98=81=EC=9E=90=
+=EC=9D=98 =EC=8B=9C=EA=B0=84=EC=9D=84 =EC=A0=88=EC=95=BD=ED=95=98=EA=B3=A0 =
+=EB=8D=B0=EC=9D=B4=ED=84=B0=EC=97=90 =EB=8C=80=ED=95=9C =EB=AC=B4=EB=8B=A8 =
+=EC=95=A1=EC=84=B8=EC=8A=A4=EB=A5=BC =EB=B0=A9=EC=A7=80=ED=95=A9=EB=8B=88=
+=EB=8B=A4.</li>=20
+</ul>=20
+</div>=20
+</div> </td>=20
+</tr>=20
+<tr>=20
+<td class=3D"em_ptop" align=3D"center" valign=3D"top" style=3D"padding-top:=
+ 25px;">=20
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"left">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top">=20
+<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"middle" class=3D"em_defaultlink" height=3D"3=
+8" style=3D"height: 38px; font-family:'Inter', Arial, sans-serif; font-size=
+:13px; color:#ffffff; font-weight:700; border-radius: 3px; padding: 0px 20p=
+x;" bgcolor=3D"#0077cc"><a href=3D
+"https://link.elastic.co/dc/8uxos_Cs7mvW5Q2AFZkPmsxbZg4jHYtLJqvu_-v7A5kbcsR=
+Ksn6CoiyI7zy3BvgvyQ4nh8dt1_BsGHZkZt-XNxgmhubKQOj6VNg09gTLGI0rOItRON0iHlqh2-=
+LLubrk_E5ACDJ_x8MXBJMGNM1jsmJZ5ntRWLYlzjz-_h8n2Fmj6Yt6xLT5_TqpI4poI1Ml/ODEz=
+LU1BTS0zOTIAAAGCy9z2uoG42JmOCV4V2Rmpre013Ra2dOlbJCHUD9Wjz0hwG0uLKneTdKIKtPX=
+5UucCOTM7kkI=3D" target=3D"_blank" style=3D"text-decoration:none; line-heig=
+ht:38px; color:#ffffff; display:block;"
+>=EB=93=B1=EB=A1=9D=ED=95=98=EA=B8=B0</a></td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+<td align=3D"center" valign=3D"top" width=3D"42" style=3D"width:42px;" clas=
+s=3D"em_side15">&nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>
+<tr id=3D"Email_Merch_Section" class=3D"mktoModule">=20
+<td align=3D"center" valign=3D"top">=20
+<table align=3D"center" width=3D"600" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" class=3D"em_main_table" style=3D"width:600px; table-layout:fixe=
+d;">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top">=20
+<table width=3D"600" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"center" style=3D"width: 600px; background-color: #FFFFFF;" class=3D"em_=
+wrapper body" bgcolor=3D"#FFFFFF">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top" width=3D"0" style=3D"width:0px;" class=
+=3D"em_side15">&nbsp;</td>=20
+<td class=3D"em_full_img" valign=3D"top" align=3D"center" style=3D"padding-=
+top: 20px; padding-bottom: 20px;">=20
+<table class=3D"mktoSnippet" id=3D"emailmerch" style=3D"display:block; max-=
+width:580px; color:#000000; font-family:Arial, sans-serif; font-size:20px; =
+line-height:24px;" border=3D"0">
+ =20
+</table> </td>=20
+<td align=3D"center" valign=3D"top" width=3D"0" style=3D"width:0px;" class=
+=3D"em_side15">&nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>
+<tr id=3D"Footer_icon_Section" class=3D"mktoModule">=20
+<td align=3D"center" valign=3D"top">=20
+<table align=3D"center" width=3D"600" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" class=3D"em_main_table" style=3D"width:600px; table-layout:fixe=
+d;">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top">=20
+<table width=3D"600" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"center" style=3D"width: 600px; background-color: #FFFFFF;" class=3D"em_=
+wrapper body" bgcolor=3D"#FFFFFF">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top" width=3D"40" style=3D"width:40px;" clas=
+s=3D"em_side15">&nbsp;</td>=20
+<td align=3D"center" valign=3D"top" style=3D"padding-top: 40px; padding-bot=
+tom: 40px;">=20
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"center" wi=
+dth=3D"100%">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top">=20
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"left" clas=
+s=3D"em_wrapper">=20
+<tbody>=20
+<tr>=20
+<td align=3D"center" valign=3D"top">=20
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"center">=
+=20
+<tbody>=20
+<tr>=20
+<td valign=3D"top" align=3D"center">=20
+<div id=3D"Ftr_icon" class=3D"mktoImg">=20
+<a href=3D
+"https://link.elastic.co/ODEzLU1BTS0zOTIAAAGCy9z2uS-IUhbWLH5ygkQ8-kRyr-inJM=
+5RFNqlhDe4Bchkuggg9EgxhIL45TQxQVbRkKLnalw=3D" target=3D"_blank" style=3D"te=
+xt-decoration:none; color:#000000;"
+><img src=3D"https://info.elastic.co/rs/813-MAM-392/images/logo-elastic-hor=
+izontal-color%402x.png" width=3D"74" alt=3D"elastic" style=3D"display:block=
+; max-width:74px; color:#000000; font-family:Arial, sans-serif; font-size:2=
+0px; line-height:24px;" border=3D"0" /></a>=20
+</div> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+<tr>=20
+<td align=3D"left" valign=3D"top" class=3D"em_defaultlink" style=3D"font-fa=
+mily:'Inter', Arial, sans-serif; font-size:9px; line-height: 17px; color:#6=
+d6d6d; font-weight:400; padding-top: 18px;">=20
+<div id=3D"text65" class=3D"mktoText">
+ =C2=A9 2021 Elasticsearch B.V. All&nbsp;rights&nbsp;reserved.=20
+</div> </td>=20
+</tr>=20
+<tr>=20
+<td align=3D"left" valign=3D"top" class=3D"em_defaultlink" style=3D"font-fa=
+mily:'Inter', Arial, sans-serif; font-size:9px; line-height: 17px; color:#6=
+d6d6d; font-weight:400; padding-top: 4px;">=20
+<div id=3D"text66" class=3D"mktoText">
+ Elasticsearch is a trademark of Elasticsearch BV, registered in the U.S. a=
+nd in other countries /=20
+<span style=3D"text-decoration: none; color: #6d6d6d;"><a href=3D
+"https://link.elastic.co/ODEzLU1BTS0zOTIAAAGCy9z2ujLawi6SYwCYuXMJTspfq1Wrxs=
+7dMFsXkQorJjwWvjP8KrF3zQfW9bIiwHdkeZzEFvA=3D" target=3D"_blank" style=3D"te=
+xt-decoration: none; color: #6d6d6d;"
+>Trademarks</a></span> /=20
+<span style=3D"text-decoration: none; color: #6d6d6d;"><a href=3D
+"https://link.elastic.co/ODEzLU1BTS0zOTIAAAGCy9z2ubTapJnJ9GXNjFbFEy4z70Duj1=
+uBrl6Z9jKHDtQSmNkZV5bZ6N8c29yDrpw4tKmdh0c=3D" target=3D"_blank" style=3D"te=
+xt-decoration: none; color: #6d6d6d;"
+>Terms</a></span> /=20
+<span style=3D"text-decoration: none; color: #6d6d6d;"><a href=3D
+"https://link.elastic.co/ODEzLU1BTS0zOTIAAAGCy9z2ufV7i2M0VgvSv17DASOmXRoQ7j=
+x0R9GpsHU9k6hVGEcAR4e9t4aw3zjq2KSJFsQMNYo=3D" target=3D"_blank" style=3D"te=
+xt-decoration: none; color: #6d6d6d;"
+>Privacy</a></span>=20
+</div> </td>=20
+</tr>=20
+<tr>=20
+<td align=3D"left" valign=3D"top" class=3D"em_defaultlink" style=3D"font-fa=
+mily:'Inter', Arial, sans-serif; font-size:9px; line-height: 17px; color:#6=
+d6d6d; font-weight:400; padding-top: 4px;">=20
+<div id=3D"text67" class=3D"mktoText">
+ Apache, Apache Lucene, Apache Hadoop, Hadoop, HDFS and the yellow elephant=
+ logo are trademarks of the Apache Software Foundation in the United States=
+ and/or other&nbsp;countries.=20
+</div> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+<td align=3D"center" valign=3D"top" width=3D"40" style=3D"width:40px;" clas=
+s=3D"em_side15">&nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>
+</table>=20
+<!--Litmus_tracker_Code-->=20
+<style data-ignore-inlining=3D"">@media (prefers-color-scheme: dark) { #_t:=
+:before {content:url('https://9vs5exwp.emltrk.com/v2/9vs5exwp?rd&i=3D832409=
+37');}} @media (prefers-color-scheme: light) { #_t::before {content:url('ht=
+tps://9vs5exwp.emltrk.com/v2/9vs5exwp?rl&i=3D83240937');}} @media print{ #_=
+t {background-image:url('https://9vs5exwp.emltrk.com/v2/9vs5exwp?p&i=3D8324=
+0937');}} div.OutlookMessageHeader {background-image:url('https://9vs5exwp.=
+emltrk.com/v2/9vs5exwp?f&i=3D83240937')} table.moz-email-headers-table {bac=
+kground-image:url('https://9vs5exwp.emltrk.com/v2/9vs5exwp?f&i=3D83240937')=
+} blockquote #_t {background-image:url('https://9vs5exwp.emltrk.com/v2/9vs5=
+exwp?f&i=3D83240937')} #MailContainerBody #_t {background-image:url('https:=
+//9vs5exwp.emltrk.com/v2/9vs5exwp?f&i=3D83240937')}</style>
+<div id=3D"_t"></div>=20
+<img src=3D"https://9vs5exwp.emltrk.com/v2/9vs5exwp?i=3D83240937" width=3D"=
+1" height=3D"1" border=3D"0" alt=3D"" />=20
+<!--//Litmus_tracker_Code-->=20
+<!--Movable_ink_mi_u-->=20
+<table width=3D"1" height=3D"1" cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0">=20
+<tbody>
+<tr>
+<td style=3D"font-size:0px; line-height:0px;"> <img src=3D"http://mi.elasti=
+c.co/p/up/74ec939858658a4a/o.gif?mi_u=3D83240937&amp;mi_ecmp=3D89083" width=
+=3D"1" height=3D"1" alt=3D"" aria-hidden=3D"true" /> </td>
+</tr>=20
+</tbody>
+</table>=20
+<!--//Movable_ink_mi_u-->=20
+<!-- =3D=3D //Body Section =3D=3D -->=20
+<!-- =3D=3D Footer Section =3D=3D -->=20
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" clas=
+s=3D"em_full_wrap em_dark" bgcolor=3D"#f4f4f4" style=3D"table-layout:fixed;=
+">=20
+<tbody>
+<tr>=20
+<td align=3D"center" valign=3D"top">=20
+<table align=3D"center" width=3D"600" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" class=3D"em_main_table" style=3D"width:600px; table-layout:fixe=
+d;">=20
+<tbody>
+<tr>=20
+<td class=3D"em_hide body" style=3D"line-height:1px;min-width:600px;backgro=
+und-color:#f4f4f4;"></td>=20
+</tr>=20
+</tbody>
+</table> </td>=20
+</tr>=20
+</tbody>
+</table>=20
+<!-- =3D=3D //Footer Section =3D=3D -->  =20
+<a href=3D
+"https://link.elastic.co/ODEzLU1BTS0zOTIAAAGCy9z2utLfwMiAmlz3h47OK1RVJKe5Hp=
+9tkaeVZ50Assh91YpgxeehpPBuryEwmvU1_hzWHQA=3D"
+></a>
+<img src=3D"https://link.elastic.co/trk?t=3D1&mid=3DODEzLU1BTS0zOTI6MDo4OTA=
+4Mzo1MzE4NTE6MTc0MTAyMToxMzAzNDI6OTozMDUyNDg6ODMyNDA5MzctMTI2ODpqd28yOTU1QG=
+dtYWlsLmNvbQ%3D%3D" width=3D"1" height=3D"1" style=3D"display:none !importa=
+nt;" alt=3D"" />
+
+<p><center><font face=3D"Verdana" size=3D"-3" color=3D"#BBB" >
+We're sorry if you didn't like our vibe. Here's where you can go to <a href=
+=3D
+"https://link.elastic.co/u/ODEzLU1BTS0zOTIAAAGCy9z2ufQnGS1veX1fPNGOCc2hJUiT=
+2rbaeGPIIN220xW6rIhwYp8DEzzgCSWcJiRuG8RXGqw=3D" style=3D"color:#BBB;"
+>unsubscribe</a>. (Your email is: <a href=3D
+"https://link.elastic.co/dcu/x6OKpYKTGFpYtRAJR1rpMbkSka3mlSKwTEVy-ah3BtI=3D=
+/ODEzLU1BTS0zOTIAAAGCy9z2uoG42JmOCV4V2Rmpre013Ra2dOlbJCHUD9Wjz0hwG0uLKneTdK=
+IKtPX5UucCOTM7kkI=3D" style=3D"color:#BBB;"
+>jwo2955@gmail.com</a>)
+</font></center> </p>
+</body>
+</html>
+------=_Part_7505597_1660747099.1645725632205--

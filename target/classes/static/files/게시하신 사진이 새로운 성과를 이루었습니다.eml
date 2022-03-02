@@ -1,0 +1,1606 @@
+Delivered-To: jwo2955@gmail.com
+Received: by 2002:ac8:5889:0:0:0:0:0 with SMTP id t9csp4583163qta;
+        Mon, 21 Feb 2022 23:38:13 -0800 (PST)
+X-Received: by 2002:a37:6841:0:b0:49b:7f89:dc6f with SMTP id d62-20020a376841000000b0049b7f89dc6fmr14367806qkc.398.1645515493592;
+        Mon, 21 Feb 2022 23:38:13 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1645515493; cv=none;
+        d=google.com; s=arc-20160816;
+        b=iGXncSgNLzDTVKj/vWpQsqmJ3ePbhn/7/QatE/8S4RovIS/zqaNNZb5eAUR8aumfV/
+         joZEtDogQPTMWBWtIqem6WHN/NnyCKkvcnjFPE1DnuG+T9l1Fj8aV8BF38AmVg/+fyAF
+         mMgXb1GbnA3nFq13pTOTDIxAC8yNcG13yt9JU2ppal8VcVsjmdNGd95dYUCiBcvdHXTT
+         fGxgdOR14f+tF/JOZxgymz+H5vJYEvHAaiUfoIYIswtnBID/on6Q449wKcpUxpFm5Lew
+         WJ8uY5WjuMoMv+0vxMjeiiQrmGHQuUsuB6KOr7+ySpU3n+qmDvxBBT3JZPPRZzFxB5NT
+         zySw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:from:subject:message-id:list-id:feedback-id:list-unsubscribe
+         :precedence:reply-to:date:mime-version:dkim-signature;
+        bh=J4e8nm5hIr/lizhaaiM9R4adVviY4eLNZlmOtGWt3FA=;
+        b=kggwd7mUuPBHyFSp6cZhc9u9beZzotxt4hbSAwxG07v23QayuRmPuz4Mf3lPaMr6rS
+         s1l5we+s9WWTA4YHJoYvQGWaTN/pIKuowDeqzibhrxXcoGeIrbwoNcYtD2wDDera/iUX
+         Q9KXDy9Rz3c5c8VDRq9z5oH3nH3xkMELZn4ieUQEuvosqpnzDer+lj7whwchCCcUlAe+
+         mQj3TWGBIRo57ulw8M8ofimHdPEVmvn2b351tzs8dxcjsdPQW8er3CmNPLx2YAYUrAUq
+         3upMY+Yti4Q7jLNO5TcFH8V6SQYpmJyyAPd8PgOOeWueUjlxJedIzPmMQbr2T0+8Ytuu
+         +Ucw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20210112 header.b=pCogj+eu;
+       spf=pass (google.com: domain of 35ziuyhmkb3qyggydw-eshk-fgjwhdqyggydw.ugebogu1xxyesad.uge@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=35ZIUYhMKB3QYggYdW-eShk-fgjWhdqYggYdW.Ugebogu1xxYeSad.Uge@scoutcamp.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+Return-Path: <35ZIUYhMKB3QYggYdW-eShk-fgjWhdqYggYdW.Ugebogu1xxYeSad.Uge@scoutcamp.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id d187sor4484933qkc.149.2022.02.21.23.38.13
+        for <jwo2955@gmail.com>
+        (Google Transport Security);
+        Mon, 21 Feb 2022 23:38:13 -0800 (PST)
+Received-SPF: pass (google.com: domain of 35ziuyhmkb3qyggydw-eshk-fgjwhdqyggydw.ugebogu1xxyesad.uge@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20210112 header.b=pCogj+eu;
+       spf=pass (google.com: domain of 35ziuyhmkb3qyggydw-eshk-fgjwhdqyggydw.ugebogu1xxyesad.uge@scoutcamp.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=35ZIUYhMKB3QYggYdW-eShk-fgjWhdqYggYdW.Ugebogu1xxYeSad.Uge@scoutcamp.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=mime-version:date:reply-to:precedence:list-unsubscribe:feedback-id
+         :list-id:message-id:subject:from:to;
+        bh=J4e8nm5hIr/lizhaaiM9R4adVviY4eLNZlmOtGWt3FA=;
+        b=pCogj+euCrn6NzfQCWehPz2S788Eu2tgvJjpL82t6OprPzExBiTX8SeU5Yfmpss5K8
+         G4NmzgsVKROf2kPZDwg0l50Tse34W/3mwZHkjNXpppq+Q7YamL0IyK8zBP1rBZ3t1D0S
+         +UyNTfTyJolCTB3R2Dh4kMssVpGs5Bc0x1cqd5dQpOCfrpbZPXK0FMI76pBFv36Of1df
+         47/69jN9UbCx8II869xr96d+r8ABUwTuKx9tHB59mz3ETSOaCj/K1/XvOfd6W9nFvGEU
+         3cspI/OMC/xu9WcF0nwjeRwHHtoeUX9QHMzeLn6Dsspt85x/rM9hOtrb9S5FjrVIoa+X
+         PmVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:date:reply-to:precedence
+         :list-unsubscribe:feedback-id:list-id:message-id:subject:from:to;
+        bh=J4e8nm5hIr/lizhaaiM9R4adVviY4eLNZlmOtGWt3FA=;
+        b=5s0zvbbyGVn53ORsnOb9KXxY2Qs4fCRqWL3U1SI66LuO+nWWq/YnRKJnIWTLE4KQ2z
+         NPd0qK9i5k9P4JbOD5Xs5aTuh7mYnMncsEizu/aaSqKwk4QF0bJdv80JD+06XasOkbgd
+         EE593ezodK5SMeFGV1UsgHi8Xk/xSoHPLSEwneLVhBYTo1IcPur9RH1uusJ9PM0j+ctJ
+         B78EeERwWDF0yq0wz/BiXiBV7Dl1Y//y1RNAaTHhzITDDjZWHMKPY47W54ogWm+4+B5P
+         BmCP0zCwc5sDuY6KaybTc5k5NiTYy+y3VQcZyQdxAdhTLeA5PiQ/whh4lGUFjezefNus
+         FzhQ==
+X-Gm-Message-State: AOAM531GGdoa2WtrnREnu+0OO5n72Lhk7yGUnV8uhsQEcKwnqU73Kir2
+	PKwkdVrVvPEVOkKp+hQ+iPpI
+X-Google-Smtp-Source: ABdhPJw6ICadaGom69B3UuzhV+q7RWb2pliPQsOaHgP+p9ZQGNMTq02tn2tiK+eAN8GtDCfTH01xEsk=
+MIME-Version: 1.0
+X-Received: by 2002:a05:620a:137c:b0:648:e909:e9f with SMTP id
+ d28-20020a05620a137c00b00648e9090e9fmr4819479qkl.313.1645515493293; Mon, 21
+ Feb 2022 23:38:13 -0800 (PST)
+Date: Mon, 21 Feb 2022 23:38:13 -0800
+Reply-To: Google Maps <google-maps-noreply@google.com>
+X-Google-Id: 4090229
+Precedence: bulk
+List-Unsubscribe: <https://notifications.google.com/g/optout/AD-FnEy6SncHpPOCqZ3fy6W3FFOl8iuhT4g-3EDI7uLlccYVz_YzHI57RyuKVnG-Ar3YDndCTBtKjGSmmSBIhRsR3m1RSnzbX_DffkBse6fj1x3PIUGR27I?hl=ko>
+Feedback-ID: P-48-3401:C864000:M110440082-ko:gamma
+List-Id: <96db5942fbf2d0c471f822472093ad3974514c05.google.com>
+X-Notifications: beba50bb02d00000
+X-Notifications-Bounce-Info: AXvZQxdOpJ0aLgWHnN60AHOAQTLjrtFFJRmQj263xI64x2KTABkj0KILLqLJ02VvjAG8C9W9QPOhop_IEtP46ChBBhBEHJeHrOiVtinCG3nJXViQlrcCOju7ehuIRqmaXls-P39FoTIWVYs2XFO-FzLQ56AB6sMWUDVWF4aJULeSti4gmBE050zkOuXmM_sNjAwNjA0MDQxNTM1NTk2OTMzMg
+Message-ID: <95c0b5fc3ef355d267c3f29462bec538315c3965-864000-111075567@google.com>
+Subject: =?UTF-8?B?6rKM7Iuc7ZWY7IugIOyCrOynhOydtCDsg4jroZzsmrQg7ISx6rO866W8IOydtOujqOyXiA==?=
+	=?UTF-8?B?7Iq164uI64uk?=
+From: Google Maps <google-maps-noreply@google.com>
+To: jwo2955@gmail.com
+Content-Type: multipart/alternative; boundary="000000000000733ddb05d8966e0b"
+
+--000000000000733ddb05d8966e0b
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: base64
+
+NTAwDQoNCuyCrOynhCDsobDtmozsiJgNCg0K67CY7IiY7Ja066aw7J206rO17JuQICANCjxodHRw
+czovL25vdGlmaWNhdGlvbnMuZ29vZ2xlLmNvbS9nL3AvQUQtRm5Fd2R1eGNNd0QyUjloWm5abG9y
+Vi1vc2Q0V2xBN2gzcUZzRjdTM05Ba013N0cyU0dMcmY1anRVNVNUMU9ob0NRVENCYW40VGNtTWNs
+SXg1YlBSTkdpeEFfczJkTEZsamIzVWR3bkF2UDZMS0Z4ak1VMEVBRGxvLUhsSk5wVnlJdEUwbjB3
+S3NIbEp5RjQ1MUgzdG1VRnVQYkVFM2t1V3RhalpXMy1ab0lUbjR1ZlAydDJ4WTgyejMzQ3o4YXR2
+amhDZ3VBdi1Qak9UNEdoWGIxVUc1VjF1QnBhVDJKdnkxbFBfcW1ETWpiMlZnZ0hyUExzbmFBb05p
+VUpTNUc0emwya2pTNmt1dG9mWnI2d1oyZkJJLW1QNjRsTnVzWU80aGRNRjV2SHcwWUZLdDVGNEh4
+Wk13NzZ6TGxzeVU0OC1GeTNldEVnPg0KDQoyMS4gMi4gMjQNCg0KPGh0dHBzOi8vbm90aWZpY2F0
+aW9ucy5nb29nbGUuY29tL2cvcC9BRC1GbkV3dVNLcm9nYzJXd2hDNS1VV2tvWWxKdENUbnl5Z1hy
+SmdTOGtJS0FvakZ1cXYyMF83bE4tX1JCOF9uVzh4OUFtM1NvYmdwaExfdVFvM2YwbGhURXVob3dw
+ZnBvSTdwMENzcC1JSTRFdGF0dC1ENTUyc1NUaF9aYzlRMWFkSG81djJLVEdUSFN6dG55eERJblVY
+Q2Z0alRCSzYzc0xidzJYcTZNaEpwZ0QxNlZtNlNFdUdHS1NiRWt2V3pxbjNReXlDZ3BnRW1LT1pU
+V3V1dElOUXh5V2tkaFFvTXE1WUhiT08tUWx6dDZIdTBFbzNTd204MV9lQ2NlV3JIS2FMM3NXUDMw
+b0pPYVJQcnBvWEZOcWxfaDhMaURBdDEta25oQVdEN2FPbnQxaC1kV0czY0Z5YnFDWnpDZEF5NDVi
+bz4NCg0K64K0IOyCrOynhCDtmZXsnbjtlZjquLAgICANCjxodHRwczovL21hcHMuYXBwLmdvby5n
+bC8/aWJpPWNvbS5nb29nbGUuTWFwcyZpdXM9Y29tZ29vZ2xlbWFwc3VybCZsaW5rPWh0dHBzOi8v
+d3d3Lmdvb2dsZS5jb20vbWFwcy9jb250cmliLzEwNTg1NDYxOTQ5OTg2NzQ2MzE2My9waG90b3M/
+YXQlM0RnbnBfZGwqcmx+U0lOR0xFX1BIT1RPX1ZJRVdTX0NPTkdSQVRTX01PRFVMRV9TRUVfWU9V
+Ul9QSE9UT1MqbWlwfjE1MzEwOTU2NjcxMjkwNjYzMjgqbWlzfjExMzg1OTA2Mzc2MjQ3NTg5MDgq
+c2NmfkNSRUFUSVZFX0ZPUk1BVF9VTlNQRUNJRklFRCZhbXY9NzAzMDAwMDAwJmFwbj1jb20uZ29v
+Z2xlLmFuZHJvaWQuYXBwcy5tYXBzJmlzaT01ODUwMjczNTQmdXRtX3NvdXJjZT1waG90b19pbXBh
+Y3RfZW1haWw+DQoNCuuCtOqwgCDsmKzrprAg7IKs7KeE7J20IO2BsCDrj4Tsm4DsnbQg65Cp64uI
+64ukDQoNCuy2le2VmO2VqeuLiOuLpC4g7J6R7ISx7ZWY7IugIOqyjOyLnOusvOydtCDrsKnquIgg
+7IOI66Gc7Jq0IOyEseqzvOulvCDsnbTro6jsl4jsirXri4jri6QuIOyhsO2ajOyImCAgDQo1MDDt
+mozrpbwg64+M7YyM7ZaI7Jy866mwLCDrp47snYAg7IKs7Jqp7J6Q6rCAIOydtCDqsozsi5zrrLzs
+nYQg7Ya17ZW0IO2VhOyalO2VnCDsoJXrs7Trpbwg7Ja77JeI7Iq164uI64ukLg0KDQrstpTqsIDr
+oZwg7LC47Jes7ZWY6riwICANCjxodHRwczovL21hcHMuYXBwLmdvby5nbC8/aWJpPWNvbS5nb29n
+bGUuTWFwcyZpdXM9Y29tZ29vZ2xlbWFwc3VybCZsaW5rPWh0dHBzOi8vd3d3Lmdvb2dsZS5jb20v
+bWFwcy9jb250cmliLzEwNTg1NDYxOTQ5OTg2NzQ2MzE2My90b2RvbGlzdC9kYXRhJTNEITRtNCE4
+bTEhMWU1ITE5bTEhMWUwP2VudHJ5JTNEZXVpJTI2ZG9fbG9nX2luJTNEdHJ1ZSUyNmF0JTNEZ25w
+X2RsKnJsflNJTkdMRV9QSE9UT19WSUVXU19DT05HUkFUU19NT0RVTEVfQ09OVFJJQlVURV9NT1JF
+Km1pcH4xNTMxMDk1NjY3MTI5MDY2MzI4Km1pc34xMTM4NTkwNjM3NjI0NzU4OTA4KnNjZn5DUkVB
+VElWRV9GT1JNQVRfVU5TUEVDSUZJRUQmYW12PTcwMzAwMDAwMCZhcG49Y29tLmdvb2dsZS5hbmRy
+b2lkLmFwcHMubWFwcyZpc2k9NTg1MDI3MzU0JnV0bV9zb3VyY2U9cGhvdG9faW1wYWN0X2VtYWls
+Pg0KDQoNCjxodHRwczovL21hcHMuYXBwLmdvby5nbC8/aWJpPWNvbS5nb29nbGUuTWFwcyZpdXM9
+Y29tZ29vZ2xlbWFwc3VybCZsaW5rPWh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vbWFwcy9jb250cmli
+LzEwNTg1NDYxOTQ5OTg2NzQ2MzE2My90b2RvbGlzdC9kYXRhJTNEITRtNCE4bTEhMWU1ITE5bTEh
+MWUwP2VudHJ5JTNEZXVpJTI2ZG9fbG9nX2luJTNEdHJ1ZSUyNmF0JTNEZ25wX2RsKnJsflNJTkdM
+RV9QSE9UT19WSUVXU19CT0RZX0NPTlRSSUJVVEVfTk9XX0lNQUdFKm1pcH4xNTMxMDk1NjY3MTI5
+MDY2MzI4Km1pc34xMTM4NTkwNjM3NjI0NzU4OTA4KnNjZn5DUkVBVElWRV9GT1JNQVRfVU5TUEVD
+SUZJRUQmYW12PTcwMzAwMDAwMCZhcG49Y29tLmdvb2dsZS5hbmRyb2lkLmFwcHMubWFwcyZpc2k9
+NTg1MDI3MzU0JnV0bV9zb3VyY2U9cGhvdG9faW1wYWN0X2VtYWlsPg0KDQrsp4DquIjsspjrn7wg
+6rOE7IaNIO2ZnOuPme2VtCDso7zshLjsmpQNCg0K64uk7J2M7JeQ64+EIOyDiOuhreqzoCDtnaXr
+r7jsp4Tsp4TtlZwg6rK97ZeY7J2EIOqzteycoO2VtCDso7zshLjsmpQuDQoNCuyngOq4iCDssLjs
+l6ztlZjquLAgIA0KPGh0dHBzOi8vbWFwcy5hcHAuZ29vLmdsLz9pYmk9Y29tLmdvb2dsZS5NYXBz
+Jml1cz1jb21nb29nbGVtYXBzdXJsJmxpbms9aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9tYXBzL2Nv
+bnRyaWIvMTA1ODU0NjE5NDk5ODY3NDYzMTYzL3RvZG9saXN0L2RhdGElM0QhNG00IThtMSExZTUh
+MTltMSExZTA/ZW50cnklM0RldWklMjZkb19sb2dfaW4lM0R0cnVlJTI2YXQlM0RnbnBfZGwqcmx+
+U0lOR0xFX1BIT1RPX1ZJRVdTX0NUQV9DT05UUklCVVRFX05PVyptaXB+MTUzMTA5NTY2NzEyOTA2
+NjMyOCptaXN+MTEzODU5MDYzNzYyNDc1ODkwOCpzY2Z+Q1JFQVRJVkVfRk9STUFUX1VOU1BFQ0lG
+SUVEJmFtdj03MDMwMDAwMDAmYXBuPWNvbS5nb29nbGUuYW5kcm9pZC5hcHBzLm1hcHMmaXNpPTU4
+NTAyNzM1NCZ1dG1fc291cmNlPXBob3RvX2ltcGFjdF9lbWFpbD4NCg0KDQrrs7gg7J2066mU7J28
+7J2AIEdvb2dsZeyXkCDsgqzsmqnsnpAg7L2Y7YWQ7Lig66W8IOygnOqzte2VnCDsgqzsmqnsnpDs
+l5Dqsowg67Cc7Iah65CY64qUICANCuydtOuplOydvOyeheuLiOuLpC4g642UIOydtOyDgSDsnbTr
+n6ztlZwg7JeF642w7J207Yq466W8IOuwm+yngCDslYrsnLzroKTrqbQg7Jes6riw7JeQ7IScIOyI
+mOyLoCDqsbDrtoAgIA0KPGh0dHBzOi8vbm90aWZpY2F0aW9ucy5nb29nbGUuY29tL2cvb3B0b3V0
+L0FELUZuRXpIVWdjSnZxbHRrX0t4RXpwUkZMMmtRclctV1BKZnhLZDhrMGxrR1hfMzJpYzFkQlIz
+LTdwU0lLQ0hfWHVfVmx3ck83Y3pxcDJud1VxZGVqLUZNa2poQ19rcS1wU2pWTFhMYnpWYUllb09G
+OUMyP2hsPWtvPu2VmOyEuOyalC4NCg0KKGMpIDIwMjIgR29vZ2xlIExMQyAxNjAwIEFtcGhpdGhl
+YXRyZSBQYXJrd2F5LCBNb3VudGFpbiBWaWV3LCBDQSA5NDA0Mw0K
+--000000000000733ddb05d8966e0b
+Content-Type: text/x-amp-html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!doctype html>
+<html lang=3Dko =E2=9A=A14email data-css-strict>
+<head>
+<meta charset=3Dutf-8>
+<script async src=3Dhttps://cdn.ampproject.org/v0.js></script>
+<script async custom-element=3Damp-bind src=3Dhttps://cdn.ampproject.org/v0=
+/amp-bind-0.1.js></script>
+<style amp4email-boilerplate>body{visibility:hidden}</style>
+<style amp-custom>
+* {
+outline: none;
+}
+div {
+display: flex;
+flex-direction: column;
+}
+#carousel-with-preview > div {
+flex-direction: row;
+}
+p, a {
+margin: 0;
+text-align: center;
+font-family: Google Sans, Roboto, Helvetica Neue, Helvetica, Arial, sans-se=
+rif;
+}
+.amp-carousel-button:focus {
+outline: none;
+border: none;
+}
+.current {
+background-color: #858585;
+}
+.old {
+background-color: #E2E2E2;
+}
+@media (min-width: 721px) {
+.amp-carousel-button-next {
+background-image: url('https://services.google.com/fh/files/emails/local_gu=
+ides_impact_nav_right.png');
+background-size: 50px 50px;
+right: 20px;
+outline: none;
+}
+.amp-carousel-button-prev {
+background-image: url('https://services.google.com/fh/files/emails/local_gu=
+ides_impact_nav_left.png');
+background-size: 50px 50px;
+left: 20px;
+outline: none;
+}
+.amp-carousel-button {
+background-color: transparent;
+top: 45%;
+height: 50px;
+width: 50px;
+box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+border-radius: 50%;
+cursor: pointer;
+}
+.flex-d-r {
+flex-direction: row;
+}
+.w-360 {
+width: 720px;
+}
+.hero-bg {
+background-image: url('https://services.google.com/fh/files/emails/local_gu=
+ides_impact_hero_bg_desktop_1.gif');
+min-height: 464px;
+}
+.hero-heading {
+font-size: 72px;
+line-height: 72px;
+}
+.hero-subheading {
+font-size: 24px;
+line-height: 36px;
+}
+.hero-container {
+width: 350px;
+margin: 15px 0 4px;
+}
+.hero-container-inner {
+padding: 11px 20px 11px;
+}
+.profile-icon {
+width: 35px;
+height: 35px;
+}
+.profile-name {
+font-size: 16px;
+line-height: 30px;
+padding: 7px 0 0 9px;
+}
+.post-date {
+font-size: 14px;
+line-height: 30px;
+padding: 7px 0 0;
+}
+.sec1-container {
+width: 540px;
+}
+.cta1-pad {
+padding: 17px 0 0;
+}
+.sec1-para1 {
+padding: 19px 0 0;
+font-size: 24px;
+line-height: 36px;
+}
+.w-296 {
+width: 618px;
+}
+.sec2-para1 {
+padding: 41px 0 0;
+}
+.car-container {
+background-image: url('https://services.google.com/fh/files/emails/local_gu=
+ides_impact_amp_bg_1.png');
+min-height: 573px;
+}
+.flex-col {
+flex-direction: row;
+width: 618px;
+}
+.sec3-icon {
+padding: 71px 0 0;
+}
+.sec3-para1 {
+padding: 11px 40px 0;
+}
+.w-294 {
+width: 256px;
+}
+.sec3-para2 {
+padding: 4px 10px 0;
+}
+.sec3-card {
+margin: 40px 0 4px;
+}
+.sec4-container {
+width: 572px;
+}
+.sec4-img {
+padding: 28px 0 0;
+}
+.sec4-para3 {
+padding: 6px 0 0;
+}
+.w-308 {
+width: 636px;
+}
+.smiley-space {
+width: 4px;
+}
+.w-330 {
+width: 636px;
+}
+.text-pref {
+padding: 5px 0 62px;
+}
+.w-292 {
+width: 636px;
+}
+.text-address {
+padding: 20px 0 90px;
+}
+.car-wid {
+width: 720px;
+height: 357px;
+}
+.car-spa {
+width: 43px;
+}
+.car-main-cont {
+width: 560px;
+padding: 34px 0 39px;
+}
+.inc-para {
+padding: 4px 10px 0
+}
+.card-spacer {
+width: 1px;
+}
+.card-rev {
+padding: 19px 34px 0;
+}
+.card-cta {
+padding: 30px 0 0;
+}
+.card-post {
+padding: 17px 0 0;
+}
+.post-dim {
+width: 249px;
+height: 143px;
+}
+.review-main {
+padding: 8px 20px 30px;
+min-height: 88px;
+}
+.review-rate {
+padding: 0 20px;
+}
+.review-imp-card {
+width: 278px;
+}
+.mobile {
+display: none;
+}
+}
+@media (max-width: 720px) {
+.amp-carousel-button-next {
+background-image: url('https://services.google.com/fh/files/emails/local_gu=
+ides_impact_nav_right.png');
+background-size: 50px 50px;
+right: 4px;
+outline: none;
+}
+.amp-carousel-button-prev {
+background-image: url('https://services.google.com/fh/files/emails/local_gu=
+ides_impact_nav_left.png');
+background-size: 50px 50px;
+left: 4px;
+outline: none;
+}
+.amp-carousel-button {
+background-color: transparent;
+top: 45%;
+height: 50px;
+width: 50px;
+box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+border-radius: 50%;
+cursor: pointer;
+}
+.flex-d-r {
+flex-direction: column;
+align-items: center;
+}
+.w-360 {
+width: 360px;
+}
+.hero-bg {
+background-image: url('https://services.google.com/fh/files/emails/local_gu=
+ides_impact_hero_bg_mobile_1.gif');
+min-height: 370px;
+}
+.hero-heading {
+font-size: 62px;
+line-height: 62px;
+}
+.hero-subheading {
+font-size: 20px;
+line-height: 28px;
+}
+.hero-container {
+width: 252px;
+margin: 23px 0 4px;
+}
+.hero-container-inner {
+padding: 8px 15px 9px;
+}
+.profile-icon {
+width: 25px;
+height: 25px;
+}
+.profile-name {
+font-size: 13px;
+line-height: 21px;
+padding: 4px 0 0 8px;
+}
+.post-date {
+font-size: 13px;
+line-height: 21px;
+padding: 4px 0 0;
+}
+.sec1-container {
+width: 282px;
+}
+.cta1-pad {
+padding: 14px 0 0;
+}
+.sec1-para1 {
+padding: 24px 22px 0;
+font-size: 24px;
+line-height: 32px;
+}
+.w-296 {
+width: 296px;
+}
+.sec2-para1 {
+padding: 31px 0 0;
+}
+.car-container {
+background-image: url('https://services.google.com/fh/files/emails/local_gu=
+ides_impact_amp_bg_mobile.png');
+min-height: 793px;
+}
+.flex-col {
+flex-direction: column;
+align-items: center;
+width: 320px;
+}
+.sec3-icon {
+padding: 31px 0 0;
+}
+.sec3-para1 {
+padding: 8px 0 0;
+}
+.w-294 {
+width: 294px;
+}
+.sec3-para2 {
+padding: 4px 0 0;
+}
+.sec3-card {
+margin: 30px 0 4px;
+}
+.sec4-container {
+width: 296px;
+}
+.sec4-img {
+padding: 24px 0 0;
+}
+.sec4-para3 {
+padding: 3px 0 0;
+}
+.w-308 {
+width: 308px;
+}
+.smiley-space {
+width: 14px;
+}
+.w-330 {
+width: 330px;
+}
+.text-pref {
+padding: 5px 0 30px;
+}
+.w-292 {
+width: 292px;
+}
+.text-address {
+padding: 20px 0 36px;
+}
+.car-wid {
+width: 360px;
+height: 586px;
+}
+.car-spa {
+width: 17px;
+}
+.car-main-cont {
+width: 294px;
+padding: 20px 0 0;
+min-height: 544px;
+}
+.inc-para {
+padding: 0 10px 0
+}
+.card-spacer {
+width: 234px;
+height: 1px;
+margin: 17px 0 9px;
+}
+.card-rev {
+padding: 19px 27px 0;
+}
+.card-cta {
+padding: 20px 0 0;
+}
+.card-post {
+padding: 10px 0 0;
+}
+.post-dim {
+width: 249px;
+height: 143px;
+}
+.review-main {
+padding: 8px 15px 24px;
+min-height: 100px;
+}
+.review-rate {
+padding: 0 15px;
+}
+.review-imp-card {
+width: 100%;
+}
+.desktop {
+display: none;
+}
+}
+</style>
+</head>
+<body style=3D"text-align: center; padding: 10px 0; background-color: #f5f5=
+f5;">
+<amp-state id=3Dselected>
+<script type=3Dapplication/json> {"slide": 0} </script>
+</amp-state>
+<div class=3Dw-360 style=3D"margin: 0 auto; background-color: #ffffff;">
+<!-- Header Starts -->
+<div style=3D"align-items: center; padding: 12px 0;">
+<amp-img src=3Dhttps://services.google.com/fh/files/emails/local_guides_imp=
+act_logo.png alt=3D"" width=3D155 height=3D30 layout=3Dresponsive style=3D"=
+width: 155px; height: 30px;"></amp-img>
+</div>
+<!-- Header Ends -->
+<!-- Body Starts -->
+<div>
+<div class=3Dhero-bg style=3D"background-repeat: no-repeat; background-size=
+: 100% 100%; align-items: center;">
+<div>
+<p class=3Dhero-heading style=3D"font-weight: 500; color: #1A73E8; letter-s=
+pacing: -3.6px; padding: 36px 0 0;">500</p>
+<p class=3Dhero-subheading style=3D"font-weight: bold; color: #666666; lett=
+er-spacing: -0.3px">=EC=82=AC=EC=A7=84 =EC=A1=B0=ED=9A=8C=EC=88=98</p>
+</div>
+<div class=3Dhero-container style=3D"border: 1px solid #EAE8ED; box-shadow:=
+ 0 2px 4px 0 rgba(0,0,0,0.1); border-radius: 5px;">
+<div class=3Dhero-container-inner style=3D"flex-direction: row; background-=
+color: #ffffff; justify-content: space-between; border-top-left-radius: 4px=
+; border-top-right-radius: 4px;">
+<div style=3D"flex-direction: row;">
+<div>
+<amp-img class=3Dprofile-icon src=3Dhttps://lh3.googleusercontent.com/a-/AO=
+h14Gj1pzhQHtZn3s_E5sgx4wtmAqq16g9-3Bb60DwmJQ=3Ds120-cc-rp-mo alt=3D"" width=
+=3D35 height=3D35 layout=3Dresponsive style=3D"border-radius: 50%;"></amp-i=
+mg>
+</div>
+<div>
+<p class=3Dprofile-name style=3D"font-weight: bold; color: #666666; text-al=
+ign: left;"><a href=3Dhttps://notifications.google.com/g/p/AD-FnEyqQ7ayyVXb=
+AFxEJiwJ-qFxSitM-I265ugZZ8EF8Jp-iYKp0IEVore7YB4l4xOIBXNhxPullG4T9xvSN-lAnRi=
+KkT18qPR4nc2bDG0_mfdWXDsuiHjNzOexYiySu6s2AVjw_6ven2eB4-TiN11SxdPHfvanng1MTV=
+ymv0HjiKhcJVGzwXyA51KRpwBNS41Bzc39msa7JY10O6gw05_waId_TggjTSrUQhFldVaxEaAdG=
+GDPc4te_yQxkTLwFzLt6f1DpGDYIdOxJAlEnUPUJR21gxUgQQ6BAixxiyXFiLwcj3xlZiqI9ubK=
+-_tnnGYGDTRVUOCm target=3D_blank style=3D"text-decoration: none; color: #66=
+6666;"><span class=3Ddesktop>=EB=B0=98=EC=88=98=EC=96=B4=EB=A6=B0=EC=9D=B4=
+=EA=B3=B5=EC=9B=90</span><span class=3Dmobile>=EB=B0=98=EC=88=98=EC=96=B4=
+=EB=A6=B0=EC=9D=B4=EA=B3=B5=EC=9B=90</span></a></p>
+</div>
+</div>
+<div>
+<p class=3Dpost-date style=3D"color: #666666;">21. 2. 24</p>
+</div>
+</div>
+<div class=3Ddesktop>
+<a href=3Dhttps://notifications.google.com/g/p/AD-FnEzg4GIUXU0DDxYbOYCbt09Z=
+-QIQ73v-gdx5mWR_IKGM_bQbI2B_vGblcKPfCtjv7WplmqQXIA2UWGELgf-OxP6Q_cYzsU3Wkvq=
+fgOCN78PkZC2eDBwvDb-s0AlhEpYmuHf2GrheHSmb84DzLl8sk9cWlrhEQ5FcpO2iOpbfK-mXnl=
+RhcoLomqIAKnkfVqfGcllBWVOH7rTcTeBRPgm80aqO5iindsN9MRxS7KPZKFNjjKJM1NVTnxWAa=
+EHpuFJeCIZPPYt8BKxoB6ibX4lYvz9mVuEVkLD7Wz_q6booF0k70zhdwJvsnWjfYi8qa4uLtw s=
+tyle=3D"text-decoration: none; display: block;" target=3D_blank>
+<amp-img src=3Dhttps://lh3.googleusercontent.com/geougc-impactemail/AF1QipP=
+nZmDcpTVUvREZOHSVHeDKeFbDUrDkpBt1SVIW=3Dw350-h240-p alt=3D"" width=3D350 he=
+ight=3D240 layout=3Dresponsive style=3D"width: 100%; height: auto; border-b=
+ottom-left-radius: 4px; border-bottom-right-radius: 4px;"></amp-img>
+</a>
+</div>
+<div class=3Dmobile>
+<a href=3Dhttps://notifications.google.com/g/p/AD-FnEzg4GIUXU0DDxYbOYCbt09Z=
+-QIQ73v-gdx5mWR_IKGM_bQbI2B_vGblcKPfCtjv7WplmqQXIA2UWGELgf-OxP6Q_cYzsU3Wkvq=
+fgOCN78PkZC2eDBwvDb-s0AlhEpYmuHf2GrheHSmb84DzLl8sk9cWlrhEQ5FcpO2iOpbfK-mXnl=
+RhcoLomqIAKnkfVqfGcllBWVOH7rTcTeBRPgm80aqO5iindsN9MRxS7KPZKFNjjKJM1NVTnxWAa=
+EHpuFJeCIZPPYt8BKxoB6ibX4lYvz9mVuEVkLD7Wz_q6booF0k70zhdwJvsnWjfYi8qa4uLtw s=
+tyle=3D"text-decoration: none; display: block;" target=3D_blank>
+<amp-img src=3Dhttps://lh3.googleusercontent.com/geougc-impactemail/AF1QipP=
+nZmDcpTVUvREZOHSVHeDKeFbDUrDkpBt1SVIW=3Dw252-h173-p alt=3D"" width=3D252 he=
+ight=3D173 layout=3Dresponsive style=3D"width: 100%; height: auto; border-b=
+ottom-left-radius: 4px; border-bottom-right-radius: 4px;"></amp-img>
+</a>
+</div>
+</div>
+</div>
+<div style=3D"align-items: center;">
+<div class=3Dsec1-container>
+<div style=3D"align-items: center;">
+<div>
+<p class=3Dcta1-pad style=3D"font-size: 15px; line-height: 22px; font-weigh=
+t: bold;">
+<a aria-label=3D"=EB=82=B4 =EC=82=AC=EC=A7=84 =ED=8E=98=EC=9D=B4=EC=A7=80=
+=EB=A5=BC =EB=B0=A9=EB=AC=B8=ED=95=98=EC=97=AC =EC=96=B4=EB=96=A4 =EC=98=81=
+=ED=96=A5=EC=9D=84 =EB=AF=B8=EC=B3=A4=EB=8A=94=EC=A7=80 =ED=99=95=EC=9D=B8=
+=ED=95=B4 =EB=B3=B4=EC=84=B8=EC=9A=94" href=3Dhttps://maps.app.goo.gl/?ibi=
+=3Dcom.google.Maps&amp;ius=3Dcomgooglemapsurl&amp;link=3Dhttps://www.google=
+.com/maps/contrib/105854619499867463163/photos?at%3Dgnp_dl*rl~SINGLE_PHOTO_=
+VIEWS_CONGRATS_MODULE_SEE_YOUR_PHOTOS*mip~1531095667129066328*mis~113859063=
+7624758908*scf~AMP&amp;amv=3D703000000&amp;apn=3Dcom.google.android.apps.ma=
+ps&amp;isi=3D585027354&amp;utm_source=3Dphoto_impact_email style=3D"text-de=
+coration: none; color: #1A73E8;" target=3D_blank>=EB=82=B4 =EC=82=AC=EC=A7=
+=84 =ED=99=95=EC=9D=B8=ED=95=98=EA=B8=B0=C2=A0=C2=A0<amp-img src=3Dhttps://=
+services.google.com/fh/files/emails/arrow-icon-smb.png alt=3D"" width=3D8 h=
+eight=3D12 layout=3Dresponsive style=3D"display: inline-block; width: 8px; =
+height: 12px; vertical-align: middle;"></amp-img></a>
+</p>
+<p class=3Dsec1-para1 style=3D"font-weight: bold; color: #666666;">=EB=82=
+=B4=EA=B0=80 =EC=98=AC=EB=A6=B0 =EC=82=AC=EC=A7=84=EC=9D=B4 =ED=81=B0 =EB=
+=8F=84=EC=9B=80=EC=9D=B4 =EB=90=A9=EB=8B=88=EB=8B=A4</p>
+<p style=3D"color: #666666; font-size: 14px; line-height: 22px; padding: 8p=
+x 0 0px;">=EC=B6=95=ED=95=98=ED=95=A9=EB=8B=88=EB=8B=A4. =EC=9E=91=EC=84=B1=
+=ED=95=98=EC=8B=A0 =EA=B2=8C=EC=8B=9C=EB=AC=BC=EC=9D=B4 =EB=B0=A9=EA=B8=88 =
+=EC=83=88=EB=A1=9C=EC=9A=B4 =EC=84=B1=EA=B3=BC=EB=A5=BC =EC=9D=B4=EB=A3=A8=
+=EC=97=88=EC=8A=B5=EB=8B=88=EB=8B=A4. =EC=A1=B0=ED=9A=8C=EC=88=98 500=ED=9A=
+=8C=EB=A5=BC =EB=8F=8C=ED=8C=8C=ED=96=88=EC=9C=BC=EB=A9=B0, =EB=A7=8E=EC=9D=
+=80 =EC=82=AC=EC=9A=A9=EC=9E=90=EA=B0=80 =EC=9D=B4 =EA=B2=8C=EC=8B=9C=EB=AC=
+=BC=EC=9D=84 =ED=86=B5=ED=95=B4 =ED=95=84=EC=9A=94=ED=95=9C =EC=A0=95=EB=B3=
+=B4=EB=A5=BC =EC=96=BB=EC=97=88=EC=8A=B5=EB=8B=88=EB=8B=A4.</p>
+</div>
+<div style=3D"padding: 30px 0 40px;">
+<a aria-label=3D"Google =EC=A7=80=EB=8F=84=EB=A5=BC =EB=B0=A9=EB=AC=B8=ED=
+=95=98=EC=97=AC =EC=B0=B8=EC=97=AC=ED=95=98=EC=84=B8=EC=9A=94" href=3Dhttps=
+://maps.app.goo.gl/?ibi=3Dcom.google.Maps&amp;ius=3Dcomgooglemapsurl&amp;li=
+nk=3Dhttps://www.google.com/maps/contrib/105854619499867463163/todolist/dat=
+a%3D!4m4!8m1!1e5!19m1!1e0?entry%3Deui%26do_log_in%3Dtrue%26at%3Dgnp_dl*rl~S=
+INGLE_PHOTO_VIEWS_CONGRATS_MODULE_CONTRIBUTE_MORE*mip~1531095667129066328*m=
+is~1138590637624758908*scf~AMP&amp;amv=3D703000000&amp;apn=3Dcom.google.and=
+roid.apps.maps&amp;isi=3D585027354&amp;utm_source=3Dphoto_impact_email targ=
+et=3D_blank style=3D"border-radius: 4px; text-decoration:none; background-c=
+olor: #1A73E8; color: #ffffff; font-weight:500; text-align: center; border-=
+top: 13px solid #1A73E8; border-bottom: 13px solid #1A73E8; border-left: 20=
+px solid #1A73E8; border-right: 20px solid #1A73E8; font-size: 16px; line-h=
+eight: 22px;">=EC=B6=94=EA=B0=80=EB=A1=9C =EC=B0=B8=EC=97=AC=ED=95=98=EA=B8=
+=B0</a>
+</div>
+<!-- <p style=3D"font-weight: bold; color: #666666; font-size: 14px; line-h=
+eight: 22px; padding: 20px 0 0;">Share your achievement</p> -->
+</div>
+<!-- <div style=3D"flex-direction: row; justify-content: center; padding: 1=
+4px 0 38px;">
+<div>
+<a href=3D"https://www.google.com" style=3D"text-decoration: none; border-r=
+adius: 50%">
+<amp-img src=3D"https://services.google.com/fh/files/emails/local_guides_im=
+pact_twitter_share.png" alt=3D"" width=3D"50" height=3D"50" layout=3D"respo=
+nsive" style=3D"width: 50px; height: 50px; border-radius: 50%;"></amp-img>
+</a>
+</div>
+<div style=3D"width: 14px;"></div>
+<div>
+<a href=3D"https://www.google.com" style=3D"text-decoration: none; border-r=
+adius: 50%">
+<amp-img src=3D"https://services.google.com/fh/files/emails/local_guides_im=
+pact_instagram_share.png" alt=3D"" width=3D"50" height=3D"50" layout=3D"res=
+ponsive" style=3D"width: 50px; height: 50px; border-radius: 50%;"></amp-img=
+>
+</a>
+</div>
+<div style=3D"width: 14px;"></div>
+<div>
+<a href=3D"https://www.google.com" style=3D"text-decoration: none; border-r=
+adius: 50%">
+<amp-img src=3D"https://services.google.com/fh/files/emails/local_guides_im=
+pact_facebook_share.png" alt=3D"" width=3D"50" height=3D"50" layout=3D"resp=
+onsive" style=3D"width: 50px; height: 50px; border-radius: 50%;"></amp-img>
+</a>
+</div>
+<div style=3D"width: 14px;"></div>
+<div>
+<a href=3D"https://www.google.com" style=3D"text-decoration: none; border-r=
+adius: 50%">
+<amp-img src=3D"https://services.google.com/fh/files/emails/local_guides_im=
+pact_email_share.png" alt=3D"" width=3D"50" height=3D"50" layout=3D"respons=
+ive" style=3D"width: 50px; height: 50px; border-radius: 50%;"></amp-img>
+</a>
+</div>
+</div> -->
+</div>
+</div>
+<!-- <div style=3D"align-items: center;">
+<div class=3D"w-296" style=3D"height: 1px; background-color: #DADCE0;"></di=
+v>
+</div>
+<div style=3D"align-items: center; padding: 0 0 33px;">
+<div class=3D"flex-col" style=3D"justify-content: space-between;">
+<div class=3D"w-294" style=3D"align-items: center;">
+<div class=3D"sec3-icon">
+<amp-img src=3D"https://services.google.com/fh/files/emails/local_guides_im=
+pact_pin_icon.png" alt=3D"" width=3D"40" height=3D"40" layout=3D"responsive=
+" style=3D"width: 40px; height: 40px;"></amp-img>
+</div>
+<div>
+<p class=3D"sec3-para1" style=3D"font-weight: bold; color: #666666; font-si=
+ze: 20px; line-height: 30px;">Get tips from Local Guides</p>
+<p class=3D"sec3-para2" style=3D"color: #666666; font-size: 14px; line-heig=
+ht: 22px;">Want to learn how to make a bigger impact with your posts? Explo=
+re these helpful tips from advanced Local Guides. Read this post on Local G=
+uides Connect.</p>
+</div>
+</div>
+<div>
+<div class=3D"sec3-card" style=3D"border: 1px solid #EAE8ED; box-shadow: 0 =
+2px 4px 0 rgba(0,0,0,0.1); width: 308px; border-radius: 5px;">
+<div style=3D"background-color: #ffffff; padding: 13px 16px 11px; border-to=
+p-left-radius: 4px; border-top-right-radius: 4px;">
+<div style=3D"flex-direction: row;">
+<div>
+<amp-img src=3D"https://lh5.googleusercontent.com/-swW0j8ZTpwM/AAAAAAAAAAI/=
+AAAAAAAAAAA/ZAH57RDvurg/w135-h135-cc-rp-mo/photo.jpg" alt=3D"" width=3D"39"=
+ height=3D"39" layout=3D"responsive" style=3D"width: 39px; height: 39px; bo=
+rder-radius: 50%;"></amp-img>
+</div>
+<div>
+<p style=3D"font-weight: bold; color: #666666; font-size: 14px; line-height=
+: 20px; padding: 1px 0 0 18px; text-align: left;">AdrianLunsong</p>
+<p style=3D"color: #666666; font-size: 14px; line-height: 20px; padding: 0p=
+x 0 0 18px; text-align: left;">Connect Moderator =E2=80=A2 Level 10</p>
+</div>
+</div>
+</div>
+<div>
+<amp-img src=3D"https://lh3.googleusercontent.com/-JIVFrncZ_oM/WtoCK7LVJgI/=
+AAAAAAAAAAA/zcIbsr1XCqw/w300-h300-p/photo.jpg" alt=3D"" width=3D"308" heigh=
+t=3D"148" layout=3D"responsive" style=3D"width: 100%; height: auto;"></amp-=
+img>
+</div>
+<div style=3D"background-color: #ffffff; padding: 14px 16px 16px; border-bo=
+ttom-left-radius: 4px; border-bottom-right-radius: 4px;">
+<div style=3D"flex-direction: row; justify-content: space-between; align-it=
+ems: center;">
+<div>
+<p style=3D"color: #666666; font-size: 14px; line-height: 21px; text-align:=
+ left;">Three Peaks of Lavaredo <br>(Tre Cime di Lavaredo) with children</p=
+>
+</div>
+<div>
+<a href=3D"https://www.google.com" style=3D"text-decoration: none; border-r=
+adius: 50%">
+<amp-img src=3D"https://services.google.com/fh/files/emails/local_guides_im=
+pact_next_icon.png" alt=3D"" width=3D"24" height=3D"24" layout=3D"responsiv=
+e" style=3D"width: 24px; height: 24px; border-radius: 50%;"></amp-img>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> -->
+<div style=3D"align-items: center;">
+<div class=3Dw-296 style=3D"height: 1px; background-color: #DADCE0;"></div>
+</div>
+<div style=3D"align-items: center;">
+<div class=3Dsec4-container style=3D"align-items: center;">
+<div class=3Dsec4-img>
+<a aria-label=3D"Google =EC=A7=80=EB=8F=84=EB=A5=BC =EB=B0=A9=EB=AC=B8=ED=
+=95=98=EC=97=AC =EC=B0=B8=EC=97=AC=ED=95=98=EC=84=B8=EC=9A=94" href=3Dhttps=
+://maps.app.goo.gl/?ibi=3Dcom.google.Maps&amp;ius=3Dcomgooglemapsurl&amp;li=
+nk=3Dhttps://www.google.com/maps/contrib/105854619499867463163/todolist/dat=
+a%3D!4m4!8m1!1e5!19m1!1e0?entry%3Deui%26do_log_in%3Dtrue%26at%3Dgnp_dl*rl~S=
+INGLE_PHOTO_VIEWS_BODY_CONTRIBUTE_NOW_IMAGE*mip~1531095667129066328*mis~113=
+8590637624758908*scf~AMP&amp;amv=3D703000000&amp;apn=3Dcom.google.android.a=
+pps.maps&amp;isi=3D585027354&amp;utm_source=3Dphoto_impact_email style=3D"t=
+ext-decoration: none;">
+<amp-img src=3Dhttps://services.google.com/fh/files/emails/local_guides_imp=
+act_contribute_now.png alt=3D"" width=3D280 height=3D140 layout=3Dresponsiv=
+e style=3D"width: 280px; height: 140px;"></amp-img>
+</a>
+</div>
+<div>
+<p style=3D"font-weight: bold; color: #666666; font-size: 20px; line-height=
+: 30px; padding: 25px 40px 0;">=EC=A7=80=EA=B8=88=EC=B2=98=EB=9F=BC =EA=B3=
+=84=EC=86=8D =ED=99=9C=EB=8F=99=ED=95=B4 =EC=A3=BC=EC=84=B8=EC=9A=94</p>
+<p style=3D"color: #666666; font-size: 14px; line-height: 22px; letter-spac=
+ing: 0.2px; padding: 6px 0 0;">=EB=8B=A4=EC=9D=8C=EC=97=90=EB=8F=84 =EC=83=
+=88=EB=A1=AD=EA=B3=A0 =ED=9D=A5=EB=AF=B8=EC=A7=84=EC=A7=84=ED=95=9C =EA=B2=
+=BD=ED=97=98=EC=9D=84 =EA=B3=B5=EC=9C=A0=ED=95=B4 =EC=A3=BC=EC=84=B8=EC=9A=
+=94.</p>
+</div>
+<div style=3D"padding: 20px 0 39px;">
+<a aria-label=3D"Google =EC=A7=80=EB=8F=84=EB=A5=BC =EB=B0=A9=EB=AC=B8=ED=
+=95=98=EC=97=AC =EC=B0=B8=EC=97=AC=ED=95=98=EC=84=B8=EC=9A=94" href=3Dhttps=
+://maps.app.goo.gl/?ibi=3Dcom.google.Maps&amp;ius=3Dcomgooglemapsurl&amp;li=
+nk=3Dhttps://www.google.com/maps/contrib/105854619499867463163/todolist/dat=
+a%3D!4m4!8m1!1e5!19m1!1e0?entry%3Deui%26do_log_in%3Dtrue%26at%3Dgnp_dl*rl~S=
+INGLE_PHOTO_VIEWS_CTA_CONTRIBUTE_NOW*mip~1531095667129066328*mis~1138590637=
+624758908*scf~AMP&amp;amv=3D703000000&amp;apn=3Dcom.google.android.apps.map=
+s&amp;isi=3D585027354&amp;utm_source=3Dphoto_impact_email target=3D_blank s=
+tyle=3D"border-radius: 4px; text-decoration:none; background-color: #1A73E8=
+; color: #ffffff; font-weight:500; text-align: center; border-top: 13px sol=
+id #1A73E8; border-bottom: 13px solid #1A73E8; border-left: 20px solid #1A7=
+3E8; border-right: 20px solid #1A73E8; font-size: 16px; line-height: 22px;"=
+>=EC=A7=80=EA=B8=88 =EC=B0=B8=EC=97=AC=ED=95=98=EA=B8=B0</a>
+</div>
+</div>
+</div>
+<div style=3D"align-items: center;">
+<div class=3Dw-308 style=3D"height: 1px; background-color: #DADCE0;"></div>
+</div>
+<div style=3D"align-items: center;">
+<div class=3Dw-330>
+<div>
+<p style=3D"font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-ser=
+if; color: #5F6368; font-size: 12px; line-height: 16px; letter-spacing: 0.3=
+px; padding: 20px 0;">=EB=B3=B8 =EC=9D=B4=EB=A9=94=EC=9D=BC=EC=9D=80 Google=
+=EC=97=90 =EC=82=AC=EC=9A=A9=EC=9E=90 =EC=BD=98=ED=85=90=EC=B8=A0=EB=A5=BC =
+=EC=A0=9C=EA=B3=B5=ED=95=9C =EC=82=AC=EC=9A=A9=EC=9E=90=EC=97=90=EA=B2=8C =
+=EB=B0=9C=EC=86=A1=EB=90=98=EB=8A=94 =EC=9D=B4=EB=A9=94=EC=9D=BC=EC=9E=85=
+=EB=8B=88=EB=8B=A4. =EB=8D=94 =EC=9D=B4=EC=83=81 =EC=9D=B4=EB=9F=AC=ED=95=
+=9C =EC=97=85=EB=8D=B0=EC=9D=B4=ED=8A=B8=EB=A5=BC =EB=B0=9B=EC=A7=80 =EC=95=
+=8A=EC=9C=BC=EB=A0=A4=EB=A9=B4 =EC=97=AC=EA=B8=B0=EC=97=90=EC=84=9C <a href=
+=3Dhttps://notifications.google.com/g/optout/AD-FnExMmZ6PvIMK1Ou49aGg3XH_FF=
+wUYo_U-ab69bgsv1howTnSrdf97Knp7evxjsOqe5UhTIhgSHZFjuWlNj8Z6spGgqVLjXLS9RhJv=
+JrmGSS-rbXiNg4?hl=3Dko style=3D"text-decoration: none; color: #1A73E8;" tar=
+get=3D_blank>=EC=88=98=EC=8B=A0 =EA=B1=B0=EB=B6=80</a>=ED=95=98=EC=84=B8=EC=
+=9A=94.</p>
+</div>
+</div>
+</div>
+<div style=3D"align-items: center;">
+<div class=3Dw-308 style=3D"height: 1px; background-color: #DADCE0;"></div>
+</div>
+<div style=3D"align-items: center;">
+<div class=3Dw-292>
+<div style=3D"padding: 20px 0 0; align-items: center;">
+<amp-img src=3Dhttps://www.gstatic.com/gumdrop/files/adwords-partners-googl=
+e-transparent-w158px-h52px-2x.png alt=3D"" width=3D80 height=3D26 layout=3D=
+responsive style=3D"width: 80px; height: 26px;"></amp-img>
+</div>
+<div>
+<p class=3Dtext-address style=3D"font-family: Roboto, Helvetica Neue, Helve=
+tica, Arial, sans-serif; color: #202124; font-size: 10px; line-height: 16px=
+; letter-spacing: 0.17px;">=C2=A9 2022 Google LLC 1600 Amphitheatre Parkway=
+, Mountain View, CA 94043</p>
+</div>
+</div>
+</div>
+<!-- Body Ends -->
+<!-- Footer Starts -->
+<!-- Footer Ends -->
+</div>
+<amp-img alt=3D"" height=3D1 width=3D3 src=3Dhttps://notifications.google.c=
+om/g/img/AD-FnEwOEnTEuxvGF1whhN99h7Jdn-TMgy773bqPwIcI_hC0yw.gif></body>
+</html>
+--000000000000733ddb05d8966e0b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!doctype html public "- / /w3c / /dtd xhtml 1.0 transitional / /en" "https=
+: / /www.w3.org /tr /xhtml1 /dtd /xhtml1-transitional.dtd">
+<html xmlns=3Dhttps://www.w3.org/1999/xhtml lang=3Dko>
+<head>
+<title>=EB=82=B4=EA=B0=80 =EC=96=B4=EB=96=A4 =EC=98=81=ED=96=A5=EC=9D=84 =
+=EB=AF=B8=EC=B3=A4=EB=8A=94=EC=A7=80 =EC=95=8C=EC=95=84=EB=B3=B4=EC=84=B8=
+=EC=9A=94</title>
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8">
+<!--[if !mso]><!-->
+<meta http-equiv=3DX-UA-Compatible content=3DIE=3Dedge>
+<!--<![endif]-->
+<meta name=3Dviewport content=3D"width=3Ddevice-width, initial-scale=3D1.0"=
+>
+<meta name=3Drobots content=3D"no index">
+<!--[if mso | ie]>
+<style>
+.out-prof {
+padding: 0px 0px 10px 9px !important;
+}
+.out-date {
+padding: 0px 0px 10px !important;
+}
+.out_bot{border-bottom: 2px solid #DADCE0 !important;}
+.out_bor{border-top: 1px solid #DADCE0 !important;}
+</style>
+<![endif]-->
+<style>
+body{
+font-family:Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+font-size:12px;
+color:#000000;
+-webkit-text-size-adjust: none !important;
+-webkit-font-smoothing: antialiased !important;
+-ms-text-size-adjust: none !important;
+}
+table, tr, td {
+mso-table-lspace:0pt;
+mso-table-rspace:0pt;
+}
+a:link, a:visited, a:hover, a:active {
+color: #4285f4;
+text-decoration: none;
+}
+strong {
+font-weight: bold !important;
+}
+em {
+font-style: italic !important;
+}
+html {
+-webkit-text-size-adjust: none;
+-ms-text-size-adjust: 100%;
+}
+td {
+-webkit-text-size-adjust: none;
+}
+a[href^=3Dtel] {
+color: inherit;
+text-decoration: none;
+}
+div, p, a, li, td {
+-webkit-text-size-adjust:none;
+}
+td {
+text-decoration:none !important;
+}
+a[x-apple-data-detectors] {
+color: inherit !important;
+text-decoration: none !important;
+font-size: inherit !important;
+font-family: inherit !important;
+font-weight: inherit !important;
+line-height: inherit !important;
+}
+@media screen and (max-width: 720px) {
+.hide {
+display: none !important;
+}
+.show {
+display: block !important;
+}
+.wid-100-per {
+width: 100% !important;
+}
+.wid-360 {
+width: 360px !important;
+}
+.wid-324 {
+width: 324px !important;
+}
+.wid-308 {
+width: 308px !important;
+}
+.wid-294 {
+width: 294px !important;
+}
+.wid-284 {
+width: 284px !important;
+}
+.mar-0-auto {
+margin: 0 auto !important;
+}
+.pad-l-r-0 {
+padding-right: 0px !important;
+padding-left: 0px !important;
+}
+.pad-l-r-18 {
+padding-right: 18px !important;
+padding-left: 18px !important;
+}
+.pad-l-r-22 {
+padding-right: 22px !important;
+padding-left: 22px !important;
+}
+.pad-l-r-24 {
+padding-right: 24px !important;
+padding-left: 24px !important;
+}
+.pad-t-3 {
+padding-top: 3px !important;
+}
+.pad-t-24 {
+padding-top: 24px !important;
+}
+.pad-t-27 {
+padding-top: 27px !important;
+}
+.pad-t-30 {
+padding-top: 30px !important;
+}
+.pad-b-6 {
+padding-bottom: 6px !important;
+}
+.pad-b-30 {
+padding-bottom: 30px !important;
+}
+}
+</style>
+</head>
+<body style=3D"margin: 0 auto; padding:10px 0;" bgcolor=3D#f5f5f5>
+<!--Hidden snippet start-->
+<!--[if !mso]><!-->
+<p style=3D"padding-top:0; font-size:0px; line-height:0px; display: none;">=
+=EC=A7=80=EA=B8=88=EA=B9=8C=EC=A7=80 =EC=9D=B4=EB=A3=AC =EC=84=B1=EA=B3=BC=
+=EB=A5=BC =EC=B6=95=ED=95=98=EB=93=9C=EB=A6=BD=EB=8B=88=EB=8B=A4=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0=E2=80=8D=
+=C2=A0=E2=80=8D=C2=A0=E2=80=8D=C2=A0</p>
+<!--<![endif]-->
+<!--Hidden snippet end-->
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0 width=
+=3D100% align=3Dcenter>
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<table class=3Dwid-360 role=3Dpresentation border=3D0 cellpadding=3D0 cells=
+pacing=3D0 width=3D720 align=3Dcenter bgcolor=3D#ffffff>
+<!-- logo starts -->
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0 width=
+=3D100% align=3Dcenter>
+<tr>
+<td aria-hidden=3Dtrue align=3Dcenter valign=3Dtop style=3D"padding: 12px 0=
+;">
+<img src=3Dhttps://services.google.com/fh/files/emails/local_guides_impact_=
+logo.png alt=3D"" title=3D"" width=3D155 height=3Dauto style=3D"display: bl=
+ock;">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- logo ends -->
+<!-- body starts -->
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0 width=
+=3D100% align=3Dcenter>
+<tr>
+<td class=3Dhide align=3Dcenter valign=3Dtop background=3Dhttps://services.=
+google.com/fh/files/emails/local_guides_impact_hero_bg_desktop_1.gif style=
+=3D"background-image:url(https://services.google.com/fh/files/emails/local_=
+guides_impact_hero_bg_desktop_1.gif); background-position:top left; backgro=
+und-repeat: no-repeat; background-size:100%; height: 464px;" height=3D468>
+<!--[if gte mso 9]>
+<v:rect xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"true" stroke=3D"f=
+alse" style=3D"width:720px; height:464px; background-size:cover;">
+<v:fill type=3D"tile" src=3D"https://services.google.com/fh/files/emails/lo=
+cal_guides_impact_hero_bg_out.png" color=3D"#ffffff" />
+<v:textbox inset=3D"0,0,0,0">
+<![endif]-->
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0 width=
+=3D100% align=3Dcenter>
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0 width=
+=3D100% align=3Dcenter>
+<tr>
+<td aria-hidden=3Dtrue width=3D1 height=3D36 align=3Dleft valign=3Dtop styl=
+e=3Dborder-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;mso-=
+line-height-rule:exactly;line-height:36px;>
+<img src=3Dhttps://services.google.com/fh/files/emails/spacer_11.gif width=
+=3D100% height=3D1 border=3D0 alt=3D"" style=3D"display: block;">
+</td>
+</tr>
+<tr>
+<td align=3Dcenter valign=3Dtop style=3D"font-family: Google Sans, Roboto, =
+Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 72px; line-height:=
+ 72px; font-weight: 500; color: #1A73E8; letter-spacing: -3.6px;">500</td>
+</tr>
+<tr>
+<td align=3Dcenter valign=3Dtop style=3D"font-family: Google Sans, Roboto, =
+Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 24px; line-height:=
+ 36px; font-weight: bold; color: #666666; letter-spacing: -0.3px;">=EC=82=
+=AC=EC=A7=84 =EC=A1=B0=ED=9A=8C=EC=88=98</td>
+</tr>
+<tr>
+<td aria-hidden=3Dtrue width=3D1 height=3D14 align=3Dleft valign=3Dtop styl=
+e=3Dborder-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;mso-=
+line-height-rule:exactly;line-height:14px;>
+<img src=3Dhttps://services.google.com/fh/files/emails/spacer_11.gif width=
+=3D100% height=3D1 border=3D0 alt=3D"" style=3D"display: block;">
+</td>
+</tr>
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0 width=
+=3D350 align=3Dcenter>
+<tr>
+<td align=3Dcenter valign=3Dtop style=3D"border: 1px solid #EAE8ED; border-=
+radius: 5px; background-color: #ffffff;">
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0 width=
+=3D100% align=3Dcenter>
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0 width=
+=3D100% align=3Dcenter>
+<tr>
+<td align=3Dcenter valign=3Dtop style=3D"padding: 11px 20px;">
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0 width=
+=3D100% align=3Dcenter>
+<tr>
+<td align=3Dleft valign=3Dtop>
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0>
+<tr>
+<td align=3Dleft valign=3Dtop>
+<img src=3Dhttps://lh3.googleusercontent.com/a-/AOh14Gj1pzhQHtZn3s_E5sgx4wt=
+mAqq16g9-3Bb60DwmJQ=3Ds120-cc-rp-mo width=3D35 alt=3D"" title=3D"" style=3D=
+"display: block; border-radius: 50%;">
+</td>
+<td align=3Dleft valign=3Dtop>
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0>
+<tr>
+<td class=3Dout-prof align=3Dleft valign=3Dtop style=3D"font-family: Google=
+ Sans, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 16p=
+x; line-height: 30px; font-weight: bold; color: #666666; padding: 7px 0 0 9=
+px;"><a href=3Dhttps://notifications.google.com/g/p/AD-FnExgyybuHt4K_wtJBGN=
+6-S2ejAYcFlUyNKvcRq2TEISFOcBIZ0TKH9Qo2J2hWGKp_NxzFnXCJFgp1D2b8KF3XpW5mHPOC7=
+bDfe6pdn8skYhgTDj8SlCp-6wpe3F5fUCCGZ39EZv1iLLX2xfDmjq_eIDmK7-i-DfRjH_2QXZXa=
+GwmXtq_knLhVGXxhp8vSr0ZlfewG8oSEsWQ0VZSIVnIjeaj6mfKfIIPXJh6fSE9_qtqLLvySKCc=
+2EuYzYlTp01ZIcll0RwNwOo3pyroYZr_rldNeT5maGUx7y_HNQhcq5hldtnlcZ6abnVW0TTdn-_=
+ciDbY2bD9 target=3D_blank style=3D"text-decoration: none; color: #666666;">=
+=EB=B0=98=EC=88=98=EC=96=B4=EB=A6=B0=EC=9D=B4=EA=B3=B5=EC=9B=90</a></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+<td align=3Dright valign=3Dtop>
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0>
+<tr>
+<td class=3Dout-date align=3Dright valign=3Dtop style=3D"font-family: Googl=
+e Sans, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 14=
+px; line-height: 30px; color: #666666; padding: 7px 0 0;">21. 2. 24</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<a href=3Dhttps://notifications.google.com/g/p/AD-FnEzXS7HzClWxB77aqHVAUJHx=
+cLnLsMsEd8CusLzaWQuMsC-vInjivAoAGJmNH8ZjgoLZuRZpsmzmWvEicPnZQgtFiHwQXDr5Fqs=
+ooFMhtWM5Yu9y0TNSnuorHb7JXyvPDlfIOtg0yJgDpskOSrkmom0uG0_NsbFpitFNlzJ0p4Qoye=
+VXsaOrfodFdY9IL922vCSqXlo4j9Nc_1NjgCufFkijXTdgLJn15vCgZLyQ8HxaCypNFFcspsY5x=
+9MwrQkN1Rm-w9Nw-uDXqylzrhx9O_hNOAmsmV8rN3f6BKgPE3fxecMLYzod2ofqwbO_EBKsUQ s=
+tyle=3D"text-decoration: none; display: block;" target=3D_blank>
+<img src=3Dhttps://lh3.googleusercontent.com/geougc-impactemail/AF1QipPnZmD=
+cpTVUvREZOHSVHeDKeFbDUrDkpBt1SVIW=3Dw350-h240-p width=3D350 height=3D240 al=
+t=3D"" style=3D"display: block; border-bottom-left-radius: 4px; border-bott=
+om-right-radius: 4px;">
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td aria-hidden=3Dtrue width=3D1 height=3D4 align=3Dleft valign=3Dtop style=
+=3Dborder-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;mso-l=
+ine-height-rule:exactly;line-height:4px;>
+<img src=3Dhttps://services.google.com/fh/files/emails/spacer_11.gif width=
+=3D100% height=3D1 border=3D0 alt=3D"" style=3D"display: block;">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--[if gte mso 9]>
+</v:textbox>
+</v:rect>
+<![endif]-->
+</td>
+<!--[if !mso]><!-->
+<td class=3Dshow align=3Dcenter valign=3Dtop background=3Dhttps://services.=
+google.com/fh/files/emails/local_guides_impact_hero_bg_mobile_1.gif style=
+=3D"background-image:url(https://services.google.com/fh/files/emails/local_=
+guides_impact_hero_bg_mobile_1.gif); background-position:top left; backgrou=
+nd-repeat: no-repeat; background-size:100%; display: none;">
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0 width=
+=3D100% align=3Dcenter>
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0 width=
+=3D100% align=3Dcenter>
+<tr>
+<td aria-hidden=3Dtrue width=3D1 height=3D36 align=3Dleft valign=3Dtop styl=
+e=3Dborder-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;mso-=
+line-height-rule:exactly;line-height:36px;>
+<img src=3Dhttps://services.google.com/fh/files/emails/spacer_11.gif width=
+=3D100% height=3D1 border=3D0 alt=3D"" style=3D"display: block;">
+</td>
+</tr>
+<tr>
+<td align=3Dcenter valign=3Dtop style=3D"font-family: Google Sans, Roboto, =
+Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 62px; line-height:=
+ 62px; font-weight: 500; color: #1A73E8; letter-spacing: -3.6px;">500</td>
+</tr>
+<tr>
+<td align=3Dcenter valign=3Dtop style=3D"font-family: Google Sans, Roboto, =
+Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 20px; line-height:=
+ 28px; font-weight: bold; color: #666666; letter-spacing: -0.3px;">=EC=82=
+=AC=EC=A7=84 =EC=A1=B0=ED=9A=8C=EC=88=98</td>
+</tr>
+<tr>
+<td aria-hidden=3Dtrue width=3D1 height=3D22 align=3Dleft valign=3Dtop styl=
+e=3Dborder-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;mso-=
+line-height-rule:exactly;line-height:22px;>
+<img src=3Dhttps://services.google.com/fh/files/emails/spacer_11.gif width=
+=3D100% height=3D1 border=3D0 alt=3D"" style=3D"display: block;">
+</td>
+</tr>
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0 width=
+=3D252 align=3Dcenter>
+<tr>
+<td align=3Dcenter valign=3Dtop style=3D"border: 1px solid #EAE8ED; border-=
+radius: 5px; background-color: #ffffff;">
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0 width=
+=3D100% align=3Dcenter>
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0 width=
+=3D100% align=3Dcenter>
+<tr>
+<td align=3Dcenter valign=3Dtop style=3D"padding: 8px 15px 9px;">
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0 width=
+=3D100% align=3Dcenter>
+<tr>
+<td align=3Dleft valign=3Dtop>
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0>
+<tr>
+<td align=3Dleft valign=3Dtop>
+<img src=3Dhttps://lh3.googleusercontent.com/a-/AOh14Gj1pzhQHtZn3s_E5sgx4wt=
+mAqq16g9-3Bb60DwmJQ=3Ds120-cc-rp-mo width=3D25 alt=3D"" title=3D"" style=3D=
+"display: block; border-radius: 50%;">
+</td>
+<td align=3Dleft valign=3Dtop>
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0>
+<tr>
+<td align=3Dleft valign=3Dtop style=3D"font-family: Google Sans, Roboto, He=
+lvetica Neue, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 2=
+1px; font-weight: bold; color: #666666; padding: 4px 0 0 8px;"><a href=3Dht=
+tps://notifications.google.com/g/p/AD-FnExgyybuHt4K_wtJBGN6-S2ejAYcFlUyNKvc=
+Rq2TEISFOcBIZ0TKH9Qo2J2hWGKp_NxzFnXCJFgp1D2b8KF3XpW5mHPOC7bDfe6pdn8skYhgTDj=
+8SlCp-6wpe3F5fUCCGZ39EZv1iLLX2xfDmjq_eIDmK7-i-DfRjH_2QXZXaGwmXtq_knLhVGXxhp=
+8vSr0ZlfewG8oSEsWQ0VZSIVnIjeaj6mfKfIIPXJh6fSE9_qtqLLvySKCc2EuYzYlTp01ZIcll0=
+RwNwOo3pyroYZr_rldNeT5maGUx7y_HNQhcq5hldtnlcZ6abnVW0TTdn-_ciDbY2bD9 target=
+=3D_blank style=3D"text-decoration: none; color: #666666;">=EB=B0=98=EC=88=
+=98=EC=96=B4=EB=A6=B0=EC=9D=B4=EA=B3=B5=EC=9B=90</a></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+<td align=3Dright valign=3Dtop>
+<table role=3Dpresentation border=3D0 cellpadding=3D0 cellspacing=3D0>
+<tr>
+<td align=3Dright valign=3Dtop style=3D"font-family: Google Sans, Roboto, H=
+elvetica Neue, Helvetica, Arial, sans-serif; font-size: 13px; line-height: =
+21px; color: #666666; padding: 4px 0 0;">21. 2. 24</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<a href=3Dhttps://notifications.google.com/g/p/AD-FnEzXS7HzClWxB77aqHVAUJHx=
+cLnLsMsEd8CusLzaWQuMsC-vInjivAoAGJmNH8ZjgoLZuRZpsmzmWvEicPnZQgtFiHwQXDr5Fqs=
+ooFMhtWM5Yu9y0TNSnuorHb7JXyvPDlfIOtg0yJgDpskOSrkmom0uG0_NsbFpitFNlzJ0p4Qoye=
+VXsaOrfodFdY9IL922vCSqXlo4j9Nc_1NjgCufFkijXTdgLJn15vCgZLyQ8HxaCypNFFcspsY5x=
+9MwrQkN1Rm-w9Nw-uDXqylzrhx9O_hNOAmsmV8rN3f6BKgPE3fxecMLYzod2ofqwbO_EBKsUQ s=
+tyle=3D"text-decoration: none; display: block;" target=3D_blank>
+<img src=3Dhttps://lh3.googleusercontent.com/geougc-impactemail/AF1QipPnZmD=
+cpTVUvREZOHSVHeDKeFbDUrDkpBt1SVIW=3Dw252-h172-p width=3D252 height=3D172 al=
+t=3D"" style=3D"display: block; border-bottom-left-radius: 4px; border-bott=
+om-right-radius: 4px;">
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td aria-hidden=3Dtrue width=3D1 height=3D2 align=3Dleft valign=3Dtop style=
+=3Dborder-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;mso-l=
+ine-height-rule:exactly;line-height:2px;>
+<img src=3Dhttps://services.google.com/fh/files/emails/spacer_11.gif width=
+=3D100% height=3D1 border=3D0 alt=3D"" style=3D"display: block;">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+<!--<![endif]-->
+</tr>
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<table class=3Dwid-284 role=3Dpresentation border=3D0 cellpadding=3D0 cells=
+pacing=3D0 width=3D540 align=3Dcenter>
+<tr>
+<td align=3Dcenter valign=3Dtop style=3D"font-family: Google Sans, Roboto, =
+Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 15px; line-height:=
+ 22px; font-weight: bold; color: #1A73E8; padding: 17px 0 0;">
+<a aria-label=3D"=EB=82=B4 =EC=82=AC=EC=A7=84 =ED=8E=98=EC=9D=B4=EC=A7=80=
+=EB=A5=BC =EB=B0=A9=EB=AC=B8=ED=95=98=EC=97=AC =EC=96=B4=EB=96=A4 =EC=98=81=
+=ED=96=A5=EC=9D=84 =EB=AF=B8=EC=B3=A4=EB=8A=94=EC=A7=80 =ED=99=95=EC=9D=B8=
+=ED=95=B4 =EB=B3=B4=EC=84=B8=EC=9A=94" href=3Dhttps://maps.app.goo.gl/?ibi=
+=3Dcom.google.Maps&amp;ius=3Dcomgooglemapsurl&amp;link=3Dhttps://www.google=
+.com/maps/contrib/105854619499867463163/photos?at%3Dgnp_dl*rl~SINGLE_PHOTO_=
+VIEWS_CONGRATS_MODULE_SEE_YOUR_PHOTOS*mip~1531095667129066328*mis~113859063=
+7624758908*scf~HTML&amp;amv=3D703000000&amp;apn=3Dcom.google.android.apps.m=
+aps&amp;isi=3D585027354&amp;utm_source=3Dphoto_impact_email target=3D_blank=
+ style=3D"text-decoration: none; color: #1A73E8;">=EB=82=B4 =EC=82=AC=EC=A7=
+=84 =ED=99=95=EC=9D=B8=ED=95=98=EA=B8=B0=C2=A0=C2=A0<img src=3Dhttps://serv=
+ices.google.com/fh/files/emails/arrow-icon-smb.png alt=3D"" width=3D8 heigh=
+t=3D12 style=3D"display: inline-block; width: 8px; height: 12px; vertical-a=
+lign: middle;"></a>
+</td>
+</tr>
+<tr>
+<td class=3Dpad-l-r-22 align=3Dcenter valign=3Dtop style=3D"font-family: Go=
+ogle Sans, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif; padding: 1=
+9px 0 0; font-size: 24px; line-height: 36px; font-weight: bold; color: #666=
+666;">=EB=82=B4=EA=B0=80 =EC=98=AC=EB=A6=B0 =EC=82=AC=EC=A7=84=EC=9D=B4 =ED=
+=81=B0 =EB=8F=84=EC=9B=80=EC=9D=B4 =EB=90=A9=EB=8B=88=EB=8B=A4</td>
+</tr>
+<tr>
+<td align=3Dcenter valign=3Dtop style=3D"font-family: Google Sans, Roboto, =
+Helvetica Neue, Helvetica, Arial, sans-serif; color: #666666; font-size: 14=
+px; line-height: 22px; padding: 8px 0 0;">=EC=B6=95=ED=95=98=ED=95=A9=EB=8B=
+=88=EB=8B=A4. =EC=9E=91=EC=84=B1=ED=95=98=EC=8B=A0 =EA=B2=8C=EC=8B=9C=EB=AC=
+=BC=EC=9D=B4 =EB=B0=A9=EA=B8=88 =EC=83=88=EB=A1=9C=EC=9A=B4 =EC=84=B1=EA=B3=
+=BC=EB=A5=BC =EC=9D=B4=EB=A3=A8=EC=97=88=EC=8A=B5=EB=8B=88=EB=8B=A4. =EC=A1=
+=B0=ED=9A=8C=EC=88=98 500=ED=9A=8C=EB=A5=BC =EB=8F=8C=ED=8C=8C=ED=96=88=EC=
+=9C=BC=EB=A9=B0, =EB=A7=8E=EC=9D=80 =EC=82=AC=EC=9A=A9=EC=9E=90=EA=B0=80 =
+=EC=9D=B4 =EA=B2=8C=EC=8B=9C=EB=AC=BC=EC=9D=84 =ED=86=B5=ED=95=B4 =ED=95=84=
+=EC=9A=94=ED=95=9C =EC=A0=95=EB=B3=B4=EB=A5=BC =EC=96=BB=EC=97=88=EC=8A=B5=
+=EB=8B=88=EB=8B=A4.</td>
+</tr>
+<tr>
+<td align=3Dcenter valign=3Dtop style=3D"padding: 30px 0 40px;">
+<table role=3Dpresentation align=3Dcenter border=3D0 cellpadding=3D0 cellsp=
+acing=3D0>
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<a aria-label=3D"Google =EC=A7=80=EB=8F=84=EB=A5=BC =EB=B0=A9=EB=AC=B8=ED=
+=95=98=EC=97=AC =EC=B0=B8=EC=97=AC=ED=95=98=EC=84=B8=EC=9A=94" href=3Dhttps=
+://maps.app.goo.gl/?ibi=3Dcom.google.Maps&amp;ius=3Dcomgooglemapsurl&amp;li=
+nk=3Dhttps://www.google.com/maps/contrib/105854619499867463163/todolist/dat=
+a%3D!4m4!8m1!1e5!19m1!1e0?entry%3Deui%26do_log_in%3Dtrue%26at%3Dgnp_dl*rl~S=
+INGLE_PHOTO_VIEWS_CONGRATS_MODULE_CONTRIBUTE_MORE*mip~1531095667129066328*m=
+is~1138590637624758908*scf~HTML&amp;amv=3D703000000&amp;apn=3Dcom.google.an=
+droid.apps.maps&amp;isi=3D585027354&amp;utm_source=3Dphoto_impact_email tar=
+get=3D_blank style=3D"-moz-border-radius:4px; -webkit-border-radius:4px; ba=
+ckground:#1A73E8; border-radius:4px; color:#ffffff; display:block; font-fam=
+ily: Google Sans, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif; fon=
+t-size:16px;line-height: 22px; font-weight:500; border-top:13px solid #1A73=
+E8;border-bottom:13px solid #1A73E8; border-left:20px solid #1A73E8;border-=
+right: 20px solid #1A73E8; text-decoration:none"><!--[if mso]>&nbsp;&nbsp;&=
+nbsp;&nbsp;<![endif]-->=EC=B6=94=EA=B0=80=EB=A1=9C =EC=B0=B8=EC=97=AC=ED=95=
+=98=EA=B8=B0<!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]--></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- Divider -->
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<table class=3Dwid-294 role=3Dpresentation border=3D0 cellpadding=3D0 cells=
+pacing=3D0 width=3D618 align=3Dcenter>
+<tr>
+<td aria-hidden=3Dtrue width=3D100% height=3D1 align=3Dleft valign=3Dtop st=
+yle=3D"border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;m=
+so-line-height-rule:exactly;line-height:1px; background-color: #DADCE0;">
+<img src=3Dhttps://services.google.com/fh/files/emails/spacer_11.gif width=
+=3D100% height=3D1 border=3D0 alt=3D"" style=3D"display: block;">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- Divider -->
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<table class=3Dwid-294 role=3Dpresentation border=3D0 cellpadding=3D0 cells=
+pacing=3D0 width=3D572 align=3Dcenter>
+<tr>
+<td class=3Dpad-t-24 align=3Dcenter valign=3Dtop style=3D"padding: 28px 0 0=
+;">
+<a aria-label=3D"Google =EC=A7=80=EB=8F=84=EB=A5=BC =EB=B0=A9=EB=AC=B8=ED=
+=95=98=EC=97=AC =EC=B0=B8=EC=97=AC=ED=95=98=EC=84=B8=EC=9A=94" href=3Dhttps=
+://maps.app.goo.gl/?ibi=3Dcom.google.Maps&amp;ius=3Dcomgooglemapsurl&amp;li=
+nk=3Dhttps://www.google.com/maps/contrib/105854619499867463163/todolist/dat=
+a%3D!4m4!8m1!1e5!19m1!1e0?entry%3Deui%26do_log_in%3Dtrue%26at%3Dgnp_dl*rl~S=
+INGLE_PHOTO_VIEWS_BODY_CONTRIBUTE_NOW_IMAGE*mip~1531095667129066328*mis~113=
+8590637624758908*scf~HTML&amp;amv=3D703000000&amp;apn=3Dcom.google.android.=
+apps.maps&amp;isi=3D585027354&amp;utm_source=3Dphoto_impact_email style=3D"=
+text-decoration: none; display: block; width: 280px;" target=3D_blank>
+<img src=3Dhttps://services.google.com/fh/files/emails/local_guides_impact_=
+contribute_now.png width=3D280 height=3Dauto alt=3D"" style=3D"display: blo=
+ck;">
+</a>
+</td>
+</tr>
+<tr>
+<td align=3Dcenter valign=3Dtop style=3D"font-family: Google Sans, Roboto, =
+Helvetica Neue, Helvetica, Arial, sans-serif; font-weight: bold; color: #66=
+6666; font-size: 20px; line-height: 30px; padding: 25px 40px 0;">=EC=A7=80=
+=EA=B8=88=EC=B2=98=EB=9F=BC =EA=B3=84=EC=86=8D =ED=99=9C=EB=8F=99=ED=95=B4 =
+=EC=A3=BC=EC=84=B8=EC=9A=94</td>
+</tr>
+<tr>
+<td class=3Dpad-t-3 align=3Dcenter valign=3Dtop style=3D"font-family: Googl=
+e Sans, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif; color: #66666=
+6; font-size: 14px; line-height: 22px; letter-spacing: 0.2px; padding: 6px =
+0 0;">=EB=8B=A4=EC=9D=8C=EC=97=90=EB=8F=84 =EC=83=88=EB=A1=AD=EA=B3=A0 =ED=
+=9D=A5=EB=AF=B8=EC=A7=84=EC=A7=84=ED=95=9C =EA=B2=BD=ED=97=98=EC=9D=84 =EA=
+=B3=B5=EC=9C=A0=ED=95=B4 =EC=A3=BC=EC=84=B8=EC=9A=94.</td>
+</tr>
+<tr>
+<td align=3Dcenter valign=3Dtop style=3D"padding: 20px 0 39px;">
+<table role=3Dpresentation align=3Dcenter border=3D0 cellpadding=3D0 cellsp=
+acing=3D0>
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<a aria-label=3D"Google =EC=A7=80=EB=8F=84=EB=A5=BC =EB=B0=A9=EB=AC=B8=ED=
+=95=98=EC=97=AC =EC=B0=B8=EC=97=AC=ED=95=98=EC=84=B8=EC=9A=94" href=3Dhttps=
+://maps.app.goo.gl/?ibi=3Dcom.google.Maps&amp;ius=3Dcomgooglemapsurl&amp;li=
+nk=3Dhttps://www.google.com/maps/contrib/105854619499867463163/todolist/dat=
+a%3D!4m4!8m1!1e5!19m1!1e0?entry%3Deui%26do_log_in%3Dtrue%26at%3Dgnp_dl*rl~S=
+INGLE_PHOTO_VIEWS_CTA_CONTRIBUTE_NOW*mip~1531095667129066328*mis~1138590637=
+624758908*scf~HTML&amp;amv=3D703000000&amp;apn=3Dcom.google.android.apps.ma=
+ps&amp;isi=3D585027354&amp;utm_source=3Dphoto_impact_email target=3D_blank =
+style=3D"-moz-border-radius:4px; -webkit-border-radius:4px; background:#1A7=
+3E8; border-radius:4px; color:#ffffff; display:block; font-family: Google S=
+ans, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif; font-size:16px;l=
+ine-height: 22px; font-weight:500; border-top:13px solid #1A73E8;border-bot=
+tom:13px solid #1A73E8; border-left:20px solid #1A73E8;border-right: 20px s=
+olid #1A73E8; text-decoration:none"><!--[if mso]>&nbsp;&nbsp;&nbsp;&nbsp;<!=
+[endif]-->=EC=A7=80=EA=B8=88 =EC=B0=B8=EC=97=AC=ED=95=98=EA=B8=B0<!--[if ms=
+o]>&nbsp;&nbsp;&nbsp;&nbsp;<![endif]--></a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- Divider -->
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<table class=3Dwid-324 role=3Dpresentation border=3D0 cellpadding=3D0 cells=
+pacing=3D0 width=3D636 align=3Dcenter>
+<tr>
+<td aria-hidden=3Dtrue width=3D100% height=3D1 align=3Dleft valign=3Dtop st=
+yle=3D"border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt;m=
+so-line-height-rule:exactly;line-height:2px; background-color: #DADCE0;">
+<img src=3Dhttps://services.google.com/fh/files/emails/spacer_11.gif width=
+=3D100% height=3D1 border=3D0 alt=3D"" style=3D"display: block;">
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- Divider -->
+</table>
+</td>
+</tr>
+<!-- body ends -->
+<!-- footer starts -->
+<tr>
+<td align=3Dcenter valign=3Dtop>
+<table class=3Dwid-360 align=3Dcenter border=3D0 cellpadding=3D0 cellspacin=
+g=3D0 style=3D"margin:0 auto; width:720px;" role=3Dpresentation>
+<tbody>
+<tr>
+<td class=3Dpad-l-r-18 align=3Dcenter bgcolor=3D#ffffff style=3Dpadding-lef=
+t:42px;padding-right:42px;>
+<table border=3D0 cellpadding=3D0 cellspacing=3D0 role=3Dpresentation>
+<tbody>
+<!-- footer opt-out -->
+<tr>
+<td align=3Dcenter bgcolor=3D#ffffff style=3D"border-bottom:1px solid #DADC=
+E0;padding:20px 0px;font-family: Roboto, Helvetica Neue, Helvetica, Arial, =
+sans-serif; font-size:12px; font-weight:normal;color:#202124;line-height: 1=
+6px; letter-spacing: 0.3px;">=EB=B3=B8 =EC=9D=B4=EB=A9=94=EC=9D=BC=EC=9D=80=
+ Google=EC=97=90 =EC=82=AC=EC=9A=A9=EC=9E=90 =EC=BD=98=ED=85=90=EC=B8=A0=EB=
+=A5=BC =EC=A0=9C=EA=B3=B5=ED=95=9C =EC=82=AC=EC=9A=A9=EC=9E=90=EC=97=90=EA=
+=B2=8C =EB=B0=9C=EC=86=A1=EB=90=98=EB=8A=94 =EC=9D=B4=EB=A9=94=EC=9D=BC=EC=
+=9E=85=EB=8B=88=EB=8B=A4. =EB=8D=94 =EC=9D=B4=EC=83=81 =EC=9D=B4=EB=9F=AC=
+=ED=95=9C =EC=97=85=EB=8D=B0=EC=9D=B4=ED=8A=B8=EB=A5=BC =EB=B0=9B=EC=A7=80 =
+=EC=95=8A=EC=9C=BC=EB=A0=A4=EB=A9=B4 =EC=97=AC=EA=B8=B0=EC=97=90=EC=84=9C <=
+a href=3Dhttps://notifications.google.com/g/optout/AD-FnEy6SncHpPOCqZ3fy6W3=
+FFOl8iuhT4g-3EDI7uLlccYVz_YzHI57RyuKVnG-Ar3YDndCTBtKjGSmmSBIhRsR3m1RSnzbX_D=
+ffkBse6fj1x3PIUGR27I?hl=3Dko style=3D"text-decoration: none; color: #1A73E8=
+;" target=3D_blank>=EC=88=98=EC=8B=A0 =EA=B1=B0=EB=B6=80</a>=ED=95=98=EC=84=
+=B8=EC=9A=94.</td>
+</tr>
+<!-- footer opt-out -->
+<tr>
+<td align=3Dcenter bgcolor=3D#ffffff style=3D"padding:20px 12px;font-family=
+:Roboto, Helvetica Neue, Helvetica, Arial, sans-serif; font-size:9px; line-=
+height:12px;font-weight:normal;color:#202124;"><img height=3Dauto src=3Dhtt=
+ps://www.gstatic.com/gumdrop/files/adwords-partners-google-transparent-w158=
+px-h52px-2x.png width=3D80 alt=3D""></td>
+</tr>
+<tr>
+<td align=3Dcenter bgcolor=3D#ffffff style=3D"padding-left:20px; padding-ri=
+ght: 20px; padding-bottom: 90px; padding-top: 0; font-family:Roboto, Helvet=
+ica Neue, Helvetica, Arial, sans-serif; font-size:10px; line-height:16px;fo=
+nt-weight:normal;color:#202124;"><a href=3D# style=3D"text-decoration:none;=
+ color:#202124; cursor: default; pointer-events:none;" target=3D_blank>=C2=
+=A9 2022 Google LLC 1600 Amphitheatre Parkway, Mountain View, CA 94043</a><=
+/td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<!-- footer ends -->
+</table>
+</td>
+</tr>
+</table>
+<img alt=3D"" height=3D1 width=3D3 src=3Dhttps://notifications.google.com/g=
+/img/AD-FnEyNfhwtqgn5js4tlEUOFLdXdD7hIu01TIHbUngdaWQ9Ng.gif></body>
+</html>
+--000000000000733ddb05d8966e0b--

@@ -1,0 +1,13 @@
+### STS ###
+.classpath
+.project
+.settings
+.springBeans
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+
+### VS Code ###
+.vscode/
+
